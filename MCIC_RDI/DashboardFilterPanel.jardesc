@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jardesc>
+    <jar path="C:/Users/abeder/Downloads/WaveDashboardUtility.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/MCIC_RDI/DashboardFilterPanel.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" mainClassHandleIdentifier="=MCIC_RDI/src=/optional=/true=/=/maven.pomderived=/true=/&lt;com.mcic.wavemetadata.ui{GUIDashboardFilter.java[GUIDashboardFilter" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <javaElement handleIdentifier="=MCIC_RDI/src=/optional=/true=/=/maven.pomderived=/true=/&lt;com.mcic"/>
+        <javaElement handleIdentifier="=MCIC_RDI/src=/optional=/true=/=/maven.pomderived=/true=/&lt;com.mcic.util.json"/>
+        <javaElement handleIdentifier="=MCIC_RDI/src=/optional=/true=/=/maven.pomderived=/true=/&lt;com.mcic.wavemetadata.app{WaveDashboardFilter.java"/>
+        <javaElement handleIdentifier="=MCIC_RDI/src=/optional=/true=/=/maven.pomderived=/true=/&lt;com.mcic.wavemetadata.ui{GUIDashboardFilter.java"/>
+    </selectedElements>
+</jardesc>

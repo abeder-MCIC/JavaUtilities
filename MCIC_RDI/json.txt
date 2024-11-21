@@ -1,0 +1,2633 @@
+{
+  "action": "query",
+  "query": "q = load \"0FbTR00000032Jp0AI/0FcVF000000MtDx0AK\";\nq = group q by ('Snapshot_Date_Key', 'Estimate_Type');\nq = foreach q generate q.'Snapshot_Date_Key' as 'Snapshot_Date_Key', q.'Estimate_Type' as 'Estimate_Type', sum(q.'Incurred_Amount') as 'A', sum(q.'Estimate_Amount') as 'B';\nq = order q by ('Snapshot_Date_Key' asc, 'Estimate_Type' asc);\n",
+  "responseId": "SLB:80a53a63eb01918456a86628aa0f77a1",
+  "responseTime": 2589,
+  "results": {
+    "metadata": [{
+        "lineage": {
+          "input": {
+            "groups": [
+              {
+                "id": "q.Snapshot_Date_Key"
+              },
+              {
+                "id": "q.Estimate_Type"
+              }
+            ],
+            "type": "group"
+          },
+          "projections": [
+            {
+              "field": {
+                "id": "q.Snapshot_Date_Key",
+                "type": "string"
+              },
+              "inputs": [{
+                  "id": "q.Snapshot_Date_Key"
+                }]
+            },
+            {
+              "field": {
+                "id": "q.Estimate_Type",
+                "type": "string"
+              },
+              "inputs": [{
+                  "id": "q.Estimate_Type"
+                }]
+            },
+            {
+              "field": {
+                "id": "q.A",
+                "type": "numeric"
+              },
+              "inputs": [{
+                  "id": "q.Incurred_Amount"
+                }]
+            },
+            {
+              "field": {
+                "id": "q.B",
+                "type": "numeric"
+              },
+              "inputs": [{
+                  "id": "q.Estimate_Amount"
+                }]
+            }
+          ],
+          "type": "foreach"
+        },
+        "queryLanguage": "SAQL"
+      }],
+    "records": [
+      {
+        "A": 3.37976553096E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20110131"
+      },
+      {
+        "A": 3.37976553096E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20110131"
+      },
+      {
+        "A": 3.3969520010699997E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20110228"
+      },
+      {
+        "A": 3.3969520010699997E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20110228"
+      },
+      {
+        "A": 3.4050891364E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20110331"
+      },
+      {
+        "A": 3.4050891364E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20110331"
+      },
+      {
+        "A": 3.409892596E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20110430"
+      },
+      {
+        "A": 3.409892596E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20110430"
+      },
+      {
+        "A": 3.42532332194E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20110531"
+      },
+      {
+        "A": 3.42532332194E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20110531"
+      },
+      {
+        "A": 3.45130227821E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20110630"
+      },
+      {
+        "A": 3.45130227821E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20110630"
+      },
+      {
+        "A": 3.46275248427E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20110731"
+      },
+      {
+        "A": 3.46275248427E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20110731"
+      },
+      {
+        "A": 3.47657854121E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20110831"
+      },
+      {
+        "A": 3.47657854121E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20110831"
+      },
+      {
+        "A": 3.4823181078799996E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20110930"
+      },
+      {
+        "A": 3.4823181078799996E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20110930"
+      },
+      {
+        "A": 3.4991846449700003E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20111031"
+      },
+      {
+        "A": 3.4991846449700003E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20111031"
+      },
+      {
+        "A": 3.50987450272E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20111130"
+      },
+      {
+        "A": 3.50987450272E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20111130"
+      },
+      {
+        "A": 3.5258266218999996E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20111231"
+      },
+      {
+        "A": 3.5258266218999996E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20111231"
+      },
+      {
+        "A": 3.54224406706E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20120131"
+      },
+      {
+        "A": 3.54224406706E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20120131"
+      },
+      {
+        "A": 3.5514582147599998E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20120229"
+      },
+      {
+        "A": 3.5514582147599998E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20120229"
+      },
+      {
+        "A": 3.56356367988E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20120331"
+      },
+      {
+        "A": 3.56356367988E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20120331"
+      },
+      {
+        "A": 3.5836832306800003E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20120430"
+      },
+      {
+        "A": 3.5836832306800003E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20120430"
+      },
+      {
+        "A": 3.60599336758E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20120531"
+      },
+      {
+        "A": 3.60599336758E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20120531"
+      },
+      {
+        "A": 3.64432192264E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20120630"
+      },
+      {
+        "A": 3.64432192264E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20120630"
+      },
+      {
+        "A": 3.66359838406E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20120731"
+      },
+      {
+        "A": 3.66359838406E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20120731"
+      },
+      {
+        "A": 3.68597668968E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20120831"
+      },
+      {
+        "A": 3.68597668968E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20120831"
+      },
+      {
+        "A": 3.69531859807E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20120930"
+      },
+      {
+        "A": 3.69531859807E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20120930"
+      },
+      {
+        "A": 3.71204949442E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20121031"
+      },
+      {
+        "A": 3.71204949442E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20121031"
+      },
+      {
+        "A": 3.73891472031E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20121130"
+      },
+      {
+        "A": 3.73891472031E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20121130"
+      },
+      {
+        "A": 3.76155646729E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20121231"
+      },
+      {
+        "A": 3.76155646729E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20121231"
+      },
+      {
+        "A": 3.76867714413E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20130131"
+      },
+      {
+        "A": 3.76867714413E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20130131"
+      },
+      {
+        "A": 3.7830168898999996E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20130228"
+      },
+      {
+        "A": 3.7830168898999996E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20130228"
+      },
+      {
+        "A": 3.7961937466200004E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20130331"
+      },
+      {
+        "A": 3.7961937466200004E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20130331"
+      },
+      {
+        "A": 3.82620001536E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20130430"
+      },
+      {
+        "A": 3.82620001536E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20130430"
+      },
+      {
+        "A": 3.8842340749900002E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20130531"
+      },
+      {
+        "A": 3.8842340749900002E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20130531"
+      },
+      {
+        "A": 3.90295645314E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20130630"
+      },
+      {
+        "A": 3.90295645314E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20130630"
+      },
+      {
+        "A": 3.92105663691E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20130731"
+      },
+      {
+        "A": 3.92105663691E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20130731"
+      },
+      {
+        "A": 3.93755972731E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20130831"
+      },
+      {
+        "A": 3.93755972731E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20130831"
+      },
+      {
+        "A": 3.9453716487000003E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20130930"
+      },
+      {
+        "A": 3.9453716487000003E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20130930"
+      },
+      {
+        "A": 3.96008355885E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20131031"
+      },
+      {
+        "A": 3.96008355885E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20131031"
+      },
+      {
+        "A": 3.97940990529E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20131130"
+      },
+      {
+        "A": 3.97940990529E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20131130"
+      },
+      {
+        "A": 4.01060914579E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20131231"
+      },
+      {
+        "A": 4.01060914579E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20131231"
+      },
+      {
+        "A": 4.01839274801E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20140131"
+      },
+      {
+        "A": 4.01839274801E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20140131"
+      },
+      {
+        "A": 4.13169778586E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20140228"
+      },
+      {
+        "A": 4.13169778586E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20140228"
+      },
+      {
+        "A": 4.2118564982400002E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20140331"
+      },
+      {
+        "A": 4.2118564982400002E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20140331"
+      },
+      {
+        "A": 4.21768436477E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20140430"
+      },
+      {
+        "A": 4.21768436477E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20140430"
+      },
+      {
+        "A": 4.24200287854E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20140531"
+      },
+      {
+        "A": 4.24200287854E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20140531"
+      },
+      {
+        "A": 4.26368035174E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20140630"
+      },
+      {
+        "A": 4.26368035174E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20140630"
+      },
+      {
+        "A": 4.28361223608E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20140731"
+      },
+      {
+        "A": 4.28361223608E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20140731"
+      },
+      {
+        "A": 4.30282931679E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20140831"
+      },
+      {
+        "A": 4.30282931679E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20140831"
+      },
+      {
+        "A": 4.32366961964E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20140930"
+      },
+      {
+        "A": 4.32366961964E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20140930"
+      },
+      {
+        "A": 4.344653305469999E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20141031"
+      },
+      {
+        "A": 4.344653305469999E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20141031"
+      },
+      {
+        "A": 4.38439206306E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20141130"
+      },
+      {
+        "A": 4.38439206306E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20141130"
+      },
+      {
+        "A": 4.41041403195E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20141231"
+      },
+      {
+        "A": 4.41041403195E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20141231"
+      },
+      {
+        "A": 4.42580288055E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20150131"
+      },
+      {
+        "A": 4.42580288055E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20150131"
+      },
+      {
+        "A": 4.44840604208E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20150228"
+      },
+      {
+        "A": 4.44840604208E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20150228"
+      },
+      {
+        "A": 4.46288922571E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20150331"
+      },
+      {
+        "A": 4.46288922571E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20150331"
+      },
+      {
+        "A": 4.474374014940001E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20150430"
+      },
+      {
+        "A": 4.474374014940001E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20150430"
+      },
+      {
+        "A": 4.547357876330001E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20150531"
+      },
+      {
+        "A": 4.547357876330001E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20150531"
+      },
+      {
+        "A": 4.57966791461E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20150630"
+      },
+      {
+        "A": 4.57966791461E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20150630"
+      },
+      {
+        "A": 4.59234358232E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20150731"
+      },
+      {
+        "A": 4.59234358232E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20150731"
+      },
+      {
+        "A": 4.62357374054E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20150831"
+      },
+      {
+        "A": 4.62357374054E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20150831"
+      },
+      {
+        "A": 4.63121526176E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20150930"
+      },
+      {
+        "A": 4.63121526176E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20150930"
+      },
+      {
+        "A": 4.706576979280001E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20151031"
+      },
+      {
+        "A": 4.706576979280001E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20151031"
+      },
+      {
+        "A": 4.71224926059E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20151130"
+      },
+      {
+        "A": 4.71224926059E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20151130"
+      },
+      {
+        "A": 4.7266957652699995E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20151231"
+      },
+      {
+        "A": 4.7266957652699995E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20151231"
+      },
+      {
+        "A": 4.73280925812E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20160131"
+      },
+      {
+        "A": 4.73280925812E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20160131"
+      },
+      {
+        "A": 4.755181684940001E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20160229"
+      },
+      {
+        "A": 4.755181684940001E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20160229"
+      },
+      {
+        "A": 4.7811695977699995E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20160331"
+      },
+      {
+        "A": 4.7811695977699995E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20160331"
+      },
+      {
+        "A": 4.7981546828E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20160430"
+      },
+      {
+        "A": 4.7981546828E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20160430"
+      },
+      {
+        "A": 4.845443329690001E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20160531"
+      },
+      {
+        "A": 4.845443329690001E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20160531"
+      },
+      {
+        "A": 4.86258828409E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20160630"
+      },
+      {
+        "A": 4.86258828409E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20160630"
+      },
+      {
+        "A": 4.89097323789E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20160731"
+      },
+      {
+        "A": 4.89097323789E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20160731"
+      },
+      {
+        "A": 4.92178004516E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20160831"
+      },
+      {
+        "A": 4.92178004516E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20160831"
+      },
+      {
+        "A": 4.93751193475E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20160930"
+      },
+      {
+        "A": 4.93751193475E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20160930"
+      },
+      {
+        "A": 4.962306876639999E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20161031"
+      },
+      {
+        "A": 4.962306876639999E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20161031"
+      },
+      {
+        "A": 4.98228382063E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20161130"
+      },
+      {
+        "A": 4.98228382063E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20161130"
+      },
+      {
+        "A": 5.00205898843E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20161231"
+      },
+      {
+        "A": 5.00205898843E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20161231"
+      },
+      {
+        "A": 5.016342566799999E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20170131"
+      },
+      {
+        "A": 5.016342566799999E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20170131"
+      },
+      {
+        "A": 5.08436798783E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20170228"
+      },
+      {
+        "A": 5.08436798783E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20170228"
+      },
+      {
+        "A": 5.14121142294E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20170331"
+      },
+      {
+        "A": 5.14121142294E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20170331"
+      },
+      {
+        "A": 5.15267388014E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20170430"
+      },
+      {
+        "A": 5.15267388014E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20170430"
+      },
+      {
+        "A": 5.20719786903E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20170531"
+      },
+      {
+        "A": 5.20719786903E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20170531"
+      },
+      {
+        "A": 5.238237737160001E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20170630"
+      },
+      {
+        "A": 5.238237737160001E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20170630"
+      },
+      {
+        "A": 5.25558910339E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20170731"
+      },
+      {
+        "A": 5.25558910339E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20170731"
+      },
+      {
+        "A": 5.2784137123E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20170831"
+      },
+      {
+        "A": 5.2784137123E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20170831"
+      },
+      {
+        "A": 5.294994383849999E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20170930"
+      },
+      {
+        "A": 5.294994383849999E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20170930"
+      },
+      {
+        "A": 5.33694594196E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20171031"
+      },
+      {
+        "A": 5.33694594196E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20171031"
+      },
+      {
+        "A": 5.36264870594E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20171130"
+      },
+      {
+        "A": 5.36264870594E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20171130"
+      },
+      {
+        "A": 5.386817403150001E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20171231"
+      },
+      {
+        "A": 5.386817403150001E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20171231"
+      },
+      {
+        "A": 5.400440492200001E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20180131"
+      },
+      {
+        "A": 5.400440492200001E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20180131"
+      },
+      {
+        "A": 5.412054677110001E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20180228"
+      },
+      {
+        "A": 5.412054677110001E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20180228"
+      },
+      {
+        "A": 5.482518793049999E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20180331"
+      },
+      {
+        "A": 5.482518793049999E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20180331"
+      },
+      {
+        "A": 5.511453325309999E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20180430"
+      },
+      {
+        "A": 5.511453325309999E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20180430"
+      },
+      {
+        "A": 5.54258237907E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20180531"
+      },
+      {
+        "A": 5.54258237907E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20180531"
+      },
+      {
+        "A": 5.54109330971E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20180630"
+      },
+      {
+        "A": 5.54109330971E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20180630"
+      },
+      {
+        "A": 5.57163081483E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20180731"
+      },
+      {
+        "A": 5.57163081483E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20180731"
+      },
+      {
+        "A": 5.58932976379E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20180831"
+      },
+      {
+        "A": 5.58932976379E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20180831"
+      },
+      {
+        "A": 5.60825507921E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20180930"
+      },
+      {
+        "A": 5.60825507921E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20180930"
+      },
+      {
+        "A": 5.66266619094E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20181031"
+      },
+      {
+        "A": 5.66266619094E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20181031"
+      },
+      {
+        "A": 5.71442777312E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20181130"
+      },
+      {
+        "A": 5.71442777312E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20181130"
+      },
+      {
+        "A": 5.76841578097E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20181231"
+      },
+      {
+        "A": 5.76841578097E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20181231"
+      },
+      {
+        "A": 5.779070639969999E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20190131"
+      },
+      {
+        "A": 5.779070639969999E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20190131"
+      },
+      {
+        "A": 5.84644734293E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20190228"
+      },
+      {
+        "A": 5.84644734293E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20190228"
+      },
+      {
+        "A": 5.9016948232E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20190331"
+      },
+      {
+        "A": 5.9016948232E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20190331"
+      },
+      {
+        "A": 5.94578712215E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20190430"
+      },
+      {
+        "A": 5.94578712215E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20190430"
+      },
+      {
+        "A": 5.9586491477300005E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20190531"
+      },
+      {
+        "A": 5.9586491477300005E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20190531"
+      },
+      {
+        "A": 5.99956902558E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20190630"
+      },
+      {
+        "A": 5.99956902558E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20190630"
+      },
+      {
+        "A": 6.031186265759999E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20190731"
+      },
+      {
+        "A": 6.031186265759999E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20190731"
+      },
+      {
+        "A": 6.0611288424E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20190831"
+      },
+      {
+        "A": 6.0611288424E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20190831"
+      },
+      {
+        "A": 6.12647798267E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20190930"
+      },
+      {
+        "A": 6.12647798267E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20190930"
+      },
+      {
+        "A": 6.17370797464E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20191031"
+      },
+      {
+        "A": 6.17370797464E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20191031"
+      },
+      {
+        "A": 6.22677950548E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20191130"
+      },
+      {
+        "A": 6.22677950548E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20191130"
+      },
+      {
+        "A": 6.282794348190001E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20191231"
+      },
+      {
+        "A": 6.282794348190001E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20191231"
+      },
+      {
+        "A": 6.30380540341E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20200131"
+      },
+      {
+        "A": 6.30380540341E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20200131"
+      },
+      {
+        "A": 6.34305689053E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20200229"
+      },
+      {
+        "A": 6.34305689053E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20200229"
+      },
+      {
+        "A": 6.38710792105E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20200331"
+      },
+      {
+        "A": 6.38710792105E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20200331"
+      },
+      {
+        "A": 6.41413763783E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20200430"
+      },
+      {
+        "A": 6.41413763783E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20200430"
+      },
+      {
+        "A": 6.46380459312E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20200531"
+      },
+      {
+        "A": 6.46380459312E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20200531"
+      },
+      {
+        "A": 6.49130879207E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20200630"
+      },
+      {
+        "A": 6.49130879207E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20200630"
+      },
+      {
+        "A": 6.49550762032E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20200731"
+      },
+      {
+        "A": 6.49550762032E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20200731"
+      },
+      {
+        "A": 6.50707259534E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20200831"
+      },
+      {
+        "A": 6.50707259534E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20200831"
+      },
+      {
+        "A": 6.53911916189E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20200930"
+      },
+      {
+        "A": 6.53911916189E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20200930"
+      },
+      {
+        "A": 6.55744462898E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20201031"
+      },
+      {
+        "A": 6.55744462898E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20201031"
+      },
+      {
+        "A": 6.56813925967E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20201130"
+      },
+      {
+        "A": 6.56813925967E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20201130"
+      },
+      {
+        "A": 6.650400625389999E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20201231"
+      },
+      {
+        "A": 6.650400625389999E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20201231"
+      },
+      {
+        "A": 6.66449708943E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20210131"
+      },
+      {
+        "A": 6.66449708943E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20210131"
+      },
+      {
+        "A": 6.69689711849E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20210228"
+      },
+      {
+        "A": 6.69689711849E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20210228"
+      },
+      {
+        "A": 6.74132788512E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20210331"
+      },
+      {
+        "A": 6.74132788512E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20210331"
+      },
+      {
+        "A": 6.76625514375E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20210430"
+      },
+      {
+        "A": 6.76625514375E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20210430"
+      },
+      {
+        "A": 6.755881901240001E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20210531"
+      },
+      {
+        "A": 6.755881901240001E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20210531"
+      },
+      {
+        "A": 6.78444804774E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20210630"
+      },
+      {
+        "A": 6.78444804774E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20210630"
+      },
+      {
+        "A": 6.81316298296E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20210731"
+      },
+      {
+        "A": 6.81316298296E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20210731"
+      },
+      {
+        "A": 6.83401013722E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20210831"
+      },
+      {
+        "A": 6.83401013722E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20210831"
+      },
+      {
+        "A": 6.8764690222E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20210930"
+      },
+      {
+        "A": 6.8764690222E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20210930"
+      },
+      {
+        "A": 6.89780029314E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20211031"
+      },
+      {
+        "A": 6.89780029314E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20211031"
+      },
+      {
+        "A": 6.92300059057E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20211130"
+      },
+      {
+        "A": 6.92300059057E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20211130"
+      },
+      {
+        "A": 6.96287638695E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20211231"
+      },
+      {
+        "A": 6.96287638695E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20211231"
+      },
+      {
+        "A": 6.97143997618E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20220131"
+      },
+      {
+        "A": 6.97143997618E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20220131"
+      },
+      {
+        "A": 7.01287873214E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20220228"
+      },
+      {
+        "A": 7.01287873214E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20220228"
+      },
+      {
+        "A": 7.04678397092E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20220331"
+      },
+      {
+        "A": 7.04678397092E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20220331"
+      },
+      {
+        "A": 7.080811761309999E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20220430"
+      },
+      {
+        "A": 7.080811761309999E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20220430"
+      },
+      {
+        "A": 7.1123914546E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20220531"
+      },
+      {
+        "A": 7.1123914546E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20220531"
+      },
+      {
+        "A": 7.152573849200001E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20220630"
+      },
+      {
+        "A": 7.152573849200001E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20220630"
+      },
+      {
+        "A": 7.17423503927E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20220731"
+      },
+      {
+        "A": 7.17423503927E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20220731"
+      },
+      {
+        "A": 7.20297831524E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20220831"
+      },
+      {
+        "A": 7.20297831524E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20220831"
+      },
+      {
+        "A": 7.21834212066E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20220930"
+      },
+      {
+        "A": 7.21834212066E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20220930"
+      },
+      {
+        "A": 7.2555230531E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20221031"
+      },
+      {
+        "A": 7.2555230531E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20221031"
+      },
+      {
+        "A": 7.28058351792E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20221130"
+      },
+      {
+        "A": 7.28058351792E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20221130"
+      },
+      {
+        "A": 7.33134650407E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20221231"
+      },
+      {
+        "A": 7.33134650407E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20221231"
+      },
+      {
+        "A": 7.353649606740001E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20230131"
+      },
+      {
+        "A": 7.353649606740001E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20230131"
+      },
+      {
+        "A": 7.38243397421E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20230228"
+      },
+      {
+        "A": 7.38243397421E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20230228"
+      },
+      {
+        "A": 7.413170852969999E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20230331"
+      },
+      {
+        "A": 7.413170852969999E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20230331"
+      },
+      {
+        "A": 7.44329627429E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20230430"
+      },
+      {
+        "A": 7.44329627429E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20230430"
+      },
+      {
+        "A": 7.49105898065E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20230531"
+      },
+      {
+        "A": 7.49105898065E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20230531"
+      },
+      {
+        "A": 7.59415778545E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20230630"
+      },
+      {
+        "A": 7.59415778545E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20230630"
+      },
+      {
+        "A": 7.62653367126E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20230731"
+      },
+      {
+        "A": 7.62653367126E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20230731"
+      },
+      {
+        "A": 7.70949468755E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20230831"
+      },
+      {
+        "A": 7.70949468755E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20230831"
+      },
+      {
+        "A": 7.7656936885199995E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20230930"
+      },
+      {
+        "A": 7.7656936885199995E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20230930"
+      },
+      {
+        "A": 7.7851690317E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20231031"
+      },
+      {
+        "A": 7.7851690317E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20231031"
+      },
+      {
+        "A": 7.90989272708E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20231130"
+      },
+      {
+        "A": 7.90989272708E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20231130"
+      },
+      {
+        "A": 7.94423062116E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20231224"
+      },
+      {
+        "A": 7.94423062116E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20231224"
+      },
+      {
+        "A": 7.94423062116E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20231225"
+      },
+      {
+        "A": 7.94423062116E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20231225"
+      },
+      {
+        "A": 7.95264062116E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20231226"
+      },
+      {
+        "A": 7.95264062116E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20231226"
+      },
+      {
+        "A": 7.95281262116E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20231227"
+      },
+      {
+        "A": 7.95281262116E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20231227"
+      },
+      {
+        "A": 7.95278262116E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20231228"
+      },
+      {
+        "A": 7.95278262116E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20231228"
+      },
+      {
+        "A": 7.98762512116E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20231229"
+      },
+      {
+        "A": 7.98762512116E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20231229"
+      },
+      {
+        "A": 7.98762512116E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20231230"
+      },
+      {
+        "A": 7.98762512116E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20231230"
+      },
+      {
+        "A": 7.98386746056E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20231231"
+      },
+      {
+        "A": 7.98386746056E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20231231"
+      },
+      {
+        "A": 7.98386746056E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240101"
+      },
+      {
+        "A": 7.98386746056E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240101"
+      },
+      {
+        "A": 7.98386746056E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240102"
+      },
+      {
+        "A": 7.98386746056E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240102"
+      },
+      {
+        "A": 7.98386746056E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240103"
+      },
+      {
+        "A": 7.98386746056E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240103"
+      },
+      {
+        "A": 7.98386746056E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240104"
+      },
+      {
+        "A": 7.98386746056E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240104"
+      },
+      {
+        "A": 7.98386746056E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240105"
+      },
+      {
+        "A": 7.98386746056E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240105"
+      },
+      {
+        "A": 7.98386746056E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240106"
+      },
+      {
+        "A": 7.98386746056E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240106"
+      },
+      {
+        "A": 7.98386746056E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240107"
+      },
+      {
+        "A": 7.98386746056E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240107"
+      },
+      {
+        "A": 7.984246854190001E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240108"
+      },
+      {
+        "A": 7.984246854190001E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240108"
+      },
+      {
+        "A": 7.98484185419E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240109"
+      },
+      {
+        "A": 7.98484185419E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240109"
+      },
+      {
+        "A": 7.986964354190001E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240110"
+      },
+      {
+        "A": 7.986964354190001E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240110"
+      },
+      {
+        "A": 7.987024339389999E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240111"
+      },
+      {
+        "A": 7.987024339389999E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240111"
+      },
+      {
+        "A": 7.98629143023E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240112"
+      },
+      {
+        "A": 7.98629143023E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240112"
+      },
+      {
+        "A": 7.98629143023E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240113"
+      },
+      {
+        "A": 7.98629143023E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240113"
+      },
+      {
+        "A": 7.98629143023E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240114"
+      },
+      {
+        "A": 7.98629143023E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240114"
+      },
+      {
+        "A": 7.98629143023E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240115"
+      },
+      {
+        "A": 7.98629143023E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240115"
+      },
+      {
+        "A": 7.98780870747E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240116"
+      },
+      {
+        "A": 7.98780870747E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240116"
+      },
+      {
+        "A": 7.99303254042E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240117"
+      },
+      {
+        "A": 7.99303254042E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240117"
+      },
+      {
+        "A": 7.99467567342E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240118"
+      },
+      {
+        "A": 7.99467567342E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240118"
+      },
+      {
+        "A": 7.99466526208E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240120"
+      },
+      {
+        "A": 7.99466526208E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240120"
+      },
+      {
+        "A": 7.99708681203E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240122"
+      },
+      {
+        "A": 7.99708681203E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240122"
+      },
+      {
+        "A": 7.99853580595E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240123"
+      },
+      {
+        "A": 7.99853580595E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240123"
+      },
+      {
+        "A": 7.99930021417E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240124"
+      },
+      {
+        "A": 7.99930021417E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240124"
+      },
+      {
+        "A": 7.99976987369E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240125"
+      },
+      {
+        "A": 7.99976987369E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240125"
+      },
+      {
+        "A": 8.001715373690001E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240126"
+      },
+      {
+        "A": 8.001715373690001E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240126"
+      },
+      {
+        "A": 8.001715373690001E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240127"
+      },
+      {
+        "A": 8.001715373690001E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240127"
+      },
+      {
+        "A": 8.001715373690001E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240128"
+      },
+      {
+        "A": 8.001715373690001E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240128"
+      },
+      {
+        "A": 7.996118595040001E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240129"
+      },
+      {
+        "A": 7.996118595040001E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240129"
+      },
+      {
+        "A": 8.000651483509999E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240130"
+      },
+      {
+        "A": 8.000651483509999E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240130"
+      },
+      {
+        "A": 8.00095699015E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240131"
+      },
+      {
+        "A": 8.00095699015E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240131"
+      },
+      {
+        "A": 8.00125765121E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240201"
+      },
+      {
+        "A": 8.00125765121E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240201"
+      },
+      {
+        "A": 8.00169315121E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240202"
+      },
+      {
+        "A": 8.00169315121E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240202"
+      },
+      {
+        "A": 8.00169315121E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240203"
+      },
+      {
+        "A": 8.00169315121E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240203"
+      },
+      {
+        "A": 8.00169315121E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240204"
+      },
+      {
+        "A": 8.00169315121E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240204"
+      },
+      {
+        "A": 8.00147803704E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240205"
+      },
+      {
+        "A": 8.00147803704E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240205"
+      },
+      {
+        "A": 8.00203256603E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240206"
+      },
+      {
+        "A": 8.00203256603E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240206"
+      },
+      {
+        "A": 8.00145756603E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240207"
+      },
+      {
+        "A": 8.00145756603E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240207"
+      },
+      {
+        "A": 8.00191431523E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240208"
+      },
+      {
+        "A": 8.00191431523E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240208"
+      },
+      {
+        "A": 8.003198083959999E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240209"
+      },
+      {
+        "A": 8.003198083959999E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240209"
+      },
+      {
+        "A": 8.003198083959999E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240210"
+      },
+      {
+        "A": 8.003198083959999E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240210"
+      },
+      {
+        "A": 8.003198083959999E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240211"
+      },
+      {
+        "A": 8.003198083959999E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240211"
+      },
+      {
+        "A": 8.004713583959999E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240212"
+      },
+      {
+        "A": 8.004713583959999E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240212"
+      },
+      {
+        "A": 8.005181583960001E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240213"
+      },
+      {
+        "A": 8.005181583960001E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240213"
+      },
+      {
+        "A": 8.01272940526E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240214"
+      },
+      {
+        "A": 8.01272940526E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240214"
+      },
+      {
+        "A": 8.01407186424E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240215"
+      },
+      {
+        "A": 8.01407186424E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240215"
+      },
+      {
+        "A": 8.01455315438E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240216"
+      },
+      {
+        "A": 8.01455315438E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240216"
+      },
+      {
+        "A": 8.01455315438E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240217"
+      },
+      {
+        "A": 8.01455315438E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240217"
+      },
+      {
+        "A": 8.01455315438E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240218"
+      },
+      {
+        "A": 8.01455315438E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240218"
+      },
+      {
+        "A": 8.01473715438E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240219"
+      },
+      {
+        "A": 8.01473715438E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240219"
+      },
+      {
+        "A": 8.01529385513E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240220"
+      },
+      {
+        "A": 8.01529385513E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240220"
+      },
+      {
+        "A": 8.01716074048E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240221"
+      },
+      {
+        "A": 8.01716074048E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240221"
+      },
+      {
+        "A": 8.0158183875199995E9,
+        "B": 5.05760007309E9,
+        "Estimate_Type": "Actuarial",
+        "Snapshot_Date_Key": "20240222"
+      },
+      {
+        "A": 8.0158183875199995E9,
+        "B": 5.20180001025E9,
+        "Estimate_Type": "Calendar",
+        "Snapshot_Date_Key": "20240222"
+      }
+    ]
+  }
+}

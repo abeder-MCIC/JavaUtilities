@@ -1,0 +1,3 @@
+Report_Claims,q = filter q by 'Snapshot_Date_Key' != "20240212";
+Report_Claim_Layer_Transaction,q = filter q by 'Snapshot_Date_Key' <= "20240211";
+Report_ClaimLayer,q = filter q by 'Snapshot_Date_Key' <= "20240211";

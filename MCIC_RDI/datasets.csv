@@ -1,0 +1,106 @@
+DatasetName, MasterLabel, Recipe
+All_Entities_Claim_Reports_SC, All Entities Claim Reports - SC, All_Entities_Claim_Reports_SC
+All_Entities_Claim_Reports_test_SC, All Entities Claim Reports test - SC, All_Entities_Claim_Reports_test_SC
+CHECK_NUMBERS_PAYEE_INFO_COMPASS, CHECK_NUMBERS_PAYEE_INFO_COMPASS - SC, CHECK_NUMBERS_PAYEE_INFO_COMPASS
+Claims, *Claims, Claims
+ClaimSnap_AV, ClaimSnap_AV, ClaimSnap_AV
+Claims_All_Snapshots_PJ, Claims - All Snapshots - PJ, Claims_All_Snapshots_PJ
+Claims_BO_Report_Recipe_EC, Claims BO Report Recipe - EC, Claims_BO_Report_Recipe_EC
+Claims_BO_Report_Recipe_v2_EC, Claims BO Report Recipe v2 - EC, Claims_BO_Report_Recipe_v2_EC
+Claims_Change_Activity_PJ, Finance- Daily Incurred Change-AL&YJ, Claims_Change_Activity_PJ
+Claims_Confidential_or_Conflict_of_Interest, *Claims - Confidential or Conflict of Interest, Claims_Confidential_or_Conflict_of_Interest
+Claims_Defendant_Composite, *Claims - Defendant Composite, Claims_Defendant_Composite
+Claims_JG, Claims - JG, Claims_JG
+Claims_Monthly_Loss_Snapshot_AIG_Fix, *Claims Monthly - Loss Snapshot AIG Fix, Claims_Monthly_Loss_Snapshot_AIG_Fix
+Claims_Monthly_Loss_Snapshot_Seed, *Claims Monthly - Loss Snapshot Seed, Claims_Monthly_Loss_Snapshot_Seed
+Claims_PSLP_Validation_Recipe_EC, Claims PSLP Validation Recipe - EC, Claims_PSLP_Validation_Recipe_EC
+Claims_Secure, *Claims (Secure), Claims_Secure
+Claims_Snapshots_Monthly_Snapshots_019631, *Claims Snapshots - Monthly Snapshots 019631, Claims_Snapshots_Monthly_Snapshots_019631
+Claims_Snapshots_Monthly_Snapshots_20230930, *Claims Snapshots - Monthly Snapshots 20230930, Claims_Snapshots_Monthly_Snapshots_20230930
+Claims_Snapshots_Monthly_Snapshots_Archive, *Claims Snapshots - Monthly Snapshots Archive, Claims_Snapshots_Monthly_Snapshots_Archive
+Claims_Snapshots_Monthly_Snapshots_Dedup, *Claims Snapshots - Monthly Snapshots Dedup, Claims_Snapshots_Monthly_Snapshots_Dedup
+Claims_Snapshots_Monthly_Snapshots_Recalculate_YTD, *Claims Snapshots - Monthly Snapshots - Recalculate YTD, Claims_Snapshots_Monthly_Snapshots_Recalculate_YTD
+Claims_Snapshots_Monthly_Snapshots_TEST, *Claims Snapshots - Monthly Snapshots TEST, Claims_Snapshots_Monthly_Snapshots_TEST
+Claims_Snapshot_Dailies, *Claims Snapshot Dailies, Claims_Snapshot_Dailies
+Claims_Snapshot_Monthlies, *Claims Snapshot Monthlies, Claims_Snapshot_Monthlies
+Claims_Snapshot_Recon_Daily, Claims Snapshot Recon Daily -PJ, Claims_Snapshot_Recon_Daily
+Claims_Snapshot_Recon_History, Claims Snapshot Recon History -PJ, Claims_Snapshot_Recon_History
+Claims_Snapshot_Recon_Snapshot_Reload_PJ, Claims Snapshot Recon - Snapshot Reload - PJ, Claims_Snapshot_Recon_Snapshot_Reload_PJ
+Claims_Test_AV, Claims_AV, Claims_Test_AV
+Claims_Test_Security, *Claims - Test Security, Claims_Test_Security
+Claim_Losses, *Claim Losses, Claim_Losses
+Claim_Monthly_Snapshots_PJ, Claim Monthly Snapshots - PJ, Claim_Monthly_Snapshots_PJ
+Claim_Policies, *Claim Policies, Claim_Policies
+Claim_Recipe_JG, Claim Recipe JG, Claim_Recipe_JG
+Claim_Snapshots, Claim Snapshots, Claim_Snapshots
+Claim_Snapshot_Compare, *Claim - Snapshot Compare, Claim_Snapshot_Compare
+Claim_Status_Test_PJ, Claim Status Test - PJ, Claim_Status_Test_PJ
+CLR_Layered_Data, CLR Layered Data, CLR_Layered_Data
+Copy_of_3_Incurred_KPI_Metrics1, Test Snapshot with Calendar Estimate, Copy_of_3_Incurred_KPI_Metrics1
+Copy_of_Finance_Daily_Incurred_Change_AL_YJ, Monthly Close Finance- Daily Incurred Change-AL&YJ, Copy_of_Finance_Daily_Incurred_Change_AL_YJ
+Copy_of_Historical_Snapshots, Finance - Calendar Historical Snapshots-YJ, Copy_of_Historical_Snapshots
+Defendants_and_Active_Coverage_PJ, Defendants and Active Coverage - PJ, Defendants_and_Active_Coverage_PJ
+ERM_Recipe_Test, ERM Recipe Test, ERM_Recipe_Test
+Esther_New_Recipe_2_Test, Esther New Recipe 2 - Test, Esther_New_Recipe_2_Test
+Esther_New_Recipe_Test, PSLP Recipe - EC, Esther_New_Recipe_Test
+Exposure, *Exposure, Exposure
+Exposure_YJ, Premium Manager-Exposure (Marsh report)-YJ, Exposure_YJ
+Expo_Claims_AV, Expo_Claims_AV, Expo_Claims_AV
+Finance_Fiscal_Snapshots_YJ_Test, 1.Finance-Calendar Snapshots-YJ, Finance_Fiscal_Snapshots_YJ_Test
+Historical_Snapshots, Finance - Fiscal Historical Snapshots-YJ, Historical_Snapshots
+Historical_Snapshot_with_transforms_YJ, Historical Snapshot with Transforms-YJ, Historical_Snapshot_with_transforms_YJ
+Indemnity_Payment_Requests_PJ, Indemnity Payment Requests - PJ, Indemnity_Payment_Requests_PJ
+Insured_Coverage_Class_B_Roster_PJ, Insured Coverage Class B Roster - PJ, Insured_Coverage_Class_B_Roster_PJ
+Insured_Names_Different_SMUID_PJ, Insured Names - Different SMUID - PJ, Insured_Names_Different_SMUID_PJ
+KPI_12_Test, KPI 12 Test, KPI_12_Test
+KPI_1_PJ, KPI 1 - YJ, KPI_1_PJ
+KPI_4_Case_Counts, KPI 4 - Case Counts, KPI_4_Case_Counts
+KPI_4_Metrics_PJ, KPI 4 Metrics PJ, KPI_4_Metrics_PJ
+KPI_6_Test, KPI 6 Test, KPI_6_Test
+KPI_Exposure_Frequency, KPI-Exposure Frequency, KPI_Exposure_Frequency
+KPI_Metrics_Incurred_all_snapshot_YJ, KPI Metrics- Recipe-2-YJ, KPI_Metrics_Incurred_all_snapshot_YJ
+Licensing, *Licensing, Licensing
+Loss_Run_YJ, Loss Run-YJ, Loss_Run_YJ
+Loss_Snapshot, Layered Loss, Loss_Snapshot
+MAIN_KPI_Metrics_Recipe_1_YJ_DEV, MAIN- KPI Metrics- Recipe-1-YJ - DEV, MAIN_KPI_Metrics_Recipe_1_YJ_DEV
+Matter_Budgets, *Matter Budget Tasks, Matter_Budgets
+Matter_Invoices, *Matter Invoices, Matter_Invoices
+Matter_TPEs, *Matter TPEs, Matter_TPEs
+MCIC_Enterprise_Metrics, _MCIC Enterprise Metrics-AL, MCIC_Enterprise_Metrics
+MCIC_Enterprise_Metrics1, _MCIC Enterprise Metrics-AL, MCIC_Enterprise_Metrics1
+MCIC_Exposure_Data_Recipe_TT, MCIC Exposure Data Recipe-TT, MCIC_Exposure_Data_Recipe_TT
+MCIC_Support_Center, MCIC Support Center-YJ, MCIC_Support_Center
+New_Actuarial_test_recipe, New Actuarial test recipe, New_Actuarial_test_recipe
+Occurrence_Snapshot_PJ, Occurrence Snapshot - PJ, Occurrence_Snapshot_PJ
+Old_KPI_Metric_1_2_3_delete, Old KPI Metric 1,2,3 - filter, Old_KPI_Metric_1_2_3_delete
+OLD_Working_KPI_Metrics_Recipe_1_YJ, MAIN- KPI Metrics- Recipe-1-YJ, OLD_Working_KPI_Metrics_Recipe_1_YJ
+Org_Hierarchy, *Org Hierarchy, Org_Hierarchy
+Patient_Safety, *Patient Safety, Patient_Safety
+Patient_Safety_AV, Patient_Safety_AV, Patient_Safety_AV
+Physician_Support_Test_EC, Physician Support Test - EC, Physician_Support_Test_EC
+Premium_CME, *Premium CME, Premium_CME
+Premium_Coverage, *Premium Coverage, Premium_Coverage
+Premium_EDS, *Premium EDS, Premium_EDS
+Premium_Entity_Rollups_PJ, Premium - Entity Rollups -PJ, Premium_Entity_Rollups_PJ
+Premium_Exposure, *Premium Exposure, Premium_Exposure
+Premium_Exposure_AV, *Premium Exposure AV, Premium_Exposure_AV
+Premium_FTE1, *Premium FTE, Premium_FTE1
+Premium_Manager_Exposure_Trend_PJ, Premium Manager- Exposure Trend - PJ, Premium_Manager_Exposure_Trend_PJ
+Premium_Risk1, *Premium Risk, Premium_Risk1
+Quarterly_Claim_Counts_PJ, Quarterly Claim Counts - PJ, Quarterly_Claim_Counts_PJ
+RK_Compass_Claims_Data_Recipe_TT, RK Compass Claims Data Recipe-TT, RK_Compass_Claims_Data_Recipe_TT
+Rolling_Calendar_Date_Process, _Rolling Calendar Date Process-AL, Rolling_Calendar_Date_Process
+Row_Access, *Row Access, Row_Access
+SAC_Metric_recipe, SAC Metric recipe, SAC_Metric_recipe
+Scheduled_Insured_Per_Claim, Scheduled Insured Per Claim -PJ, Scheduled_Insured_Per_Claim
+Shield_Event_Monitoring_R3, Shield_Event_Monitoring_R3, Shield_Event_Monitoring_R3
+Snapshot_Analytics_Claims_SnapshotAppDataflow_R3, Snapshot_AnalyticsDataflow_toRecipe, Snapshot_Analytics_Claims_SnapshotAppDataflow_R3
+Snapshot_Claims_Total_Daily_AL, _Snapshot Claims Total Daily-AL, Snapshot_Claims_Total_Daily_AL
+Snapshot_Claim_Totals_Monthly_AL, _Snapshot Claim Totals Monthly-AL, Snapshot_Claim_Totals_Monthly_AL
+Snapshot_test_yj, Snapshot test-yj, Snapshot_test_yj
+Snapshot_w_Hospital_PJ, Snapshot w Hospital - PJ, Snapshot_w_Hospital_PJ
+SpringML_Data_Science_AL, Data Science Application-AL, SpringML_Data_Science_AL
+Story_Dataset, Story Dataset, Story_Dataset
+Temp_PJ, Temp - PJ, Temp_PJ
+test_a0F0H00000gA21iUAC, test a0F0H00000gA21iUAC, test_a0F0H00000gA21iUAC
+Test_Actuarial_Estimate, Test Actuarial 

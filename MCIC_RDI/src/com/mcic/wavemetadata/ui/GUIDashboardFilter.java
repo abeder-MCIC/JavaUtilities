@@ -26,6 +26,7 @@ public class GUIDashboardFilter extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextArea txtJSON;
 	private boolean isFirstClick;
+	
 
 	/**
 	 * Launch the application.

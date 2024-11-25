@@ -26,8 +26,8 @@ import com.mcic.util.json.JSONString;
 
 
 public class WaveDashboardFilter{
-	private JSONNode widgets;
-	private String masterPageName;
+	//private JSONNode widgets;
+	//private String masterPageName;
 
 	/***************************************************************
 	 *  Testing main() class built to run program on a file. This 
@@ -133,7 +133,7 @@ public class WaveDashboardFilter{
 		Map<String, String> tabLabelMap = new TreeMap<String, String>();
 		int[] columnMap = new int[50];
 		int[] colspanMap = new int[50];
-		JSONNode master = pages.elementAt(0);
+		//JSONNode master = pages.elementAt(0);
 		JSONNode filterContainer = null;
 		JSONNode logoContainer = null;
 		int res = JOptionPane.showConfirmDialog(null, "Do you want to start with the filter showing?");
@@ -145,9 +145,9 @@ public class WaveDashboardFilter{
 			String name = page.get("name").asString();
 			String label = page.get("label").asString();
 			tabLabelMap.put(label,  name);
-			if (label.equals("Master")) {
-				master = page;
-			}
+//			if (label.equals("Master")) {
+//				master = page;
+//			}
 			for (JSONNode layout : page.get("widgets").values()) {
 				String widgetName = layout.get("name").asString(); 
 				if (widgetName.equals("Filter")) {

@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.Vector;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -16,26 +17,32 @@ import java.util.stream.Collectors;
 import javax.swing.JDialog;
 
 import com.mcic.ConfiguredApp;
+import com.mcic.sfrest.SFRestOld;
 import com.mcic.sfrest.SalesforceAgent;
 import com.mcic.sfrest.SalesforceModel;
-import com.mcic.util.Recordset;
+import com.mcic.util.GZipByteRecordSet;
+import com.mcic.util.RecordsetOld;
 import com.mcic.util.json.JSONNode;
 import com.mcic.util.json.JSONObject;
+import com.mcic.util.json.ThreadCluster;
 import com.mcic.wavemetadata.ui.ProgressPanel;
+import com.mcic.wavemetadata.ui.ProgressPanel.ProgressPanelStep;
 
 public class WordFrequencyApp extends ConfiguredApp {
-	SalesforceAgent agent;
+	SFRestOld agent;
 	Vector<String> fields;
 	Map<String, Keyword> freq;
 	public static String datasetName;
 	public static String datasetId = null;
 	ProgressPanel progress;
+	public String caseId;
 
 	public static void main(String[] args) {
 		WordFrequencyApp app = new WordFrequencyApp();
 		Vector<String> additionalArgs = main(args, app);
 		Vector<String> fields =  new Vector<String>();
 		datasetName = "Report_PSLP_with_Layers";
+		app.caseId = null;
 
 		int i = 0;
 		while (i < additionalArgs.size()) {
@@ -48,6 +55,9 @@ public class WordFrequencyApp extends ConfiguredApp {
 					fields.add(field);
 				}
 				break;
+			case "-id":
+				app.caseId = additionalArgs.elementAt(++i);
+				break;
 			default:
 				break;
 			}
@@ -58,6 +68,7 @@ public class WordFrequencyApp extends ConfiguredApp {
 			System.out.println("Use the following command line arguments:\n"
 					+ "  -f -fields  <comma-separated list of field names to search>\n"
 					+ "  -d -dir  <name of directory containing login parameters>\n"
+					+ "  -id <PSLP Case Id>"
 					+ "  -sf <name of file containing login parameters>");
 		} else {
 			app.fields = fields;
@@ -70,7 +81,7 @@ public class WordFrequencyApp extends ConfiguredApp {
 		File propFile = (File)properties.get("sfConfig"); 
 		//Collection<String> datasets = (Collection<String>)properties.get("datasets");
 		SalesforceModel model = new SalesforceModel(propFile);
-		agent = new SalesforceAgent(model);
+		agent = new SFRestOld(model);
 		progress = new ProgressPanel(19);
 		JDialog dialog = new JDialog();
 		dialog.setBounds(100, 100, 450, 300);
@@ -78,33 +89,8 @@ public class WordFrequencyApp extends ConfiguredApp {
 		dialog.setVisible(true);
 		Map<String, Keyword> records = readFields();
 		
-		Recordset wordFreq;
-		wordFreq = new Recordset();
-		for (String key : records.keySet()) {
-			Keyword k = records.get(key);
-			String word = k.word;
-			for (String id : k.cases) {
-				if (!word.equals("")) {
-					wordFreq.add("Word", word);
-					wordFreq.add("Type", k.type);
-					wordFreq.add("Field", k.field);
-					wordFreq.add("CaseId", id);
-					wordFreq.next();
-				}
-			}
-		}
-		agent.setPanel(progress);
-		agent.writeDataset("Word_Frequency", "Word Frequency", "RDI_Development", wordFreq);
-//			try {
-//				FileWriter out = new FileWriter(new File("out.csv"));
-//				out.write(wordFreq.toString());
-//				out.close();
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
 		
-		progress.nextStep("Processing Upload");
+		//progress.nextStep("Processing Upload");
 		progress.setClose(true);
 		//wordFreq.close();
 	}
@@ -177,74 +163,126 @@ public class WordFrequencyApp extends ConfiguredApp {
 			}
 		} else {
 		
-			for (int year = 2024;year >= 2011;year--) {
-				progress.nextStep("Reading policy year " + year + "...");
-				String saql = "q = load \\\"" + getDatasetId() + "\\\";"
-						+ "q = filter q by 'Date_of_Loss__c_YEAR' == \\\"" + year + "\\\";"
-//						+ "q = filter q by 'PSLP_ID' == \\\"10014\\\";"
-						+ "q = group q by Id;"
-						+ "q = foreach q generate Id, first(Claim_Made_Date) as Claim_Made_Date, " + 
-						fields.stream()
-						  .map((field) -> "first('" + field + "') as '" + field + "'")
-						  .collect(Collectors.joining(", "))
-						+ ";"
-						+ "q = order q by Claim_Made_Date desc;";
-				JSONObject post = new JSONObject();
-				post.addString("query", saql);
-				JSONNode data = agent.postJSON("/services/data/v60.0/wave/query", post);
-				
-				for (JSONNode record : data.get("results").get("records").values()) {
-					String caseId = record.get("Id").asString();
-					for (String field : fields) {
-						if (record.get(field) != null) {
-							String rec = record.get(field).asString();
-							
-							//  Remove all XML markup
-							String res = rec.replaceAll("<(.*?)>", "").toLowerCase();
-							//  Replace all newlines with '.' characters
-							res = res.replaceAll("\\\\n", "\\.");
-							
-							String[] str = res.split("\\.");
-							for (String sentence : str) {
-								if (sentence != null && !sentence.equals("null")) {
-									sentence = " " + sentence + " ";
-									int start = 0;
-									Matcher matcher = Pattern.compile("[ \\n]\\w+[\\- ]\\w+[ \\\\n]").matcher(sentence);
-									while (matcher.find(start)) {
-										int s = matcher.start();
-										int e = matcher.end();
-										String phrase = sentence.substring(s + 1, e - 1); 
-										countWord(phrase, field, "Phrase", caseId);
-										start = s + 1;
-									}
-									start = 0;
-									matcher = Pattern.compile("[ \\n]\\w+[\\- ]\\w+[\\- ]\\w+[ \\\\n]").matcher(sentence);
-									while (matcher.find(start)) {
-										int s = matcher.start();
-										int e = matcher.end();
-										String phrase = sentence.substring(s + 1, e - 1); 
-										countWord(phrase, field, "Phrase", caseId);
-										start = s + 1;
-									}
-									
-									start = 0;
-									matcher = Pattern.compile("[ \\n]\\w+[ \\\\n]").matcher(sentence);
-									while (matcher.find(start)) {
-										int s = matcher.start();
-										int e = matcher.end();
-										String phrase = sentence.substring(s + 1, e - 1); 
-										countWord(phrase, field, "Word", caseId);
-										start = s + 1;
+			for (int yearStart = 2024;yearStart <= 2000;yearStart -= 5) {
+			
+				for (int year = yearStart;year >= yearStart - 4;year -= 1) {
+					ProgressPanelStep step = progress.nextStep("Reading policy year " + year + "...");
+					String saql = "q = load \\\"" + getDatasetId() + "\\\";";
+					if (year > 2000) {
+						saql += "q = filter q by 'Date_of_Loss__c_YEAR' == \\\"" + year + "\\\";";
+					} else {
+						saql += "q = filter q by 'Date_of_Loss__c_YEAR' <= \\\"" + year + "\\\";";
+					}
+					if (caseId != null) {
+						saql += " q = filter q by 'Patient.Patient_Safety_Case__c' == \\\"" + caseId + "\\\";";
+					}
+					saql +=  "q = group q by Id;"
+							+ "q = foreach q generate Id, first(Claim_Made_Date) as Claim_Made_Date, " + 
+							fields.stream()
+							  .map((field) -> "first('" + field + "') as '" + field + "'")
+							  .collect(Collectors.joining(", "))
+							+ ";"
+							+ "q = order q by Claim_Made_Date desc;";
+					JSONObject post = new JSONObject();
+					post.addString("query", saql);
+			
+					JSONNode data = agent.postJSON("/services/data/v60.0/wave/query", post);
+					
+					for (JSONNode record : data.get("results").get("records").values()) {
+						String caseId = record.get("Id").asString();
+						for (String field : fields) {
+							if (record.get(field) != null) {
+								String rec = record.get(field).asString();
+								
+								//  Remove all XML markup
+								String res = rec.replaceAll("<(.*?)>", "").toLowerCase();
+								//  Replace all newlines with '.' characters
+								res = res.replaceAll("\\\\n", "\\.");
+								
+								String[] str = res.split("\\.");
+								for (String sentence : str) {
+									if (sentence != null && !sentence.equals("null")) {
+										sentence = " " + sentence + " ";
+										int start = 0;
+										Matcher matcher = Pattern.compile("[ \\n]\\w+[\\- ]\\w+[ \\\\n]").matcher(sentence);
+										while (matcher.find(start)) {
+											int s = matcher.start();
+											int e = matcher.end();
+											String phrase = sentence.substring(s + 1, e - 1); 
+											countWord(phrase, field, "Phrase", caseId);
+											start = s + 1;
+										}
+										start = 0;
+										matcher = Pattern.compile("[ \\n]\\w+[\\- ]\\w+[\\- ]\\w+[ \\\\n]").matcher(sentence);
+										while (matcher.find(start)) {
+											int s = matcher.start();
+											int e = matcher.end();
+											String phrase = sentence.substring(s + 1, e - 1); 
+											countWord(phrase, field, "Phrase", caseId);
+											start = s + 1;
+										}
+										
+										start = 0;
+										matcher = Pattern.compile("[ \\n]\\w+[ \\\\n]").matcher(sentence);
+										while (matcher.find(start)) {
+											int s = matcher.start();
+											int e = matcher.end();
+											String phrase = sentence.substring(s + 1, e - 1); 
+											countWord(phrase, field, "Word", caseId);
+											start = s + 1;
+										}
 									}
 								}
 							}
 						}
 					}
+					step.complete();
 				}
+	
+				ProgressPanelStep step = progress.nextStep("Processing dataset file...");
+				String operation = yearStart == 2024 ? "Overwrite" : "Append";
+				writeDatasets(operation);
+				step.complete();
+				
 			}
 		}
 		//System.out.println(data.toString());
 		return freq;
+	}
+	
+	public void writeDatasets(String operation) {
+		RecordsetOld wordFreq = new RecordsetOld();
+		for (String key : freq.keySet()) {
+			Keyword k = freq.get(key);
+			String word = k.word;
+			for (String id : k.cases) {
+				if (!word.equals("")) {
+					wordFreq.add("Field", k.field);
+					wordFreq.add("Type", k.type);
+					wordFreq.add("Word", word);
+					wordFreq.add("CaseId", id);
+					wordFreq.next();
+				}
+			}
+		}
+		agent.setPanel(progress);
+		boolean writeCSV = false;
+		if (writeCSV) {
+			try {
+				FileWriter out = new FileWriter(new File("C:\\Users\\abeder\\Downloads\\dataset.csv"));
+				out.write(wordFreq.toString());
+				out.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			//String operation = isFirst ? "Overwrite" : "Append";
+			//isFirst = false;
+			String metadata = "{\"fileFormat\":{\"charsetName\":\"UTF-8\",\"fieldsDelimitedBy\":\",\",\"linesTerminatedBy\":\"\\r\\n\"},\"objects\":[{\"connector\":\"CSV\",\"fullyQualifiedName\":\"download_6_csv\",\"label\":\"download (6).csv\",\"name\":\"download_6_csv\",\"fields\":[{\"fullyQualifiedName\":\"Field\",\"name\":\"Field\",\"type\":\"Text\",\"label\":\"Field\"},{\"fullyQualifiedName\":\"Type\",\"name\":\"Type\",\"type\":\"Text\",\"label\":\"Type\"},{\"fullyQualifiedName\":\"Word\",\"name\":\"Word\",\"type\":\"Text\",\"label\":\"Word\"},{\"fullyQualifiedName\":\"CaseId\",\"name\":\"CaseId\",\"type\":\"Text\",\"label\":\"CaseId\"}]}]}";
+			agent.writeDataset("Word_Frequency_File", "Word Frequency (File)", "RDI_Development", wordFreq, operation, metadata);
+			//System.out.println(out.toString());
+		}
 	}
 	
 	public void countWord(String word, String field, String type, String caseId) {

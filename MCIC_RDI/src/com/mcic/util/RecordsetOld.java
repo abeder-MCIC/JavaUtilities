@@ -12,21 +12,43 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Vector;
 import java.util.stream.Collectors;
+import java.util.zip.GZIPOutputStream;
 
-public class Recordset {
+public class RecordsetOld {
 	private Map<String, String[]> data;
 	private int record;
 	private int next;
 	private int maxSize;
 	static int BLOCK_SIZE = 100000;
 	
-	public Recordset() {
+	public RecordsetOld() {
 		data = new LinkedHashMap<String, String[]>();
 		clear();
 	}
 	
 	public int size() {
 		return record;
+	}
+	
+	public RecordsetOld partition(int start, int count) {
+		RecordsetOld out = new RecordsetOld();
+		if (start + count > record) {
+			count = record - start;
+		}
+		out.maxSize = count;
+		for (String key : data.keySet()) {
+			String[] vals = out.data.get(key);
+			String[] source = data.get(key);
+			if (vals == null) {
+				vals = new String[count];
+				out.data.put(key, vals);
+			}
+			for (int i = 0;i < count;i++) {
+				vals[i] = source[start + i];
+			}
+		}
+		out.record = count;
+		return out;
 	}
 	
 	public void add(String header, String value) {
@@ -109,6 +131,28 @@ public class Recordset {
 			}
 		}
 		return b.toString();
+	}
+	
+	public void toGZip(GZIPOutputStream os) {
+		next = 0;
+		try {
+			os.write((getHeader().stream().collect(Collectors.joining(",")) + "\r\n").getBytes());
+			String[] line = null;
+			next = 0;
+			while ((line = getLine()) != null) {
+				for (int i = 0;i < line.length;i++) {
+					String value = line[i];
+					if (value.matches(".+\".+")) {
+						value = "\"" + value.replaceAll("\"", "\"\"") + "\"";
+					}
+					os.write(value.getBytes());
+					os.write(i == line.length - 1 ? "\r\n".getBytes() : ",".getBytes());
+				}
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void write(File f) {

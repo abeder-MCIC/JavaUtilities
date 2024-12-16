@@ -5,6 +5,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Base64;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -29,11 +32,14 @@ import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.io.entity.StringEntity;
 
 import com.mcic.util.CSVAuthor;
-import com.mcic.util.Recordset;
+import com.mcic.util.RecordSet;
+import com.mcic.util.RecordsetOld;
 import com.mcic.util.json.JSONNode;
 import com.mcic.util.json.JSONObject;
 import com.mcic.util.json.JSONString;
+import com.mcic.util.json.ThreadCluster;
 import com.mcic.wavemetadata.ui.ProgressPanel;
+import com.mcic.wavemetadata.ui.ProgressPanel.ProgressPanelStep;
 
 
 public class SalesforceAgent {
@@ -78,12 +84,94 @@ public class SalesforceAgent {
     	System.out.println(o);
     }
     
-    public void writeDataset(String APIName, String label, String app, Recordset data) {
-		writeDataset(APIName, label, app, data.toString());
+    public JSONNode writeDataset(String APIName, String label, String app, RecordSet data, String operation, String JSONMetadata) {
+    	int PART_SIZE = 8000000;
+    	
+    	String url = "/services/data/v58.0/sobjects/InsightsExternalData";
+    	String metadata = Base64.getEncoder().encodeToString(JSONMetadata.getBytes());
+    	JSONObject root = new JSONObject();
+    	root.addString("Format", "Csv");
+    	root.addString("EdgemartAlias", APIName);
+    	root.addString("EdgemartLabel", label);
+    	root.addString("EdgemartContainer", app);
+    	root.addString("Operation", operation);
+    	root.addString("Action", "None");
+    	root.addString("MetadataJson", metadata);
+    	JSONNode o = postJSON(url, root);
+    	String id = o.get("id").asString();
+    	//System.out.println(id);
+
+    	if (panel == null) {
+    		panel = new ProgressPanel(10);
+    	}
+    	
+    	
+    	url = "/services/data/v58.0/sobjects/InsightsExternalDataPart";
+        //FileInputStream fis = new FileInputStream(file);
+        //FileOutputStream fos = new FileOutputStream(gzipFile);
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		
+		int start = 0;
+		int len = data.size();
+		int remaining = len;
+		int part = 1;
+		List<Integer> remainingParts = new LinkedList<Integer>();
+		Map<Integer, String> blocks = new LinkedHashMap<Integer, String>();
+		
+		while (remaining > 0) {
+			String dataStr = data.toBase64(start, PART_SIZE);
+			remainingParts.add(part);
+			blocks.put(part, dataStr);
+			part ++;
+			remaining -= PART_SIZE;
+		}
+
+		ThreadCluster c = new ThreadCluster(4);
+		while (remainingParts.size() > 0) {
+			int thisPart = remainingParts.remove(0);
+			c.dispatch(new Runnable() {
+				
+				public void run() {
+					boolean succeeded = false;
+					String nextBlock = blocks.get(thisPart);
+			    	String url = "/services/data/v58.0/sobjects/InsightsExternalDataPart";
+					JSONObject root = new JSONObject();
+			     	root.clear();
+			    	root.addString("InsightsExternalDataId", id);
+			    	root.addNumber("PartNumber", thisPart);
+			    	root.addString("DataFile", nextBlock);
+			    	while (!succeeded) {
+						ProgressPanelStep step = panel.nextStep("Writing block number " + thisPart + "...");
+			    		JSONNode o = postJSON(url, root);
+			    		System.out.println(o);
+			    		if (o != null && o.getType() == JSONNode.Type.OBJECT) {
+			    			succeeded = o.get("success").asBoolean();
+			    		}
+			    		if (!succeeded) {
+			    			System.out.println("Failure uploading, retrying");
+			    			remainingParts.add(thisPart);
+			    		} else {
+			    		}
+		    			step.complete();
+			    	}
+				}
+			});
+			
+		}
+		
+		c.join();
+    	
+		panel.nextStep("Processing Upload");
+    	url = "/services/data/v58.0/sobjects/InsightsExternalData/" + id;
+    	root.clear();
+    	root.addString("Action", "Process");
+    	o = patchJSON(url, root);
+    	return o;
     }
     
-    public void writeDataset(String APIName, String label, String app, String data) {
+    public JSONNode writeDataset(String APIName, String label, String app, String data, String operation, String JSONMetadata) {
     	
+    	String metadata = Base64.getEncoder().encodeToString(JSONMetadata.getBytes());
     	
     	String url = "/services/data/v58.0/sobjects/InsightsExternalData";
     	JSONObject root = new JSONObject();
@@ -91,8 +179,9 @@ public class SalesforceAgent {
     	root.addString("EdgemartAlias", APIName);
     	root.addString("EdgemartLabel", label);
     	root.addString("EdgemartContainer", app);
-    	root.addString("Operation", "Overwrite");
+    	root.addString("Operation", operation);
     	root.addString("Action", "None");
+    	root.addString("MetadataJson", metadata);
     	JSONNode o = postJSON(url, root);
     	String id = o.get("id").asString();
     	//System.out.println(id);
@@ -113,21 +202,41 @@ public class SalesforceAgent {
 				GZIPOutputStream gzipOS = new GZIPOutputStream(out);
 				gzipOS.write(str);
 				byte[] zipped = out.toByteArray();
+				Map<Integer, String> blocks = new TreeMap<Integer, String>();
+				List<Integer> parts = new LinkedList<Integer>();
 				String dataStr = Base64.getEncoder().encodeToString(zipped);
 				int part = 1;
 				while (dataStr.length() > 0) {
 					//System.out.println("Writing block number " + part);
-					if (panel != null) {
-						panel.nextStep("Writing block number " + part + "...");
-					}
 					int nextBlockSize = dataStr.length() > 5000000 ? 5000000 : dataStr.length();
 					String nextBlock = dataStr.substring(0, nextBlockSize);
 					dataStr = dataStr.substring(nextBlockSize);
+					parts.add(part);
+					blocks.put(part, nextBlock);
+					part ++;
+				}
+				
+				while (parts.size() > 0) {
+					part = parts.remove(0);
+					String nextBlock = blocks.get(part);
+					if (panel != null) {
+						panel.nextStep("Writing block number " + part + "...");
+					}
 		         	root.clear();
 		        	root.addString("InsightsExternalDataId", id);
-		        	root.addNumber("PartNumber", part ++);
+		        	root.addNumber("PartNumber", part);
 		        	root.addString("DataFile", nextBlock);
 		        	o = postJSON(url, root);
+		        	System.out.println(o);
+		        	boolean succeeded = false;
+		        	if (o.getType() == JSONNode.Type.OBJECT) {
+		        		succeeded = o.get("success").asBoolean();
+		        	}
+		        	if (!succeeded) {
+		        		System.out.println("Failure uploading part " + part);
+		        		parts.add(part);
+		        	}
+		        	System.out.println(o.toString());
 				}
 				
 			} catch (IOException e) {
@@ -147,15 +256,11 @@ public class SalesforceAgent {
     	}
 
     	
-		if (panel != null) {
-			panel.nextStep("Processing Upload");
-		}
     	url = "/services/data/v58.0/sobjects/InsightsExternalData/" + id;
     	root.clear();
     	root.addString("Action", "Process");
     	o = patchJSON(url, root);
-    	panel.setVisible(false);
-    	System.exit(0);
+    	return o;
     }
     
 

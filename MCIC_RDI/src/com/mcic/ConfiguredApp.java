@@ -29,6 +29,7 @@ public abstract class ConfiguredApp {
 		File propFile = null;
 		int i = 0;
 		while (i < args.length) {
+			String val = args[i];
 			String cmd = args[i].toLowerCase();
 			switch (cmd) {
 			case "-dir":
@@ -51,7 +52,7 @@ public abstract class ConfiguredApp {
 				}
 				break;
 			default:
-				additionalArgs.add(cmd);
+				additionalArgs.add(val);
 				break;
 			}
 			i++;

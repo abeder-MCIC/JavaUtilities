@@ -19,18 +19,46 @@ import java.awt.event.ActionEvent;
 
 public class ProgressPanel extends JPanel {
 	private int steps;
-	private Vector<String> stepNames;
+	private Vector<ProgressPanelStep> stepNames;
 	private static final long serialVersionUID = 1L;
 	private JTextArea textArea;
 	private JProgressBar progressBar;
 	private JButton btnNewButton;
+	
+	public class ProgressPanelStep {
+		String message;
+		boolean complete;
+		ProgressPanel parent;
+		
+		public ProgressPanelStep(ProgressPanel parent, String message){
+			this.message = message;
+			this.parent = parent;
+			complete = false;
+		}
+		
+		public void complete() {
+			complete = true;
+			parent.refresh();
+		}
+		
+		public void addNote(String note) {
+			message += note;
+			parent.refresh();
+		}
+		
+		public String toString() {
+			String out =  message + "...";
+			out += complete ? "done" : "";
+			return out;
+		}
+	}
 
 	/**
 	 * Create the panel.
 	 */
 	public ProgressPanel(int steps) {
 		this.steps = steps;
-		stepNames = new Vector<String>();
+		stepNames = new Vector<ProgressPanelStep>();
 		setLayout(new MigLayout("", "[146px,grow]", "[][14px][grow][]"));
 		
 		JLabel lblNewLabel = new JLabel("Word Frequency App");
@@ -55,16 +83,19 @@ public class ProgressPanel extends JPanel {
 		add(btnNewButton, "cell 0 3,alignx right");
 	}
 
-	public void nextStep(String step) {
-		stepNames.add(step);
+	public ProgressPanelStep nextStep(String message) {
+		ProgressPanelStep out = new ProgressPanelStep(this, message);
+		stepNames.add(out);
 		progressBar.setValue(stepNames.size());
+		refresh();
+		return out;
+	}
+	
+	public void refresh() {
 		StringBuilder b = new StringBuilder();
 		for (int i = 0;i < stepNames.size();i++) {
-			String s = stepNames.elementAt(i);
+			String s = stepNames.elementAt(i).toString();
 			b.append(s);
-			if (i < stepNames.size() - 1) {
-				b.append("done");
-			}
 			b.append("\n");
 		}
 		textArea.setText(b.toString());

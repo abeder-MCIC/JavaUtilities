@@ -96,6 +96,21 @@ public class WaveDashboardFilter{
 	 * first and then the column
 	 */
 	
+	public JSONArray sortLayoutWidgets(JSONNode widgets) {
+		JSONArray out = (JSONArray) widgets.clone();
+		Collections.sort(out.getCollection(), new Comparator<JSONNode>() {
+			@Override
+			public int compare(JSONNode n1, JSONNode n2) {
+				if (n1.get("row").asInt() != n2.get("row").asInt()) {
+					return n1.get("row").asInt() - n2.get("row").asInt();
+				} else {
+					return n1.get("column").asInt() - n2.get("column").asInt();
+				}
+			}
+		});
+		return out;
+	}
+	
 	
 	public String sortLayouts(String json) {
 		JSONNode root = JSONNode.parse(json);
@@ -103,20 +118,13 @@ public class WaveDashboardFilter{
 		JSONNode pages = state.get("gridLayouts").elementAt(0).get("pages");
 		for (JSONNode page : pages.values()) {
 			JSONNode widgets = page.get("widgets");
-			Collections.sort(widgets.getCollection(), new Comparator<JSONNode>() {
-				@Override
-				public int compare(JSONNode n1, JSONNode n2) {
-					if (n1.get("row").asInt() != n2.get("row").asInt()) {
-						return n1.get("row").asInt() - n2.get("row").asInt();
-					} else {
-						return n1.get("column").asInt() - n2.get("column").asInt();
-					}
-				}
-			});
+			sortLayoutWidgets(widgets);
 		}
 		
 		return root.toString();
 	}
+		
+		
 	
 	/*****************************************************************************
 	 * Creates a set of cloned pages with a name ending in NF with any filter
@@ -198,6 +206,7 @@ public class WaveDashboardFilter{
 		for (int i = 0;i < columnMap.length;i++) {
 			System.out.println(i + ": " + columnMap[i] + ", " + colspanMap[i]);
 		}
+		
 		
 		/**************************************************************************
 		 * Example of JSON from CRMA for a layout node
@@ -315,6 +324,28 @@ public class WaveDashboardFilter{
 							layout.get("name").setString(newWidgetName);
 						}
 					}
+				}
+			}
+		}
+		
+		/************************************************************************************************************
+		 *  Sort layout nodes so that rows and columns are in order. Identify small gaps and stretch the colspan to
+		 *  meet the next layout
+		 */
+		
+		for (JSONNode page : pages.values()) {
+			//String layoutJSON = sortLayouts(page.get("widgets").toCompressedString());
+			//JSONNode layouts = JSONNode.parse(layoutJSON);
+			JSONNode layouts = sortLayoutWidgets(page.get("widgets"));
+			for (int i = 0;i < layouts.size() - 1;i++) {
+				JSONNode thisLayout = layouts.elementAt(i);
+				JSONNode nextLayout = layouts.elementAt(i + 1);
+				int column = thisLayout.get("column").asInt();
+				int colspan = thisLayout.get("colspan").asInt();
+				int nextColumn = nextLayout.get("column").asInt();
+				if (column + colspan == nextColumn - 1) {
+					thisLayout.get("colspan").setInt(nextColumn - column);
+					System.out.println("Stretching " + thisLayout.get("name").asString() + " from " + colspan + " to " + (nextColumn - column));
 				}
 			}
 		}

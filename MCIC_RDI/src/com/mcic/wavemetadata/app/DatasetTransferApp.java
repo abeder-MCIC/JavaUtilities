@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import com.mcic.ConfiguredApp;
 import com.mcic.sfrest.SalesforceAgent;
 import com.mcic.sfrest.SalesforceModel;
-import com.mcic.util.Recordset;
+import com.mcic.util.RecordsetOld;
 import com.mcic.util.json.JSONNode;
 import com.mcic.util.json.JSONObject;
 import com.mcic.wavemetadata.tool.WaveMetadata;
@@ -98,7 +98,7 @@ public class DatasetTransferApp extends ConfiguredApp {
 			segments.add(name);
 		}
 		
-		Recordset out = new Recordset();
+		RecordsetOld out = new RecordsetOld();
 		
 		for (String segment : segments) {
 			saql = "q = load \\\"" + dsId + "\\\";"

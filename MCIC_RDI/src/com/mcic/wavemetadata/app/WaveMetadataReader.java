@@ -27,7 +27,7 @@ import javax.swing.filechooser.FileFilter;
 import com.mcic.sfrest.SalesforceAgent;
 import com.mcic.sfrest.SalesforceModel;
 import com.mcic.util.CSVAuthor;
-import com.mcic.util.Recordset;
+import com.mcic.util.RecordsetOld;
 import com.mcic.util.Tripple;
 import com.mcic.util.json.JSONArray;
 import com.mcic.util.json.JSONNode;
@@ -50,16 +50,16 @@ public class WaveMetadataReader {
 	public Map<String, JSONNode> recipeDefinitions;
 	public String rdiInventoryId;
 	
-	public Recordset datasets;
-	public Recordset dashboards;
-	public Recordset dashdatasets;
-	public Recordset dashfields;
-	public Recordset dashlinks;	
-	public Recordset recipes;
-	public Recordset recipeDatasets;
-	public Recordset recipeFields;
-	public Recordset apps;
-	public Recordset pageWidgetStepFields;
+	public RecordsetOld datasets;
+	public RecordsetOld dashboards;
+	public RecordsetOld dashdatasets;
+	public RecordsetOld dashfields;
+	public RecordsetOld dashlinks;	
+	public RecordsetOld recipes;
+	public RecordsetOld recipeDatasets;
+	public RecordsetOld recipeFields;
+	public RecordsetOld apps;
+	public RecordsetOld pageWidgetStepFields;
 	
 	public WaveMetadata meta;
 
@@ -109,16 +109,16 @@ public class WaveMetadataReader {
 		}
 		
 		
-		recipes = new Recordset();
-		recipeDatasets = new Recordset();
-		recipeFields = new Recordset();
-		dashboards = new Recordset();
-		dashdatasets = new Recordset();
-		dashfields = new Recordset();
-		dashlinks = new Recordset();
-		datasets = new Recordset();
-		apps = new Recordset();
-		pageWidgetStepFields = new Recordset();
+		recipes = new RecordsetOld();
+		recipeDatasets = new RecordsetOld();
+		recipeFields = new RecordsetOld();
+		dashboards = new RecordsetOld();
+		dashdatasets = new RecordsetOld();
+		dashfields = new RecordsetOld();
+		dashlinks = new RecordsetOld();
+		datasets = new RecordsetOld();
+		apps = new RecordsetOld();
+		pageWidgetStepFields = new RecordsetOld();
 
 		replicatedDatasetFields = null;
 		rdiInventoryId = null;

@@ -162,11 +162,12 @@ public class SalesforceAgent extends Progressive {
 		
 		c.join();
     	
-		panel.nextStep("Processing Upload");
+		ProgressPanelStep step = panel.nextStep("Processing Upload");
     	url = "/services/data/v58.0/sobjects/InsightsExternalData/" + id;
     	root.clear();
     	root.addString("Action", "Process");
     	o = patchJSON(url, root);
+    	step.complete();
     	return o;
     }
     

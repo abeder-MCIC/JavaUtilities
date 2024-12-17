@@ -87,7 +87,8 @@ public class WordFrequencyApp extends ConfiguredApp {
 	private String getDatasetId() {
 		if (datasetId == null) {
 			String url = "/services/data/v58.0/wave/datasets?q=Layers";
-			JSONNode data = agent.get(url, null);
+			int res = agent.get(url, null);
+			JSONNode data = agent.getResponse();
 			for (JSONNode n : data.get("datasets").values()) {
 				String name = n.get("name").asString();
 				if (name.equals(datasetName)) {
@@ -123,7 +124,8 @@ public class WordFrequencyApp extends ConfiguredApp {
 
 			String nextUrl = "/services/data/v58.0/query?q=SELECT+Id," + fields.stream().collect(Collectors.joining(",")) + "+FROM+MCIC_Patient_Safety_Case__c";
 			while (nextUrl != null) {
-				JSONNode data = agent.get(nextUrl, null);
+				agent.get(nextUrl, null);
+				JSONNode data = agent.getResponse();
 				for (JSONNode record : data.get("records").values()) {
 					String caseId = record.get("Id").asString();
 					for (String field : fields) {
@@ -177,7 +179,8 @@ public class WordFrequencyApp extends ConfiguredApp {
 					JSONObject post = new JSONObject();
 					post.addString("query", saql);
 			
-					JSONNode data = agent.postJSON("/services/data/v60.0/wave/query", post);
+					int r = agent.postJSON("/services/data/v60.0/wave/query", post);
+					JSONNode data = agent.getResponse();
 					
 					for (JSONNode record : data.get("results").get("records").values()) {
 						String caseId = record.get("Id").asString();

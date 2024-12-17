@@ -42,7 +42,7 @@ public class ProgressPanel extends JPanel {
 		}
 		
 		public void addNote(String note) {
-			message += note;
+			message += "..." + note;
 			parent.refresh();
 		}
 		

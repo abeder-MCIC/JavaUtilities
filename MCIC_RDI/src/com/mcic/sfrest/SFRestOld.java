@@ -13,6 +13,8 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 import java.util.zip.GZIPOutputStream;
 
+import javax.swing.JOptionPane;
+
 import org.apache.hc.client5.http.classic.methods.HttpDelete;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.classic.methods.HttpPatch;
@@ -36,14 +38,20 @@ import com.mcic.util.json.JSONNode;
 import com.mcic.util.json.JSONObject;
 import com.mcic.util.json.JSONString;
 import com.mcic.wavemetadata.ui.ProgressPanel;
+import com.mcic.wavemetadata.ui.ProgressPanel.ProgressPanelStep;
 
 
 public class SFRestOld extends Progressive {
+	public static final int FAILURE = 1;
+	public static final int SUCCESS = 2;
+	public static final int INDETERMINATE = 0;
+	
     String accessToken;
     SalesforceModel model;
     Map<String, Set<String>> sObjectFields;
     //public String restEndpoint;
     private CloseableHttpClient httpClient;
+    JSONNode response;
     
     /*
     public static void main(String[] args) {
@@ -62,6 +70,7 @@ public class SFRestOld extends Progressive {
     	if (accessToken == null) {
     		authenticate(model);
     	}
+    	
 		return accessToken;
 	}
 
@@ -74,8 +83,8 @@ public class SFRestOld extends Progressive {
     	JSONObject root = new JSONObject();
     	root.put("dataflowId", new JSONString(id));
     	root.put("command", new JSONString("start"));
-    	JSONNode o = postJSON(url, root);
-    	System.out.println(o);
+    	int res = postJSON(url, root);
+    	System.out.println(response);
     }
     
     public void writeDataset(String APIName, String label, String app, RecordsetOld data, String operation, String metadata) {
@@ -95,8 +104,8 @@ public class SFRestOld extends Progressive {
     	root.addString("Operation", operation);
     	root.addString("Action", "None");
     	root.addString("MetadataJson", metadata);
-    	JSONNode o = postJSON(url, root);
-    	String id = o.get("id").asString();
+    	int res = postJSON(url, root);
+    	String id = response.get("id").asString();
     	//System.out.println(id);
 
     	url = "/services/data/v58.0/sobjects/InsightsExternalDataPart";
@@ -114,7 +123,7 @@ public class SFRestOld extends Progressive {
 				int part = 1;
 				while (dataStr.length() > 0) {
 					//System.out.println("Writing block number " + part);
-					nextStep("Writing block number " + part);
+					ProgressPanelStep step = nextStep("Writing block number " + part);
 					int nextBlockSize = dataStr.length() > 5000000 ? 5000000 : dataStr.length();
 					String nextBlock = dataStr.substring(0, nextBlockSize);
 					dataStr = dataStr.substring(nextBlockSize);
@@ -122,7 +131,14 @@ public class SFRestOld extends Progressive {
 		        	root.addString("InsightsExternalDataId", id);
 		        	root.addNumber("PartNumber", part ++);
 		        	root.addString("DataFile", nextBlock);
-		        	o = postJSON(url, root);
+		        	res = FAILURE;
+		        	while (res == FAILURE) {
+			        	res = postJSON(url, root);
+			        	if (res != SUCCESS) {
+			        		step.addNote("Failure sending, re-posting");
+			        	}
+		        	}
+		        	step.complete();
 				}
 				
 			} catch (IOException e) {
@@ -137,7 +153,7 @@ public class SFRestOld extends Progressive {
         	root.addString("InsightsExternalDataId", id);
         	root.addNumber("PartNumber", 1);
         	root.addString("DataFile", dataStr);
-        	o = postJSON(url, root);
+        	res = postJSON(url, root);
         	
     	}
 
@@ -146,7 +162,7 @@ public class SFRestOld extends Progressive {
     	url = "/services/data/v58.0/sobjects/InsightsExternalData/" + id;
     	root.clear();
     	root.addString("Action", "Process");
-    	o = patchJSON(url, root);
+    	res = patchJSON(url, root);
     }
     
 
@@ -156,8 +172,8 @@ public class SFRestOld extends Progressive {
     		fields = new TreeSet<String>();
     		sObjectFields.put(objectName, fields);
 	    	String url = "/services/data/v58.0/sobjects/" + objectName + "/describe/";
-	    	JSONNode root = get(url, null);
-	    	for (JSONNode field : root.get("fields").values()) {
+	    	int res = get(url, null);
+	    	for (JSONNode field : response.get("fields").values()) {
 	    		String fieldName = field.get("name").asString();
 	    		fields.add(fieldName);
 	    	}
@@ -165,7 +181,7 @@ public class SFRestOld extends Progressive {
     	return fields;
     }
 
-	public JSONObject get(String resource, String urlParameters) {
+	public int get(String resource, String urlParameters) {
     	String url = getRestEndpoint() + resource;
     	HttpGet get = new HttpGet(url);
 		if (urlParameters != null && !urlParameters.equals("")){
@@ -175,13 +191,11 @@ public class SFRestOld extends Progressive {
 		get.setHeader("Authorization", "OAuth " + getAccessToken());
 		
     	try {
-			CloseableHttpResponse response = httpClient.execute(get);
-			String rstr = EntityUtils.toString(response.getEntity());
-			if (rstr.charAt(0) == '{') {
-				JSONNode n = JSONNode.parse(rstr);
-				if (n != null) {
-					return (JSONObject)n;
-				}
+			CloseableHttpResponse resp = httpClient.execute(get);
+			String rstr = EntityUtils.toString(resp.getEntity());
+			if (rstr.matches("^[{\\[][\\s\\S]+")) {  //  Is this JSON?
+				response = JSONNode.parse(rstr);
+				return SUCCESS;
     		}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -190,14 +204,14 @@ public class SFRestOld extends Progressive {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	return null;
+    	return FAILURE;
     }
 	
-	public JSONNode postJSON(String resource, JSONNode json) {
+	public int postJSON(String resource, JSONNode json) {
 		return postJSON(resource, json, false);
 	}
 	
-	public JSONNode patchJSON(String resource, JSONNode json) {
+	public int patchJSON(String resource, JSONNode json) {
 		return postJSON(resource, json, true);
 	}
 	
@@ -225,7 +239,7 @@ public class SFRestOld extends Progressive {
         return null;
 	}
 
-	public JSONNode postJSON(String resource, JSONNode json, boolean isPatch) {
+	public int postJSON(String resource, JSONNode json, boolean isPatch) {
 		
 		String url = getRestEndpoint() + resource;
 		HttpUriRequestBase post = null;
@@ -255,19 +269,22 @@ public class SFRestOld extends Progressive {
 	    			int code = authResponse.getCode();
 	    			if (code != 204) {
 	    				String jstr = EntityUtils.toString(authResponse.getEntity());
-	    				JSONNode node = JSONNode.parse(jstr);
-	    				return node;
+	    				response = JSONNode.parse(jstr);
+	    				return SUCCESS;
 	    			}
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					System.out.println("Packet failed, re-posting");
+					return FAILURE;
 				}
         	}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        return null;
+        return FAILURE;
+	}
+	
+	public JSONNode getResponse() {
+		return response;
 	}
 
 	private void authenticate(SalesforceModel m) {

@@ -17,8 +17,9 @@ import javax.swing.filechooser.FileFilter;
 
 import com.mcic.mdr.mdrApp;
 import com.mcic.sfrest.SalesforceModel;
+import com.mcic.util.Progressive;
 
-public abstract class ConfiguredApp {
+public abstract class ConfiguredApp extends Progressive {
 	protected Map<String, Object> properties;
 	
 	public static Vector<String> main(String[] args, ConfiguredApp app) {

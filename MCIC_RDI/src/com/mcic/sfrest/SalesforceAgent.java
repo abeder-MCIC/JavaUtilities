@@ -32,6 +32,7 @@ import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.io.entity.StringEntity;
 
 import com.mcic.util.CSVAuthor;
+import com.mcic.util.Progressive;
 import com.mcic.util.RecordSet;
 import com.mcic.util.RecordsetOld;
 import com.mcic.util.json.JSONNode;
@@ -42,7 +43,7 @@ import com.mcic.wavemetadata.ui.ProgressPanel;
 import com.mcic.wavemetadata.ui.ProgressPanel.ProgressPanelStep;
 
 
-public class SalesforceAgent {
+public class SalesforceAgent extends Progressive {
     String accessToken;
     SalesforceModel model;
     Map<String, Set<String>> sObjectFields;
@@ -141,7 +142,7 @@ public class SalesforceAgent {
 			    	root.addNumber("PartNumber", thisPart);
 			    	root.addString("DataFile", nextBlock);
 			    	while (!succeeded) {
-						ProgressPanelStep step = panel.nextStep("Writing block number " + thisPart + "...");
+						ProgressPanelStep step = nextStep("Writing block number " + thisPart + "...");
 			    		JSONNode o = postJSON(url, root);
 			    		System.out.println(o);
 			    		if (o != null && o.getType() == JSONNode.Type.OBJECT) {
@@ -219,9 +220,7 @@ public class SalesforceAgent {
 				while (parts.size() > 0) {
 					part = parts.remove(0);
 					String nextBlock = blocks.get(part);
-					if (panel != null) {
-						panel.nextStep("Writing block number " + part + "...");
-					}
+					ProgressPanelStep step = panel.nextStep("Writing block number " + part);
 		         	root.clear();
 		        	root.addString("InsightsExternalDataId", id);
 		        	root.addNumber("PartNumber", part);
@@ -233,10 +232,12 @@ public class SalesforceAgent {
 		        		succeeded = o.get("success").asBoolean();
 		        	}
 		        	if (!succeeded) {
-		        		System.out.println("Failure uploading part " + part);
+		        		step.addNote("Failure uploading, retrying");
 		        		parts.add(part);
+		        	} else {
+		        		step.complete();
 		        	}
-		        	System.out.println(o.toString());
+		        	//System.out.println(o.toString());
 				}
 				
 			} catch (IOException e) {
@@ -434,10 +435,4 @@ public class SalesforceAgent {
             e.printStackTrace();
         }
     }
-
-	public void setPanel(ProgressPanel panel) {
-		this.panel = panel;
-	}
-
-
 }

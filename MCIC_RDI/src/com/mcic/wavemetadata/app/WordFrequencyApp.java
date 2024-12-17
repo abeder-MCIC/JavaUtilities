@@ -31,10 +31,8 @@ import com.mcic.wavemetadata.ui.ProgressPanel.ProgressPanelStep;
 public class WordFrequencyApp extends ConfiguredApp {
 	SFRestOld agent;
 	Vector<String> fields;
-	Map<String, Keyword> freq;
 	public static String datasetName;
 	public static String datasetId = null;
-	ProgressPanel progress;
 	public String caseId;
 
 	public static void main(String[] args) {
@@ -82,17 +80,8 @@ public class WordFrequencyApp extends ConfiguredApp {
 		//Collection<String> datasets = (Collection<String>)properties.get("datasets");
 		SalesforceModel model = new SalesforceModel(propFile);
 		agent = new SFRestOld(model);
-		progress = new ProgressPanel(19);
-		JDialog dialog = new JDialog();
-		dialog.setBounds(100, 100, 450, 300);
-		dialog.add(progress);
-		dialog.setVisible(true);
-		Map<String, Keyword> records = readFields();
-		
-		
-		//progress.nextStep("Processing Upload");
-		progress.setClose(true);
-		//wordFreq.close();
+		readFields();
+		setClose(true);
 	}
 	
 	private String getDatasetId() {
@@ -126,11 +115,12 @@ public class WordFrequencyApp extends ConfiguredApp {
 		}
 	}
 
-	public Map<String, Keyword> readFields() {
-		freq = new TreeMap<String, Keyword>();
+	public void readFields() {
 		
 		boolean readSalesforce = false;
 		if (readSalesforce) {
+			Map<String, Keyword> freq = new TreeMap<String, Keyword>();
+
 			String nextUrl = "/services/data/v58.0/query?q=SELECT+Id," + fields.stream().collect(Collectors.joining(",")) + "+FROM+MCIC_Patient_Safety_Case__c";
 			while (nextUrl != null) {
 				JSONNode data = agent.get(nextUrl, null);
@@ -163,10 +153,11 @@ public class WordFrequencyApp extends ConfiguredApp {
 			}
 		} else {
 		
-			for (int yearStart = 2024;yearStart <= 2000;yearStart -= 5) {
+			for (int yearStart = 2024;yearStart >= 2000;yearStart -= 5) {
+				Map<String, Keyword> freq = new TreeMap<String, Keyword>();
 			
 				for (int year = yearStart;year >= yearStart - 4;year -= 1) {
-					ProgressPanelStep step = progress.nextStep("Reading policy year " + year + "...");
+					ProgressPanelStep step = nextStep("Reading policy year " + year);
 					String saql = "q = load \\\"" + getDatasetId() + "\\\";";
 					if (year > 2000) {
 						saql += "q = filter q by 'Date_of_Loss__c_YEAR' == \\\"" + year + "\\\";";
@@ -199,36 +190,41 @@ public class WordFrequencyApp extends ConfiguredApp {
 								//  Replace all newlines with '.' characters
 								res = res.replaceAll("\\\\n", "\\.");
 								
+								int counter = 0;
 								String[] str = res.split("\\.");
 								for (String sentence : str) {
+									counter ++;
 									if (sentence != null && !sentence.equals("null")) {
 										sentence = " " + sentence + " ";
+//										if (counter == 86) {
+//											System.out.println("Debug");
+//										}
 										int start = 0;
-										Matcher matcher = Pattern.compile("[ \\n]\\w+[\\- ]\\w+[ \\\\n]").matcher(sentence);
+										Matcher matcher = Pattern.compile("[ ,\\n]\\w+[\\- ]\\w+[ ,\\n]").matcher(sentence);
 										while (matcher.find(start)) {
 											int s = matcher.start();
 											int e = matcher.end();
 											String phrase = sentence.substring(s + 1, e - 1); 
-											countWord(phrase, field, "Phrase", caseId);
+											countWord(freq, phrase, field, "Phrase", caseId);
 											start = s + 1;
 										}
 										start = 0;
-										matcher = Pattern.compile("[ \\n]\\w+[\\- ]\\w+[\\- ]\\w+[ \\\\n]").matcher(sentence);
+										matcher = Pattern.compile("[ ,\\n]\\w+[\\- ]\\w+[\\- ]\\w+[ ,\\n]").matcher(sentence);
 										while (matcher.find(start)) {
 											int s = matcher.start();
 											int e = matcher.end();
 											String phrase = sentence.substring(s + 1, e - 1); 
-											countWord(phrase, field, "Phrase", caseId);
+											countWord(freq, phrase, field, "Phrase", caseId);
 											start = s + 1;
 										}
 										
 										start = 0;
-										matcher = Pattern.compile("[ \\n]\\w+[ \\\\n]").matcher(sentence);
+										matcher = Pattern.compile("[ ,\\n]\\w+[ ,\\n]").matcher(sentence);
 										while (matcher.find(start)) {
 											int s = matcher.start();
 											int e = matcher.end();
 											String phrase = sentence.substring(s + 1, e - 1); 
-											countWord(phrase, field, "Word", caseId);
+											countWord(freq, phrase, field, "Word", caseId);
 											start = s + 1;
 										}
 									}
@@ -239,18 +235,16 @@ public class WordFrequencyApp extends ConfiguredApp {
 					step.complete();
 				}
 	
-				ProgressPanelStep step = progress.nextStep("Processing dataset file...");
+				ProgressPanelStep step = nextStep("Processing dataset file");
 				String operation = yearStart == 2024 ? "Overwrite" : "Append";
-				writeDatasets(operation);
+				writeDatasets(freq, operation);
 				step.complete();
 				
 			}
 		}
-		//System.out.println(data.toString());
-		return freq;
 	}
 	
-	public void writeDatasets(String operation) {
+	public void writeDatasets(Map<String, Keyword> freq, String operation) {
 		RecordsetOld wordFreq = new RecordsetOld();
 		for (String key : freq.keySet()) {
 			Keyword k = freq.get(key);
@@ -265,7 +259,6 @@ public class WordFrequencyApp extends ConfiguredApp {
 				}
 			}
 		}
-		agent.setPanel(progress);
 		boolean writeCSV = false;
 		if (writeCSV) {
 			try {
@@ -285,7 +278,7 @@ public class WordFrequencyApp extends ConfiguredApp {
 		}
 	}
 	
-	public void countWord(String word, String field, String type, String caseId) {
+	public void countWord(Map<String, Keyword> freq, String word, String field, String type, String caseId) {
 		String key = field + "|" + word;
 		Keyword k = freq.get(key);
 		if (k == null) {

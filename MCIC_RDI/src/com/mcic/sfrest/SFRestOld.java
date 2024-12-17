@@ -30,6 +30,7 @@ import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.io.entity.StringEntity;
 
 import com.mcic.util.CSVAuthor;
+import com.mcic.util.Progressive;
 import com.mcic.util.RecordsetOld;
 import com.mcic.util.json.JSONNode;
 import com.mcic.util.json.JSONObject;
@@ -37,13 +38,12 @@ import com.mcic.util.json.JSONString;
 import com.mcic.wavemetadata.ui.ProgressPanel;
 
 
-public class SFRestOld {
+public class SFRestOld extends Progressive {
     String accessToken;
     SalesforceModel model;
     Map<String, Set<String>> sObjectFields;
     //public String restEndpoint;
     private CloseableHttpClient httpClient;
-    ProgressPanel panel;
     
     /*
     public static void main(String[] args) {
@@ -56,7 +56,6 @@ public class SFRestOld {
     	accessToken = null;
     	this.model = m;
     	sObjectFields = new TreeMap<String, Set<String>>();
-    	panel = null;
     }
     
     public String getAccessToken() {
@@ -100,11 +99,6 @@ public class SFRestOld {
     	String id = o.get("id").asString();
     	//System.out.println(id);
 
-    	if (panel == null) {
-    		panel = new ProgressPanel(10);
-    	}
-    	
-    	
     	url = "/services/data/v58.0/sobjects/InsightsExternalDataPart";
     	byte[] str = data.getBytes();
     	if (str.length >= 5000000) {
@@ -120,9 +114,7 @@ public class SFRestOld {
 				int part = 1;
 				while (dataStr.length() > 0) {
 					//System.out.println("Writing block number " + part);
-					if (panel != null) {
-						panel.nextStep("Writing block number " + part + "...");
-					}
+					nextStep("Writing block number " + part);
 					int nextBlockSize = dataStr.length() > 5000000 ? 5000000 : dataStr.length();
 					String nextBlock = dataStr.substring(0, nextBlockSize);
 					dataStr = dataStr.substring(nextBlockSize);
@@ -150,15 +142,11 @@ public class SFRestOld {
     	}
 
     	
-		if (panel != null) {
-			panel.nextStep("Processing Upload");
-		}
+		nextStep("Processing Upload");
     	url = "/services/data/v58.0/sobjects/InsightsExternalData/" + id;
     	root.clear();
     	root.addString("Action", "Process");
     	o = patchJSON(url, root);
-    	panel.setVisible(false);
-    	System.exit(0);
     }
     
 
@@ -270,14 +258,11 @@ public class SFRestOld {
 	    				JSONNode node = JSONNode.parse(jstr);
 	    				return node;
 	    			}
-				} catch (SocketException e) {
+				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					System.out.println("Packet failed, re-posting");
 				}
         	}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-     			e.printStackTrace();
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -341,10 +326,5 @@ public class SFRestOld {
             e.printStackTrace();
         }
     }
-
-	public void setPanel(ProgressPanel panel) {
-		this.panel = panel;
-	}
-
 
 }

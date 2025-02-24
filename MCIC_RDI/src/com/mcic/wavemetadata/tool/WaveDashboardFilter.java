@@ -351,7 +351,9 @@ public class WaveDashboardFilter{
 		}
 		
 		//  Clone all the navigation link tabs so they link between filter and filter-free pages
-		Set<JSONNode> linkWidgets = new TreeSet<JSONNode>();
+		//Set<JSONNode> linkWidgets = new TreeSet<JSONNode>();
+		
+		//  Go through all of the pages
 		for (JSONNode page : newPages.values()) {
 			String pageName = page.get("name").asString();
 			for (JSONNode layout : page.get("widgets").values()) {
@@ -360,28 +362,30 @@ public class WaveDashboardFilter{
 				String linkPageName = collapse ? pageName.substring(0, pageName.length() - 2) : pageName + "NF";
 				String newWidgetName = (collapse ? "collapse_" : "expand_") + widgetName;
 				String carrot = isLeft ^ collapse ? ">" : "<";
-				
 				JSONNode oldWidget = widgets.get(widgetName);
-				JSONNode widget = oldWidget.clone();
+				
 				if (oldWidget.get("type").asString().equals("link")) {
-					if (oldWidget.get("parameters").get("text").asString().matches("\\<\\>")) {
-						linkWidgets.add(widget);
-						widget.get("parameters").get("destinationType").setString("page");
-						widget.get("parameters").get("text").setString(carrot);
+					char c = oldWidget.get("parameters").get("text").asString().charAt(0);
+					if (c == '<' || c == '>') {
+						//linkWidgets.add(widget);
+						
+						JSONNode newWidget = oldWidget.clone();
+						newWidget.get("parameters").get("destinationType").setString("page");
+						newWidget.get("parameters").get("text").setString(carrot);
 						if (collapse) {
 							layout.get("widgetStyle").get("borderWidth").setInt(1);
 							layout.get("widgetStyle").get("borderEdges").clear();
 						} else {
 							layout.get("widgetStyle").get("borderWidth").setInt(3);
 						}
-						JSONNode destinationLink = widget.get("parameters").get("destinationLink");
+						JSONNode destinationLink = newWidget.get("parameters").get("destinationLink");
 						if (destinationLink == null) {
 							destinationLink = new JSONObject();
-							widget.get("parameters").put("destinationLink", destinationLink);
+							newWidget.get("parameters").put("destinationLink", destinationLink);
 							destinationLink.put("name", new JSONString("test"));
 						}
-						widget.get("parameters").get("destinationLink").get("name").setString(linkPageName);
-						widgets.put(newWidgetName, widget);
+						newWidget.get("parameters").get("destinationLink").get("name").setString(linkPageName);
+						widgets.put(newWidgetName, newWidget);
 						layout.get("name").setString(newWidgetName);
 						//layout.get("column").setInt(0);
 						//layout.get("widgetStyle").get("borderWidth").setInt(3);

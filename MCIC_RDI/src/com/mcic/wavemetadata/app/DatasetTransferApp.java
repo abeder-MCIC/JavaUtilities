@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 
 import com.mcic.ConfiguredApp;
-import com.mcic.sfrest.SalesforceAgent;
+import com.mcic.sfrest.SalesforceAgentOld;
 import com.mcic.sfrest.SalesforceModel;
 import com.mcic.util.RecordsetOld;
 import com.mcic.util.json.JSONNode;
@@ -18,8 +18,8 @@ import com.mcic.wavemetadata.tool.WaveMetadata.Field;
 
 public class DatasetTransferApp extends ConfiguredApp {
 	public String datasetAPIName;
-	public SalesforceAgent source;
-	public SalesforceAgent target;
+	public SalesforceAgentOld source;
+	public SalesforceAgentOld target;
 	public String segmentField;
 	
 	public static void main(String[] args) {
@@ -73,8 +73,8 @@ public class DatasetTransferApp extends ConfiguredApp {
 			segmentField = JOptionPane.showInputDialog("API Name of field to segment by");
 		}
 
-		app.source = new SalesforceAgent(new SalesforceModel(sourceFile));
-		app.target = new SalesforceAgent(new SalesforceModel(targetFile));
+		app.source = new SalesforceAgentOld(new SalesforceModel(sourceFile));
+		app.target = new SalesforceAgentOld(new SalesforceModel(targetFile));
 		app.datasetAPIName = datasetName;
 		app.segmentField = segmentField;
 		app.init();

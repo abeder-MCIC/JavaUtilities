@@ -19,7 +19,7 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 
 import com.mcic.ConfiguredApp;
-import com.mcic.sfrest.SalesforceAgent;
+import com.mcic.sfrest.SalesforceAgentOld;
 import com.mcic.sfrest.SalesforceModel;
 import com.mcic.util.json.JSONNode;
 import com.mcic.util.json.JSONObject;
@@ -33,7 +33,7 @@ public class mdrApp extends ConfiguredApp {
 
 	mdrGUI gui;
 	WaveMetadata meta;
-	SalesforceAgent agent;
+	SalesforceAgentOld agent;
 	//Map<String, Element> elementIdsByLabel;
 	Map<String, Field> fields;
 	Collection<String> datasets;
@@ -128,7 +128,7 @@ public class mdrApp extends ConfiguredApp {
 			File propFile = (File)properties.get("sfConfig"); 
 			datasets = (Collection<String>)properties.get("datasets");
 			SalesforceModel model = new SalesforceModel(propFile);
-			agent = new SalesforceAgent(model);
+			agent = new SalesforceAgentOld(model);
 			meta = new WaveMetadata(agent);
 			meta.loadDatasets(datasets);
 			if (datasets == null) {

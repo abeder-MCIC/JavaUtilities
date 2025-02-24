@@ -43,7 +43,7 @@ import com.mcic.wavemetadata.ui.ProgressPanel;
 import com.mcic.wavemetadata.ui.ProgressPanel.ProgressPanelStep;
 
 
-public class SalesforceAgent extends Progressive {
+public class SalesforceAgentOld extends Progressive {
     String accessToken;
     SalesforceModel model;
     Map<String, Set<String>> sObjectFields;
@@ -58,7 +58,7 @@ public class SalesforceAgent extends Progressive {
     	a.getAccessToken();
     }
     */
-    public SalesforceAgent(SalesforceModel m) {
+    public SalesforceAgentOld(SalesforceModel m) {
     	accessToken = null;
     	this.model = m;
     	sObjectFields = new TreeMap<String, Set<String>>();

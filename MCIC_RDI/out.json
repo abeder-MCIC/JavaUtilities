@@ -1,0 +1,4085 @@
+{
+  "Date_Claim_Made_Date": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Claim_Made_Date\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Value",
+          "name": "Input_Value",
+          "precision": 18,
+          "saqlExpression": "'Claim_Made_Date_sec_epoch'",
+          "scale": 2,
+          "type": "Numeric"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Date\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Date_Date_of_Loss": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Date_of_Loss\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Value",
+          "name": "Input_Value",
+          "precision": 18,
+          "saqlExpression": "'Date_of_Loss_sec_epoch'",
+          "scale": 2,
+          "type": "Numeric"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Date\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Date_Snapshot_Date": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Snapshot_Date\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Value",
+          "name": "Input_Value",
+          "precision": 18,
+          "saqlExpression": "'Snapshot_Date_sec_epoch'",
+          "scale": 2,
+          "type": "Numeric"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Date\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Number_Baby_Weight_grams__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Baby_Weight_grams__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Value",
+          "name": "Input_Value",
+          "precision": 18,
+          "saqlExpression": "'Baby_Weight_grams__c'",
+          "scale": 2,
+          "type": "Numeric"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Number\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Number_Claim_Age": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Claim_Age\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Value",
+          "name": "Input_Value",
+          "precision": 18,
+          "saqlExpression": "'Claim_Age'",
+          "scale": 2,
+          "type": "Numeric"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Number\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Number_Claim_Made_Age_Years": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Claim_Made_Age_Years\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Value",
+          "name": "Input_Value",
+          "precision": 18,
+          "saqlExpression": "'Claim_Made_Age_Years'",
+          "scale": 2,
+          "type": "Numeric"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Number\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Number_Claim_Made_Date_day_epoch": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Claim_Made_Date_day_epoch\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Value",
+          "name": "Input_Value",
+          "precision": 18,
+          "saqlExpression": "'Claim_Made_Date_day_epoch'",
+          "scale": 2,
+          "type": "Numeric"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Number\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Number_Claim_Made_Date_sec_epoch": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Claim_Made_Date_sec_epoch\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Value",
+          "name": "Input_Value",
+          "precision": 18,
+          "saqlExpression": "'Claim_Made_Date_sec_epoch'",
+          "scale": 2,
+          "type": "Numeric"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Number\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Number_Claim_Made_Value": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Claim_Made_Value\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Value",
+          "name": "Input_Value",
+          "precision": 18,
+          "saqlExpression": "'Claim_Made_Value'",
+          "scale": 2,
+          "type": "Numeric"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Number\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Number_Date_of_Loss_day_epoch": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Date_of_Loss_day_epoch\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Value",
+          "name": "Input_Value",
+          "precision": 18,
+          "saqlExpression": "'Date_of_Loss_day_epoch'",
+          "scale": 2,
+          "type": "Numeric"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Number\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Number_Date_of_Loss_sec_epoch": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Date_of_Loss_sec_epoch\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Value",
+          "name": "Input_Value",
+          "precision": 18,
+          "saqlExpression": "'Date_of_Loss_sec_epoch'",
+          "scale": 2,
+          "type": "Numeric"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Number\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Number_Exp_Incurred": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Exp_Incurred\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Value",
+          "name": "Input_Value",
+          "precision": 18,
+          "saqlExpression": "'Exp_Incurred'",
+          "scale": 2,
+          "type": "Numeric"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Number\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Number_Incurred__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Incurred__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Value",
+          "name": "Input_Value",
+          "precision": 18,
+          "saqlExpression": "'Incurred__c'",
+          "scale": 2,
+          "type": "Numeric"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Number\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Number_Ind_Incurred": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Ind_Incurred\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Value",
+          "name": "Input_Value",
+          "precision": 18,
+          "saqlExpression": "'Ind_Incurred'",
+          "scale": 2,
+          "type": "Numeric"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Number\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Number_OB_Estimated_Fetal_Weight_grams__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"OB_Estimated_Fetal_Weight_grams__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Value",
+          "name": "Input_Value",
+          "precision": 18,
+          "saqlExpression": "'OB_Estimated_Fetal_Weight_grams__c'",
+          "scale": 2,
+          "type": "Numeric"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Number\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Number_Patient_BMI__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Patient_BMI__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Value",
+          "name": "Input_Value",
+          "precision": 18,
+          "saqlExpression": "'Patient_BMI__c'",
+          "scale": 2,
+          "type": "Numeric"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Number\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Number_Patient_Height_Inches__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Patient_Height_Inches__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Value",
+          "name": "Input_Value",
+          "precision": 18,
+          "saqlExpression": "'Patient_Height_Inches__c'",
+          "scale": 2,
+          "type": "Numeric"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Number\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Number_Patient_Weight_lbs__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Patient_Weight_lbs__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Value",
+          "name": "Input_Value",
+          "precision": 18,
+          "saqlExpression": "'Patient_Weight_lbs__c'",
+          "scale": 2,
+          "type": "Numeric"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Number\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Number_Snapshot_Date_Value": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Snapshot_Date_Value\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Value",
+          "name": "Input_Value",
+          "precision": 18,
+          "saqlExpression": "'Snapshot_Date_Value'",
+          "scale": 2,
+          "type": "Numeric"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Number\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Number_Snapshot_Date_day_epoch": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Snapshot_Date_day_epoch\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Value",
+          "name": "Input_Value",
+          "precision": 18,
+          "saqlExpression": "'Snapshot_Date_day_epoch'",
+          "scale": 2,
+          "type": "Numeric"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Number\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Number_Snapshot_Date_sec_epoch": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Snapshot_Date_sec_epoch\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Value",
+          "name": "Input_Value",
+          "precision": 18,
+          "saqlExpression": "'Snapshot_Date_sec_epoch'",
+          "scale": 2,
+          "type": "Numeric"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Number\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Regression Unpivoted": {
+    "action": "sfdcRegister",
+    "parameters": {
+      "alias": "Regression_Unpivoted",
+      "name": "Regression Unpivoted",
+      "source": "append_All"
+    }
+  },
+  "Report_PSLP_with_Layers": {
+    "action": "edgemart",
+    "parameters": {
+      "alias": "Report_PSLP_with_Layers"
+    }
+  },
+  "Text_Accident_Description__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Accident_Description__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Accident_Description__c' is null then \"(none)\" else 'Accident_Description__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Allegation__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Allegation__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Allegation__c' is null then \"(none)\" else 'Allegation__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Baby_10_Min_Apgar_1_10__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Baby_10_Min_Apgar_1_10__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Baby_10_Min_Apgar_1_10__c' is null then \"(none)\" else 'Baby_10_Min_Apgar_1_10__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Baby_1_Min_Apgar_1_10__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Baby_1_Min_Apgar_1_10__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Baby_1_Min_Apgar_1_10__c' is null then \"(none)\" else 'Baby_1_Min_Apgar_1_10__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Baby_5_Min_Apgar_1_10__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Baby_5_Min_Apgar_1_10__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Baby_5_Min_Apgar_1_10__c' is null then \"(none)\" else 'Baby_5_Min_Apgar_1_10__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Baby_A_Base_Excess__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Baby_A_Base_Excess__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Baby_A_Base_Excess__c' is null then \"(none)\" else 'Baby_A_Base_Excess__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Baby_Admitting_Primary_Diagnosis__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Baby_Admitting_Primary_Diagnosis__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Baby_Admitting_Primary_Diagnosis__c' is null then \"(none)\" else 'Baby_Admitting_Primary_Diagnosis__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Baby_Age_at_Injury_Weeks_Days__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Baby_Age_at_Injury_Weeks_Days__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Baby_Age_at_Injury_Weeks_Days__c' is null then \"(none)\" else 'Baby_Age_at_Injury_Weeks_Days__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Baby_Cord_pH__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Baby_Cord_pH__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Baby_Cord_pH__c' is null then \"(none)\" else 'Baby_Cord_pH__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Baby_Disposition__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Baby_Disposition__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Baby_Disposition__c' is null then \"(none)\" else 'Baby_Disposition__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Baby_Event_Related_Diagnosis__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Baby_Event_Related_Diagnosis__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Baby_Event_Related_Diagnosis__c' is null then \"(none)\" else 'Baby_Event_Related_Diagnosis__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Baby_Flag": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Baby_Flag\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Baby_Flag' is null then \"(none)\" else 'Baby_Flag' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Baby_Gender_Picklist__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Baby_Gender_Picklist__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Baby_Gender_Picklist__c' is null then \"(none)\" else 'Baby_Gender_Picklist__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Baby_Injury_Outcome_Clinical_Severity__c_bucket": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Baby_Injury_Outcome_Clinical_Severity__c_bucket\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Baby_Injury_Outcome_Clinical_Severity__c_bucket' is null then \"(none)\" else 'Baby_Injury_Outcome_Clinical_Severity__c_bucket' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Baby_Record_Type_Name__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Baby_Record_Type_Name__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Baby_Record_Type_Name__c' is null then \"(none)\" else 'Baby_Record_Type_Name__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Baby_Status__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Baby_Status__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Baby_Status__c' is null then \"(none)\" else 'Baby_Status__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Baby_Ua_CO2__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Baby_Ua_CO2__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Baby_Ua_CO2__c' is null then \"(none)\" else 'Baby_Ua_CO2__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Baby_Ua_O2__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Baby_Ua_O2__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Baby_Ua_O2__c' is null then \"(none)\" else 'Baby_Ua_O2__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Baby_Ua_pH__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Baby_Ua_pH__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Baby_Ua_pH__c' is null then \"(none)\" else 'Baby_Ua_pH__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Baby_Uv_CO2__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Baby_Uv_CO2__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Baby_Uv_CO2__c' is null then \"(none)\" else 'Baby_Uv_CO2__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Baby_Uv_O2__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Baby_Uv_O2__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Baby_Uv_O2__c' is null then \"(none)\" else 'Baby_Uv_O2__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Baby_Uv_pH__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Baby_Uv_pH__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Baby_Uv_pH__c' is null then \"(none)\" else 'Baby_Uv_pH__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Baby_V_Base_Excess1__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Baby_V_Base_Excess1__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Baby_V_Base_Excess1__c' is null then \"(none)\" else 'Baby_V_Base_Excess1__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Case_Category__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Case_Category__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Case_Category__c' is null then \"(none)\" else 'Case_Category__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Case_Synopsis__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Case_Synopsis__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Case_Synopsis__c' is null then \"(none)\" else 'Case_Synopsis__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Claim_Age_Text": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Claim_Age_Text\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Claim_Age_Text' is null then \"(none)\" else 'Claim_Age_Text' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Claim_History_Summary__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Claim_History_Summary__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Claim_History_Summary__c' is null then \"(none)\" else 'Claim_History_Summary__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Claim_Made_Date_Text": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Claim_Made_Date_Text\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Claim_Made_Date_Text' is null then \"(none)\" else 'Claim_Made_Date_Text' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Claim__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Claim__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Claim__c' is null then \"(none)\" else 'Claim__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Claims_Reinsurance_Summary__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Claims_Reinsurance_Summary__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Claims_Reinsurance_Summary__c' is null then \"(none)\" else 'Claims_Reinsurance_Summary__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Clinical_Groupings": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Clinical_Groupings\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Clinical_Groupings' is null then \"(none)\" else 'Clinical_Groupings' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Clinical_Summary__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Clinical_Summary__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Clinical_Summary__c' is null then \"(none)\" else 'Clinical_Summary__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Combined_Top_Severity": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Combined_Top_Severity\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Combined_Top_Severity' is null then \"(none)\" else 'Combined_Top_Severity' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Coverage_Major__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Coverage_Major__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Coverage_Major__c' is null then \"(none)\" else 'Coverage_Major__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Date_of_Loss__c_YEAR": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Date_of_Loss__c_YEAR\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Date_of_Loss__c_YEAR' is null then \"(none)\" else 'Date_of_Loss__c_YEAR' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Expert_Review__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Expert_Review__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Expert_Review__c' is null then \"(none)\" else 'Expert_Review__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Final_Primary_Diagnosis": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Final_Primary_Diagnosis\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Final_Primary_Diagnosis' is null then \"(none)\" else 'Final_Primary_Diagnosis' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Flag_1": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Flag_1\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Flag_1' is null then \"(none)\" else 'Flag_1' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_High_Value_Claim__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"High_Value_Claim__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'High_Value_Claim__c' is null then \"(none)\" else 'High_Value_Claim__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Id": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Id\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Id' is null then \"(none)\" else 'Id' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Incident_Location_WHERE__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Incident_Location_WHERE__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Incident_Location_WHERE__c' is null then \"(none)\" else 'Incident_Location_WHERE__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Ind_Incurred_Stratifications": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Ind_Incurred_Stratifications\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Ind_Incurred_Stratifications' is null then \"(none)\" else 'Ind_Incurred_Stratifications' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Interval": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Interval\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Interval' is null then \"(none)\" else 'Interval' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Involved_Departments_Primary__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Involved_Departments_Primary__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Involved_Departments_Primary__c' is null then \"(none)\" else 'Involved_Departments_Primary__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Involved_Departments__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Involved_Departments__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Involved_Departments__c' is null then \"(none)\" else 'Involved_Departments__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_MCIC_AMC_Node_Formula__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"MCIC_AMC_Node_Formula__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'MCIC_AMC_Node_Formula__c' is null then \"(none)\" else 'MCIC_AMC_Node_Formula__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_MCIC_Abbreviation__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"MCIC_Abbreviation__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'MCIC_Abbreviation__c' is null then \"(none)\" else 'MCIC_Abbreviation__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_MCIC_Abbreviation__c_bucket": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"MCIC_Abbreviation__c_bucket\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'MCIC_Abbreviation__c_bucket' is null then \"(none)\" else 'MCIC_Abbreviation__c_bucket' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_MCIC_Case_Type__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"MCIC_Case_Type__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'MCIC_Case_Type__c' is null then \"(none)\" else 'MCIC_Case_Type__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_MCIC_Claim_Number__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"MCIC_Claim_Number__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'MCIC_Claim_Number__c' is null then \"(none)\" else 'MCIC_Claim_Number__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_MCIC_Description_of_Loss_Summary__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"MCIC_Description_of_Loss_Summary__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'MCIC_Description_of_Loss_Summary__c' is null then \"(none)\" else 'MCIC_Description_of_Loss_Summary__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_MCIC_Error_Date__c_YEAR": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"MCIC_Error_Date__c_YEAR\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'MCIC_Error_Date__c_YEAR' is null then \"(none)\" else 'MCIC_Error_Date__c_YEAR' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_MCIC_High_Severity_Claim_Type__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"MCIC_High_Severity_Claim_Type__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'MCIC_High_Severity_Claim_Type__c' is null then \"(none)\" else 'MCIC_High_Severity_Claim_Type__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_MCIC_Incident_Type__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"MCIC_Incident_Type__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'MCIC_Incident_Type__c' is null then \"(none)\" else 'MCIC_Incident_Type__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_MCIC_Primary_Cause_of_Loss_General__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"MCIC_Primary_Cause_of_Loss_General__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'MCIC_Primary_Cause_of_Loss_General__c' is null then \"(none)\" else 'MCIC_Primary_Cause_of_Loss_General__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_MCIC_Primary_Cause_of_Loss__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"MCIC_Primary_Cause_of_Loss__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'MCIC_Primary_Cause_of_Loss__c' is null then \"(none)\" else 'MCIC_Primary_Cause_of_Loss__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_MCIC_Risk_Pool__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"MCIC_Risk_Pool__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'MCIC_Risk_Pool__c' is null then \"(none)\" else 'MCIC_Risk_Pool__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_MCIC_Status__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"MCIC_Status__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'MCIC_Status__c' is null then \"(none)\" else 'MCIC_Status__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Multivalue.All_Adverse_Outcome__c_joined": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Multivalue.All_Adverse_Outcome__c_joined\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Multivalue.All_Adverse_Outcome__c_joined' is null then \"(none)\" else 'Multivalue.All_Adverse_Outcome__c_joined' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Node_Name__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Node_Name__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Node_Name__c' is null then \"(none)\" else 'Node_Name__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_PSLP_ID": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"PSLP_ID\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'PSLP_ID' is null then \"(none)\" else 'PSLP_ID' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_PSLP_PRC": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"PSLP_PRC\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'PSLP_PRC' is null then \"(none)\" else 'PSLP_PRC' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_PSLP_PRC_Category": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"PSLP_PRC_Category\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'PSLP_PRC_Category' is null then \"(none)\" else 'PSLP_PRC_Category' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_PSLP_PRC_Comment": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"PSLP_PRC_Comment\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'PSLP_PRC_Comment' is null then \"(none)\" else 'PSLP_PRC_Comment' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_PSLP_Review_Comment_s__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"PSLP_Review_Comment_s__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'PSLP_Review_Comment_s__c' is null then \"(none)\" else 'PSLP_Review_Comment_s__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Patient.Insurance_Status__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Patient.Insurance_Status__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Patient.Insurance_Status__c' is null then \"(none)\" else 'Patient.Insurance_Status__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Patient.Patient_Safety_Case__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Patient.Patient_Safety_Case__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Patient.Patient_Safety_Case__c' is null then \"(none)\" else 'Patient.Patient_Safety_Case__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Patient.Type_of_Admission_Visit__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Patient.Type_of_Admission_Visit__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Patient.Type_of_Admission_Visit__c' is null then \"(none)\" else 'Patient.Type_of_Admission_Visit__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Patient_Age_bucket": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Patient_Age_bucket\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Patient_Age_bucket' is null then \"(none)\" else 'Patient_Age_bucket' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Patient_Clinical_Severity_c_bucket": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Patient_Clinical_Severity_c_bucket\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Patient_Clinical_Severity_c_bucket' is null then \"(none)\" else 'Patient_Clinical_Severity_c_bucket' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Patient_Event_Related_Diagnosis__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Patient_Event_Related_Diagnosis__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Patient_Event_Related_Diagnosis__c' is null then \"(none)\" else 'Patient_Event_Related_Diagnosis__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Patient_Facility_Transfer__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Patient_Facility_Transfer__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Patient_Facility_Transfer__c' is null then \"(none)\" else 'Patient_Facility_Transfer__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Patient_Gender_Picklist__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Patient_Gender_Picklist__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Patient_Gender_Picklist__c' is null then \"(none)\" else 'Patient_Gender_Picklist__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Patient_Injury_Outcome_Clinical_Severity__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Patient_Injury_Outcome_Clinical_Severity__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Patient_Injury_Outcome_Clinical_Severity__c' is null then \"(none)\" else 'Patient_Injury_Outcome_Clinical_Severity__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Patient_Language__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Patient_Language__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Patient_Language__c' is null then \"(none)\" else 'Patient_Language__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Patient_Names_of_pertinent_Medications_Taken__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Patient_Names_of_pertinent_Medications_Taken__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Patient_Names_of_pertinent_Medications_Taken__c' is null then \"(none)\" else 'Patient_Names_of_pertinent_Medications_Taken__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Patient_Patient_Status__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Patient_Patient_Status__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Patient_Patient_Status__c' is null then \"(none)\" else 'Patient_Patient_Status__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Patient_Primary_Admitting_Service__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Patient_Primary_Admitting_Service__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Patient_Primary_Admitting_Service__c' is null then \"(none)\" else 'Patient_Primary_Admitting_Service__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Patient_Primary_Procedure__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Patient_Primary_Procedure__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Patient_Primary_Procedure__c' is null then \"(none)\" else 'Patient_Primary_Procedure__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Patient_Race_SRC__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Patient_Race_SRC__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Patient_Race_SRC__c' is null then \"(none)\" else 'Patient_Race_SRC__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Patient_Readmission_Multiple_Visits__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Patient_Readmission_Multiple_Visits__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Patient_Readmission_Multiple_Visits__c' is null then \"(none)\" else 'Patient_Readmission_Multiple_Visits__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Patient_Reason_for_Transfer__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Patient_Reason_for_Transfer__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Patient_Reason_for_Transfer__c' is null then \"(none)\" else 'Patient_Reason_for_Transfer__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Patient_Record_Type_Name__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Patient_Record_Type_Name__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Patient_Record_Type_Name__c' is null then \"(none)\" else 'Patient_Record_Type_Name__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Patient_Transfer_From__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Patient_Transfer_From__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Patient_Transfer_From__c' is null then \"(none)\" else 'Patient_Transfer_From__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Patient_Zip_Code_SRC__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Patient_Zip_Code_SRC__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Patient_Zip_Code_SRC__c' is null then \"(none)\" else 'Patient_Zip_Code_SRC__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Policy_Origin_Code__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Policy_Origin_Code__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Policy_Origin_Code__c' is null then \"(none)\" else 'Policy_Origin_Code__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Pre_Existing_Medical_Conditions__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Pre_Existing_Medical_Conditions__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Pre_Existing_Medical_Conditions__c' is null then \"(none)\" else 'Pre_Existing_Medical_Conditions__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Pre_existing_Medical_Conditions_Other__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Pre_existing_Medical_Conditions_Other__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Pre_existing_Medical_Conditions_Other__c' is null then \"(none)\" else 'Pre_existing_Medical_Conditions_Other__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_PrimaryClinicalAdverseOutcome_Filter__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"PrimaryClinicalAdverseOutcome_Filter__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'PrimaryClinicalAdverseOutcome_Filter__c' is null then \"(none)\" else 'PrimaryClinicalAdverseOutcome_Filter__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Primary_Adverse_Outcome__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Primary_Adverse_Outcome__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Primary_Adverse_Outcome__c' is null then \"(none)\" else 'Primary_Adverse_Outcome__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Retained": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Retained\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Retained' is null then \"(none)\" else 'Retained' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Snapshot.Is_Current": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Snapshot.Is_Current\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Snapshot.Is_Current' is null then \"(none)\" else 'Snapshot.Is_Current' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Snapshot.isEOM": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Snapshot.isEOM\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Snapshot.isEOM' is null then \"(none)\" else 'Snapshot.isEOM' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Snapshot_Date_Key": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Snapshot_Date_Key\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Snapshot_Date_Key' is null then \"(none)\" else 'Snapshot_Date_Key' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Snapshot_Date_Text": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Snapshot_Date_Text\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Snapshot_Date_Text' is null then \"(none)\" else 'Snapshot_Date_Text' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Specific_Contributing_Factor_WHY_joined": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Specific_Contributing_Factor_WHY_joined\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Specific_Contributing_Factor_WHY_joined' is null then \"(none)\" else 'Specific_Contributing_Factor_WHY_joined' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "Text_Subscriber_Review__c": {
+    "action": "computeExpression",
+    "parameters": {
+      "computedFields": [
+        {
+          "label": "Record Id",
+          "name": "Record_Id",
+          "saqlExpression": "Claim__c",
+          "type": "Text"
+        },
+        {
+          "label": "Input Variable",
+          "name": "Input_Variable",
+          "saqlExpression": "\"Subscriber_Review__c\"",
+          "type": "Text"
+        },
+        {
+          "label": "Input Category",
+          "name": "Input_Category",
+          "saqlExpression": "case when 'Subscriber_Review__c' is null then \"(none)\" else 'Subscriber_Review__c' end",
+          "type": "Text"
+        },
+        {
+          "label": "Input Type",
+          "name": "Input_Type",
+          "saqlExpression": "\"Categorical\"",
+          "type": "Text"
+        }
+      ],
+      "mergeWithSource": false,
+      "source": "filter_LatestParent"
+    }
+  },
+  "append_All": {
+    "action": "append",
+    "parameters": {
+      "enableDisjointedSchemaMerge": true,
+      "sources": [
+        "Text_Accident_Description__c",
+        "Text_Allegation__c",
+        "Text_Baby_10_Min_Apgar_1_10__c",
+        "Text_Baby_1_Min_Apgar_1_10__c",
+        "Text_Baby_5_Min_Apgar_1_10__c",
+        "Text_Baby_A_Base_Excess__c",
+        "Text_Baby_Admitting_Primary_Diagnosis__c",
+        "Text_Baby_Age_at_Injury_Weeks_Days__c",
+        "Text_Baby_Cord_pH__c",
+        "Text_Baby_Disposition__c",
+        "Text_Baby_Event_Related_Diagnosis__c",
+        "Text_Baby_Flag",
+        "Text_Baby_Gender_Picklist__c",
+        "Text_Baby_Injury_Outcome_Clinical_Severity__c_bucket",
+        "Text_Baby_Record_Type_Name__c",
+        "Text_Baby_Status__c",
+        "Text_Baby_Ua_CO2__c",
+        "Text_Baby_Ua_O2__c",
+        "Text_Baby_Ua_pH__c",
+        "Text_Baby_Uv_CO2__c",
+        "Text_Baby_Uv_O2__c",
+        "Text_Baby_Uv_pH__c",
+        "Text_Baby_V_Base_Excess1__c",
+        "Number_Baby_Weight_grams__c",
+        "Text_Case_Category__c",
+        "Text_Case_Synopsis__c",
+        "Number_Claim_Age",
+        "Text_Claim_Age_Text",
+        "Text_Claim_History_Summary__c",
+        "Number_Claim_Made_Age_Years",
+        "Date_Claim_Made_Date",
+        "Text_Claim_Made_Date_Text",
+        "Number_Claim_Made_Date_day_epoch",
+        "Number_Claim_Made_Date_sec_epoch",
+        "Number_Claim_Made_Value",
+        "Text_Claim__c",
+        "Text_Claims_Reinsurance_Summary__c",
+        "Text_Clinical_Groupings",
+        "Text_Clinical_Summary__c",
+        "Text_Combined_Top_Severity",
+        "Text_Coverage_Major__c",
+        "Date_Date_of_Loss",
+        "Text_Date_of_Loss__c_YEAR",
+        "Number_Date_of_Loss_day_epoch",
+        "Number_Date_of_Loss_sec_epoch",
+        "Number_Exp_Incurred",
+        "Text_Expert_Review__c",
+        "Text_Final_Primary_Diagnosis",
+        "Text_Flag_1",
+        "Text_High_Value_Claim__c",
+        "Text_Id",
+        "Text_Incident_Location_WHERE__c",
+        "Number_Incurred__c",
+        "Number_Ind_Incurred",
+        "Text_Ind_Incurred_Stratifications",
+        "Text_Interval",
+        "Text_Involved_Departments_Primary__c",
+        "Text_Involved_Departments__c",
+        "Text_MCIC_AMC_Node_Formula__c",
+        "Text_MCIC_Abbreviation__c",
+        "Text_MCIC_Abbreviation__c_bucket",
+        "Text_MCIC_Case_Type__c",
+        "Text_MCIC_Claim_Number__c",
+        "Text_MCIC_Description_of_Loss_Summary__c",
+        "Text_MCIC_Error_Date__c_YEAR",
+        "Text_MCIC_High_Severity_Claim_Type__c",
+        "Text_MCIC_Incident_Type__c",
+        "Text_MCIC_Primary_Cause_of_Loss_General__c",
+        "Text_MCIC_Primary_Cause_of_Loss__c",
+        "Text_MCIC_Risk_Pool__c",
+        "Text_MCIC_Status__c",
+        "Text_Multivalue.All_Adverse_Outcome__c_joined",
+        "Text_Node_Name__c",
+        "Number_OB_Estimated_Fetal_Weight_grams__c",
+        "Text_PSLP_ID",
+        "Text_PSLP_PRC",
+        "Text_PSLP_PRC_Category",
+        "Text_PSLP_PRC_Comment",
+        "Text_PSLP_Review_Comment_s__c",
+        "Text_Patient.Insurance_Status__c",
+        "Text_Patient.Patient_Safety_Case__c",
+        "Text_Patient.Type_of_Admission_Visit__c",
+        "Text_Patient_Age_bucket",
+        "Number_Patient_BMI__c",
+        "Text_Patient_Clinical_Severity_c_bucket",
+        "Text_Patient_Event_Related_Diagnosis__c",
+        "Text_Patient_Facility_Transfer__c",
+        "Text_Patient_Gender_Picklist__c",
+        "Number_Patient_Height_Inches__c",
+        "Text_Patient_Injury_Outcome_Clinical_Severity__c",
+        "Text_Patient_Language__c",
+        "Text_Patient_Names_of_pertinent_Medications_Taken__c",
+        "Text_Patient_Patient_Status__c",
+        "Text_Patient_Primary_Admitting_Service__c",
+        "Text_Patient_Primary_Procedure__c",
+        "Text_Patient_Race_SRC__c",
+        "Text_Patient_Readmission_Multiple_Visits__c",
+        "Text_Patient_Reason_for_Transfer__c",
+        "Text_Patient_Record_Type_Name__c",
+        "Text_Patient_Transfer_From__c",
+        "Number_Patient_Weight_lbs__c",
+        "Text_Patient_Zip_Code_SRC__c",
+        "Text_Policy_Origin_Code__c",
+        "Text_Pre_Existing_Medical_Conditions__c",
+        "Text_Pre_existing_Medical_Conditions_Other__c",
+        "Text_PrimaryClinicalAdverseOutcome_Filter__c",
+        "Text_Primary_Adverse_Outcome__c",
+        "Text_Retained",
+        "Text_Snapshot.Is_Current",
+        "Text_Snapshot.isEOM",
+        "Date_Snapshot_Date",
+        "Text_Snapshot_Date_Key",
+        "Text_Snapshot_Date_Text",
+        "Number_Snapshot_Date_Value",
+        "Number_Snapshot_Date_day_epoch",
+        "Number_Snapshot_Date_sec_epoch",
+        "Text_Specific_Contributing_Factor_WHY_joined",
+        "Text_Subscriber_Review__c"
+      ]
+    }
+  },
+  "filter_LatestParent": {
+    "action": "filter",
+    "parameters": {
+      "saqlFilter": "'Snapshot_Date_Key' == \"20241231\" && 'Baby_Flag' == \"No\" && 'Retained' == \"True\"",
+      "source": "Report_PSLP_with_Layers"
+    }
+  }
+}

@@ -29,10 +29,12 @@ public class ProgressPanel extends JPanel {
 		String message;
 		boolean complete;
 		ProgressPanel parent;
+		boolean noComplete;
 		
-		public ProgressPanelStep(ProgressPanel parent, String message){
+		public ProgressPanelStep(ProgressPanel parent, String message, boolean noComplete){
 			this.message = message;
 			this.parent = parent;
+			this.noComplete = noComplete;
 			complete = false;
 		}
 		
@@ -47,8 +49,11 @@ public class ProgressPanel extends JPanel {
 		}
 		
 		public String toString() {
-			String out =  message + "...";
-			out += complete ? "done" : "";
+			String out =  message;
+			if (!noComplete){
+				out += "...";
+				out += complete ? "done" : "";
+			}
 			return out;
 		}
 	}
@@ -83,8 +88,8 @@ public class ProgressPanel extends JPanel {
 		add(btnNewButton, "cell 0 3,alignx right");
 	}
 
-	public ProgressPanelStep nextStep(String message) {
-		ProgressPanelStep out = new ProgressPanelStep(this, message);
+	public ProgressPanelStep nextStep(String message, boolean noComplete) {
+		ProgressPanelStep out = new ProgressPanelStep(this, message, noComplete);
 		stepNames.add(out);
 		progressBar.setValue(stepNames.size());
 		refresh();

@@ -18,13 +18,11 @@ public class RecordSet {
 	int currentBlockSize;
 	static int BLOCK_SIZE = 100000;
 	byte[] bytes;
-	Base64.Encoder encoder;
-	String encoded;
+	protected String encoded;
 	
 	public RecordSet() {
 		blocks = new LinkedHashMap<String, Vector<String[]>>();
 		clear();
-		encoder = Base64.getEncoder();
 		encoded = null;
 	}
 	
@@ -63,39 +61,22 @@ public class RecordSet {
 		encoded = null;
 	}
 	
-	public byte[] toBytes() {
+	private byte[] getBytes() {
 		if (bytes == null) {
-			ByteArrayOutputStream out = new ByteArrayOutputStream();
-			try {
-				toStream(out);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			bytes = out.toByteArray();
 		}
 		return bytes;
 	}
 	
 	public int size() {
-		return toBase64(0, 0).length() * 2;  //  Strings in Java are two bytes
+		return toBase64().length() * 2;  //  Strings in Java are two bytes
 	}
 	
-	public String toBase64(int start, int length) {
-		start /= 2; //  Strings in Java are two bytes
-		length /= 2; //  Strings in Java are two bytes
-		
+	public String toBase64() {
 		if (encoded == null) {
-			byte[] bytes = toBytes();
-			encoded = encoder.encodeToString(bytes);
+			byte[] bytes = getBytes();
+			encoded = Base64.getEncoder().encodeToString(bytes);
 		}
-		if (length == 0) {
-			return encoded;
-		} else {
-			int len = encoded.length();
-			int l = start + length > len ? len - start : length;
-			return encoded.substring(start, start + l);
-		}
+		return encoded;
 	}
 	
 	

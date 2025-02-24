@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 import javax.swing.JOptionPane;
 
-import com.mcic.sfrest.SalesforceAgent;
+import com.mcic.sfrest.SalesforceAgentOld;
 import com.mcic.util.FuzzyScore;
 import com.mcic.util.json.JSONArray;
 import com.mcic.util.json.JSONNode;
@@ -28,7 +28,7 @@ import com.mcic.wavemetadata.tool.WaveMetadata.Instance;
 import com.mcic.wavemetadata.ui.DataQualityMessage;
 
 public class WaveDataQuality {
-	SalesforceAgent agent;
+	SalesforceAgentOld agent;
 	WaveMetadata meta;
 	Map<String, Source> sourceMap;
 	boolean ignoreAll;

@@ -140,7 +140,9 @@ public class WaveDashboardTabs{
 					String widgetName = layout.get("name").asString();
 					if (widgets.get(widgetName).get("type").asString().equals("link")) {
 						String name = widgets.get(layout.get("name").asString()).get("parameters").get("text").asString();
-						tabLinks.put(name, layout);
+						if (!name.equals("<") && !name.equals(">")) {
+							tabLinks.put(name, layout);
+						}
 						
 						if (activeStyle == null) {
 							activeStyle = layout.get("widgetStyle");
@@ -281,13 +283,41 @@ public class WaveDashboardTabs{
 					}
 				}
 			}
+
+			
+			
+			// Check to see if any links needs to be wired to a tab
+			
+			Map<String, String> pageLinks = new TreeMap<String, String>();
+			for (JSONNode page : newPages.values()) {
+				String pageName = page.get("label").asString();
+				pageLinks.put(pageName, page.get("name").asString());
+				for (JSONNode layout : page.get("widgets").values()) {
+					String widgetName = layout.get("name").asString();
+					JSONNode widget = widgets.get(widgetName);
+					if (widget.get("type").asString().equals("link")) {
+						
+						JSONNode dLink = widget.get("parameters").get("destinationLink");
+						if (dLink != null) {
+							String name = dLink.get("name").asString();
+							if (pageLinks.containsKey(name)) {
+								String pageLink = pageLinks.get(name);
+								if (pageName.endsWith("NF")) {
+									pageLink += "NF";
+								}
+								dLink.get("name").setString(pageLink);
+							}
+						}
+					}
+				}
+			}
 			
 			//  Clone link widget for first tab (active in Master)
 			JSONNode newWidget = widgets.get(firstTabWidgetName).clone();
 			String newFirstTabWidgetName = firstTabWidgetName + "C";
 			widgets.put(newFirstTabWidgetName, newWidget);
 			
-			//  Format link layouts appropriately
+			//  Scan through all pages and format link layouts appropriately
 			for (JSONNode page : newPages.values()) {
 				String pageName = page.get("label").asString();
 				for (JSONNode layout : page.get("widgets").values()) {

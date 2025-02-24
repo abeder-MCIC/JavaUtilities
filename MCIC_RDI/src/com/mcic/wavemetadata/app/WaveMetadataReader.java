@@ -24,7 +24,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 
-import com.mcic.sfrest.SalesforceAgent;
+import com.mcic.sfrest.SalesforceAgentOld;
 import com.mcic.sfrest.SalesforceModel;
 import com.mcic.util.CSVAuthor;
 import com.mcic.util.RecordsetOld;
@@ -44,7 +44,7 @@ import com.mcic.wavemetadata.tool.WaveMetadata.Field;
 import com.mcic.wavemetadata.tool.WaveMetadata.Recipe;
 
 public class WaveMetadataReader {
-	public SalesforceAgent agent;
+	public SalesforceAgentOld agent;
 	public WaveLineageReader reader;
 	public Map<String, Vector<String>> replicatedDatasetFields;
 	public Map<String, JSONNode> recipeDefinitions;
@@ -124,7 +124,7 @@ public class WaveMetadataReader {
 		rdiInventoryId = null;
 		recipeDefinitions = null;
 		
-		agent = new SalesforceAgent(new SalesforceModel(propFile));
+		agent = new SalesforceAgentOld(new SalesforceModel(propFile));
 		meta = new WaveMetadata(agent);
 		//reader = new WaveLineageReader();
 		

@@ -13,6 +13,10 @@ public class Progressive {
 	}
 	
 	public ProgressPanelStep nextStep(String message) {
+		return nextStep(message, false);
+	}
+	
+	public ProgressPanelStep nextStep(String message, boolean noComplete) {
 		if (panel == null) {
 			panel = new ProgressPanel(10);
 			JDialog dialog = new JDialog();
@@ -20,7 +24,7 @@ public class Progressive {
 			dialog.add(panel);
 			dialog.setVisible(true);
 		}
-		return panel.nextStep(message);
+		return panel.nextStep(message, noComplete);
 	}
 	
 	public void setClose(boolean close) {

@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.Vector;
 import java.util.stream.Collectors;
 import java.util.zip.GZIPOutputStream;
 
@@ -33,15 +34,17 @@ import org.apache.hc.core5.http.io.entity.StringEntity;
 
 import com.mcic.util.CSVAuthor;
 import com.mcic.util.Progressive;
+import com.mcic.util.RecordSet;
 import com.mcic.util.RecordsetOld;
 import com.mcic.util.json.JSONNode;
 import com.mcic.util.json.JSONObject;
 import com.mcic.util.json.JSONString;
+import com.mcic.util.json.ThreadCluster;
 import com.mcic.wavemetadata.ui.ProgressPanel;
 import com.mcic.wavemetadata.ui.ProgressPanel.ProgressPanelStep;
 
 
-public class SFRestOld extends Progressive {
+public class SalesforceREST extends Progressive {
 	public static final int FAILURE = 1;
 	public static final int SUCCESS = 2;
 	public static final int INDETERMINATE = 0;
@@ -60,7 +63,7 @@ public class SFRestOld extends Progressive {
     	a.getAccessToken();
     }
     */
-    public SFRestOld(SalesforceModel m) {
+    public SalesforceREST(SalesforceModel m) {
     	accessToken = null;
     	this.model = m;
     	sObjectFields = new TreeMap<String, Set<String>>();
@@ -87,11 +90,8 @@ public class SFRestOld extends Progressive {
     	System.out.println(response);
     }
     
-    public void writeDataset(String APIName, String label, String app, RecordsetOld data, String operation, String metadata) {
-		writeDataset(APIName, label, app, data.toString(), operation, metadata);
-    }
     
-    public void writeDataset(String APIName, String label, String app, String data, String operation, String metadata) {
+    public void writeDataset(String APIName, String label, String app, RecordSet data, String operation, String metadata) {
     	
     	
     	String url = "/services/data/v58.0/sobjects/InsightsExternalData";
@@ -108,48 +108,59 @@ public class SFRestOld extends Progressive {
     	String id = response.get("id").asString();
     	//System.out.println(id);
 
-    	url = "/services/data/v58.0/sobjects/InsightsExternalDataPart";
-    	byte[] str = data.getBytes();
-    	if (str.length >= 5000000) {
+    	final String partUrl = "/services/data/v58.0/sobjects/InsightsExternalDataPart";
+		String dataStr = data.toBase64();
+    	if (dataStr.length() >= 5000000) {
             //FileInputStream fis = new FileInputStream(file);
             //FileOutputStream fos = new FileOutputStream(gzipFile);
     		ByteArrayOutputStream out = new ByteArrayOutputStream();
     		
-            try {
-				GZIPOutputStream gzipOS = new GZIPOutputStream(out);
-				gzipOS.write(str);
-				byte[] zipped = out.toByteArray();
-				String dataStr = Base64.getEncoder().encodeToString(zipped);
-				int part = 1;
-				while (dataStr.length() > 0) {
-					//System.out.println("Writing block number " + part);
-					ProgressPanelStep step = nextStep("Writing block number " + part);
-					int nextBlockSize = dataStr.length() > 5000000 ? 5000000 : dataStr.length();
-					String nextBlock = dataStr.substring(0, nextBlockSize);
-					dataStr = dataStr.substring(nextBlockSize);
-		         	root.clear();
-		        	root.addString("InsightsExternalDataId", id);
-		        	root.addNumber("PartNumber", part ++);
-		        	root.addString("DataFile", nextBlock);
-		        	res = FAILURE;
-		        	while (res == FAILURE) {
-			        	res = postJSON(url, root);
-			        	if (res != SUCCESS) {
-			        		step.addNote("Failure sending, re-posting");
-			        	}
-		        	}
-		        	step.complete();
-				}
-				
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			int part = 1;
+			Vector<JSONNode> packets = new Vector<JSONNode>();
+			while (dataStr.length() > 0) {
+				//System.out.println("Writing block number " + part);
+				int nextBlockSize = dataStr.length() > 5000000 ? 5000000 : dataStr.length();
+				String nextBlock = dataStr.substring(0, nextBlockSize);
+				dataStr = dataStr.substring(nextBlockSize);
+				JSONObject packet = new JSONObject();
+	         	packet.addString("InsightsExternalDataId", id);
+	         	packet.addNumber("PartNumber", part ++);
+	         	packet.addString("DataFile", nextBlock);
+	         	packets.add(packet);
 			}
-        	
-        	
+			
+			/***************************************************************************************************
+			 *   Kick off a set of threads uploading individual packet data
+			 */
+			
+			ThreadCluster cluster = new ThreadCluster(5);
+	        
+			for (int i = 0;i < packets.size();i++) {
+				final int thisPart = i + 1;
+				final JSONNode thisPacket = packets.elementAt(i);
+				cluster.dispatch(new Runnable() {
+					
+					
+					public void run() {
+						ProgressPanelStep step = nextStep("Writing block number " + thisPart);
+			        	int res = FAILURE;
+			        	while (res == FAILURE) {
+				        	res = postJSON(partUrl, thisPacket);
+				        	if (res != SUCCESS) {
+				        		step.addNote("Failure sending, re-posting");
+				        	}
+			        	}
+			        	step.complete();
+					}
+					
+					
+				});
+				// End of Runnable
+	        	
+			}
+			cluster.join();
     	} else {
         	root.clear();
-        	String dataStr = Base64.getEncoder().encodeToString(data.toString().getBytes());
         	root.addString("InsightsExternalDataId", id);
         	root.addNumber("PartNumber", 1);
         	root.addString("DataFile", dataStr);
@@ -158,11 +169,12 @@ public class SFRestOld extends Progressive {
     	}
 
     	
-		nextStep("Processing Upload");
+		ProgressPanelStep step = nextStep("Processing Upload");
     	url = "/services/data/v58.0/sobjects/InsightsExternalData/" + id;
     	root.clear();
     	root.addString("Action", "Process");
     	res = patchJSON(url, root);
+    	step.complete();
     }
     
 

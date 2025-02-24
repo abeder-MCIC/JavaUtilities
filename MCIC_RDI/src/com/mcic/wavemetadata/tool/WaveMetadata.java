@@ -22,7 +22,8 @@ import javax.swing.JFileChooser;
 
 import org.unbescape.html.HtmlEscape;
 
-import com.mcic.sfrest.SalesforceAgent;
+import com.mcic.sfrest.SalesforceAgentOld;
+import com.mcic.sfrest.SalesforceREST;
 import com.mcic.util.json.JSONArray;
 import com.mcic.util.json.JSONNode;
 import com.mcic.util.json.JSONObject;
@@ -227,7 +228,7 @@ public class WaveMetadata {
 	 * Wave Metadata Class
 	 */
 
-	private SalesforceAgent agent;
+	private SalesforceREST agent;
 	private Map<String, BaseDataset> baseDatasets;
 	private Map<String, BaseDashboard> baseDashboards;
 	private Map<String, Dataset> datasets;
@@ -240,7 +241,7 @@ public class WaveMetadata {
 	private Map<String, Dataflow> dataflows;
 	private Map<String, String> ownerMap;
 
-	public WaveMetadata(SalesforceAgent agent) {
+	public WaveMetadata(SalesforceREST agent) {
 		this.agent = agent;
 		datasets = new ConcurrentHashMap<String, Dataset>();
 		dashboards = new ConcurrentHashMap<String, Dashboard>();
@@ -260,7 +261,7 @@ public class WaveMetadata {
 	
 	
 
-	public SalesforceAgent getAgent() {
+	public SalesforceREST getAgent() {
 		return agent;
 	}
 	
@@ -335,7 +336,8 @@ public class WaveMetadata {
 	private void readDatasets() {
 		String nextURL = "/services/data/v58.0/wave/datasets";
 		while (nextURL != null && !nextURL.equals("null")) {
-			JSONObject root = agent.get(nextURL, null);
+			int res = agent.get(nextURL, null);
+			JSONObject root = (JSONObject) agent.getResponse();
 			for (JSONNode o : root.get("datasets").values()) {
 				BaseDataset ds = new BaseDataset();
 				ds.name = o.get("name").asString();
@@ -360,7 +362,8 @@ public class WaveMetadata {
 		String type = typePlural.equals("dashboards") ? "Dashboard" : "Lens";
 		String nextURL = "/services/data/v58.0/wave/" + typePlural + "?pageSize=200";
 		while (nextURL != null && !nextURL.equals("null")) {
-			JSONObject root = agent.get(nextURL, null);
+			int res = agent.get(nextURL, null);
+			JSONObject root = (JSONObject) agent.getResponse();
 			for (JSONNode asset : root.get(typePlural).values()) {
 				BaseDashboard bd = new BaseDashboard(asset);
 				baseDashboards.put(bd.name, bd);
@@ -380,7 +383,8 @@ public class WaveMetadata {
 			ds.fields = new TreeMap<String, Field>();
 			Map<String, Field> fields = ds.fields;
 			Vector<Field> dates = new Vector<Field>();
-			JSONNode root = agent.get(ds.url, null);
+			int res = agent.get(ds.url, null);
+			JSONObject root = (JSONObject) agent.getResponse();
 			JSONNode xmd = root.get("xmdMain");
 			for (JSONNode date : xmd.get("dates").values()) {
 				JSONNode apiNames = date.get("fields");
@@ -433,7 +437,8 @@ public class WaveMetadata {
 	}
 
 	private Dashboard loadDashboard(BaseDashboard bd) {
-		JSONNode root = agent.get(bd.url, null);
+		int res = agent.get(bd.url, null);
+		JSONObject root = (JSONObject) agent.getResponse();
 		Dashboard d = new Dashboard(bd);
 		JSONNode state = root.get("state");
 		JSONNode datasets = root.get("datasets");
@@ -715,7 +720,8 @@ public class WaveMetadata {
 		String nextURL = "/services/data/v58.0/wave/recipes" ;
 		ThreadCluster tc = new ThreadCluster(CONCURRENCY);
 		while (nextURL != null && !nextURL.equals("null")) {
-			JSONObject root = agent.get(nextURL, null);
+			int res = agent.get(nextURL, null);
+			JSONObject root = (JSONObject) agent.getResponse();
 			
 			for (JSONNode recipe : root.get("recipes").values()) {
 				String name = recipe.get("name").asString();
@@ -734,7 +740,8 @@ public class WaveMetadata {
 
 				tc.dispatch(new Runnable() {
 					public void run() {
-						JSONObject rec = agent.get(r.url, null);
+						int res = agent.get(r.url, null);
+						JSONObject rec = (JSONObject) agent.getResponse();
 						JSONNode def = rec.get("recipeDefinition");
 						r.nodes = def.get("nodes").entrySet().stream().collect(Collectors.toMap((set) -> set.getKey(), (set) -> set.getValue()));
 					}
@@ -780,7 +787,8 @@ public class WaveMetadata {
 			//  Load all instance data
 			String nextURL = "/services/data/v58.0/query?q=SELECT+Id,Data_Element__c,Field__c,Format__c,Is_Source__c,Source__c+FROM+MDR_Data_Element_Instance__c" ;
 			while (nextURL != null) {
-				JSONNode root = agent.get(nextURL, null);
+				int res = agent.get(nextURL, null);
+				JSONObject root = (JSONObject) agent.getResponse();
 				boolean done = root.get("done").asBoolean();
 				nextURL = done ? null : root.get("nextRecordsUrl").asString();
 
@@ -817,7 +825,8 @@ public class WaveMetadata {
 	public Map<String, Element> getElements() {
 		if (elements.size() == 0) {
 			String nextURL = "/services/data/v58.0/query?q=SELECT+Id,Name,Parent__c+FROM+MDR_Data_Element__c";
-			JSONNode root = agent.get(nextURL, null);
+			int res = agent.get(nextURL, null);
+			JSONObject root = (JSONObject) agent.getResponse();
 			boolean done = root.get("done").asBoolean();
 			nextURL = done ? null : root.get("nextRecordsUrl").asString();
 			for (JSONNode n : root.get("records").values()) {
@@ -840,7 +849,9 @@ public class WaveMetadata {
 		JSONObject root = new JSONObject();
 		String url = "/services/data/v61.0/sobjects/MDR_Data_Element_Instance__c/" + i.id;
 		root.addString("Field__c", newName);
-		JSONNode output = agent.patchJSON(url, root);
+		int res = agent.patchJSON(url, root);
+		JSONObject output = (JSONObject) agent.getResponse();
+
 		System.out.println(output);
 		i.fieldAPIName = newName;
 	}
@@ -891,7 +902,8 @@ public class WaveMetadata {
 			String nextURL = "/services/data/v58.0/query?q=SELECT+Id,Date_Field__c,System__c,Name,Date_Expression__c,Filter__c,Id_Field__c,"
 					+ "Link_Expression__c,Owner_Field__c,Name_Fields__c,Name_Expression__c+FROM+MDR_Data_Element_Source__c" ;
 			while (nextURL != null) {
-				JSONNode root = agent.get(nextURL, null);
+				int res = agent.get(nextURL, null);
+				JSONObject root = (JSONObject) agent.getResponse();
 				boolean done = root.get("done").asBoolean();
 				nextURL = done ? null : root.get("nextRecordsUrl").asString();
 
@@ -920,7 +932,8 @@ public class WaveMetadata {
 		if (dataflows.size() == 0) {
 			String nextURL = "/services/data/v58.0/wave/dataflows" ;
 			while (nextURL != null) {
-				JSONNode root = agent.get(nextURL, null);
+				int res = agent.get(nextURL, null);
+				JSONObject root = (JSONObject) agent.getResponse();
 				nextURL = root.get("nextRecordsUrl") == null ? null : root.get("nextRecordsUrl").asString();
 				for (JSONNode n : root.get("dataflows").values()) {
 					dataflows.put(n.get("id").asString(), new Dataflow(
@@ -937,7 +950,8 @@ public class WaveMetadata {
 		String url = "/services/data/v58.0/wave/dataflows/" + id;
 		JSONObject root = new JSONObject();
 		root.addTree("definition", definition);
-		JSONNode output = agent.patchJSON(url, root);
+		int res = agent.patchJSON(url, root);
+		JSONObject output = (JSONObject) agent.getResponse();
 		System.out.println(output.toString());
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter("C:\\Users\\abeder\\eclipse-workspace\\MCIC_RDI\\test.txt"));
@@ -955,14 +969,16 @@ public class WaveMetadata {
 		root.addString("command", "Start");
 		root.addString("dataflowId", id);
 		String url = "/services/data/v58.0/wave/dataflowjobs";
-		JSONNode output = agent.postJSON(url, root);
+		int res = agent.postJSON(url, root);
+		JSONObject output = (JSONObject) agent.getResponse();
 		System.out.println(output.toString());
 	}
 	
 	public JSONNode executeQuery(String saql) {
 		JSONObject post = new JSONObject();
 		post.addString("query", saql);
-		JSONNode n = agent.postJSON(EXECUTE_QUERY, post);
+		int res = agent.postJSON(EXECUTE_QUERY, post);
+		JSONObject n = (JSONObject) agent.getResponse();
 		if (n.getType() != JSONNode.Type.OBJECT) {
 			//throw new RuntimeException("Query Failed");
 			return null;
@@ -974,7 +990,8 @@ public class WaveMetadata {
 	public Map<String, String> getOwnerMap(){
 		if (ownerMap.size() == 0) {
 			String url = "/services/data/v58.0/query/?q=SELECT+Id,+Name+FROM+User";
-			JSONNode root = agent.get(url, null);
+			int res = agent.get(url, null);
+			JSONObject root = (JSONObject) agent.getResponse();
 			for (JSONNode r : root.get("records").values()) {
 				String name = r.get("Name").asString();
 				String id = r.get("Id").asString();
@@ -996,7 +1013,8 @@ public class WaveMetadata {
 	public String getDatasetId(String datasetName) {
 		String datasetId = null;
 		String url = "/services/data/v58.0/wave/datasets?q=" + datasetName;
-		JSONNode data = agent.get(url, null);
+		int res = agent.get(url, null);
+		JSONNode data = agent.getResponse();
 		for (JSONNode n : data.get("datasets").values()) {
 			String name = n.get("name").asString();
 			if (name.equals(datasetName)) {

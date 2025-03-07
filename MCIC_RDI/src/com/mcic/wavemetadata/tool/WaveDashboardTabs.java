@@ -132,18 +132,16 @@ public class WaveDashboardTabs{
 			String firstTabWidgetName = null;
 			
 			//  Identify tab names from link widgets
-			Map<String, JSONNode> tabLinks = new LinkedHashMap<String, JSONNode>();
-			Map<String, JSONNode> tabContainers = new TreeMap<String, JSONNode>();
+			Map<String, JSONNode> tabLinks = new LinkedHashMap<String, JSONNode>();  //  Layout JSON for links referencing tabs
+			Map<String, JSONNode> tabContainers = new TreeMap<String, JSONNode>();	 //  Identified tab containers
 			Map<String, JSONArray> tabWidgetList = new LinkedHashMap<String, JSONArray>();
 			for (JSONNode layout : layouts) {
-				if (layout.get("row").asInt() == 0) {
-					String widgetName = layout.get("name").asString();
-					if (widgets.get(widgetName).get("type").asString().equals("link")) {
-						String name = widgets.get(layout.get("name").asString()).get("parameters").get("text").asString();
-						if (!name.equals("<") && !name.equals(">")) {
-							tabLinks.put(name, layout);
-						}
-						
+				String widgetName = layout.get("name").asString();
+				JSONNode widget = widgets.get(widgetName); 
+				if (widget.get("type").asString().equals("link")) {
+					String linkName = widget.get("parameters").get("text").asString();
+					if (!linkName.equals("<") && !linkName.equals(">")) {
+						tabLinks.put(linkName, layout);
 						if (activeStyle == null) {
 							activeStyle = layout.get("widgetStyle");
 							firstTabWidgetName = widgetName;
@@ -155,7 +153,6 @@ public class WaveDashboardTabs{
 			}
 			
 			//  Identify component layouts and remove them from the list
-			JSONNode firstContainer = null;
 			int firstContainerRow = 10000;
 			for (JSONNode n : layouts) {
 				String widgetName = n.get("name").asString();
@@ -163,10 +160,16 @@ public class WaveDashboardTabs{
 					if (tabLinks.containsKey(widgetName)) {
 						if (n.get("row").asInt() < firstContainerRow) {
 							firstContainerRow = n.get("row").asInt();
-							firstContainer = n;
 						}
 						tabContainers.put(widgetName, n);
 					}
+				}
+			}
+			
+			//  Identify any tab links that need to be mapped because the container doesn't exist
+			for (String tabName : tabLinks.keySet()) {
+				if (!tabContainers.containsKey(tabName)) {
+					
 				}
 			}
 			
@@ -214,7 +217,7 @@ public class WaveDashboardTabs{
 			}
 			
 			//  Build Tabs
-			int firstTabRow = firstContainer.get("row").asInt();
+			int firstTabRow = firstContainerRow;
 			for (String tabName : tabLinks.keySet()) {
 				JSONNode newPage = master.clone();
 				JSONArray layoutWidets = (JSONArray)newPage.get("widgets");

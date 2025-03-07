@@ -22,8 +22,11 @@ import java.util.zip.GZIPInputStream;
 import com.mcic.ConfiguredApp;
 import com.mcic.sfrest.SalesforceModel;
 import com.mcic.sfrest.SalesforceREST;
+import com.mcic.util.BlockRecordSet;
 import com.mcic.util.GZipBase64RecordSet;
 import com.mcic.util.Progressive;
+import com.mcic.util.RecordSet;
+import com.mcic.util.RecordsetOld;
 import com.mcic.util.json.JSONNode;
 import com.mcic.util.json.JSONObject;
 import com.mcic.util.json.ThreadCluster;
@@ -178,7 +181,7 @@ public class WordFrequencyApp extends ConfiguredApp {
 			ThreadCluster cluster = new ThreadCluster(5);
 			Map<String, Keyword> freq = new ConcurrentHashMap<String, Keyword>();
 
-			for (int year = 2024; year >= 2000; year -= 1) {
+			for (int year = 2030; year >= 2000; year -= 1) {
 				String saql = "q = load \\\"" + getDatasetId() + "\\\";";
 				if (year > 2000) {
 					saql += "q = filter q by 'Date_of_Loss__c_YEAR' == \\\"" + year + "\\\";";
@@ -206,11 +209,18 @@ public class WordFrequencyApp extends ConfiguredApp {
 				cluster.dispatch(new Runnable() {
 
 					public void run() {
-						System.out.println("This is the policy year for the thread: " + policyYear);
+						//System.out.println("This is the policy year for the thread: " + policyYear);
 
+						JSONNode data = null;
 						ProgressPanelStep step = thisProg.nextStep("Reading policy year " + policyYear);
-						int r = agent.postJSON("/services/data/v60.0/wave/query", post);
-						JSONNode data = agent.getResponse();
+						while (data == null) {
+							int r = agent.postJSON("/services/data/v60.0/wave/query", post);
+							if (r == SalesforceREST.SUCCESS) {
+								data = agent.getResponse();
+							} else if (data.getType() == JSONNode.Type.ARRAY ){
+								System.out.println("Query error: " + data.toString());
+							}
+						}
 						
 						if (data.getType() == JSONNode.Type.OBJECT) {
 
@@ -282,7 +292,7 @@ public class WordFrequencyApp extends ConfiguredApp {
 
 	public void writeDatasets(Map<String, Keyword> freq, String operation) {
 		ProgressPanelStep step = nextStep("Compressing and encoding query data");
-		GZipBase64RecordSet wordFreq = new GZipBase64RecordSet();
+		RecordSet wordFreq = new GZipBase64RecordSet();
 		int total = 0;
 		for (Keyword key : freq.values()) {
 			total += key.cases.size();
@@ -295,8 +305,8 @@ public class WordFrequencyApp extends ConfiguredApp {
 			for (String id : k.cases) {
 				if (!word.equals("")) {
 					if (i++ % 100000 == 0) {
-						double pct = 100.0 * (double)i / (double)total;
-						System.out.println("Compressing, " + String.format("%.1f", pct) + " complete...");
+						double pct = 100 * (double)i / (double)total;
+						step.setText("Compressing and encoding query data, " + String.format("%.1f", pct) + "% complete");
 					}
 					
 					wordFreq.add("Field", k.field);

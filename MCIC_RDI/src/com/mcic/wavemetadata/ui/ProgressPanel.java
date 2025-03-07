@@ -43,6 +43,11 @@ public class ProgressPanel extends JPanel {
 			parent.refresh();
 		}
 		
+		public void setText(String text) {
+			message = text;
+			parent.refresh();
+		}
+		
 		public void addNote(String note) {
 			message += "..." + note;
 			parent.refresh();

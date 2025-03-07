@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
-public class GZipBase64RecordSet extends RecordSet {
+public class GZipBase64RecordSet implements RecordSet {
 	String base64;
 	//ByteArrayOutputStream out;
 	GZIPOutputStream gzipOS;
@@ -20,6 +20,7 @@ public class GZipBase64RecordSet extends RecordSet {
 	boolean isFirstValue;
 	ByteArrayOutputStream byteSteam;
 	byte[] zipped;
+	String encoded = null;
 	
 	public GZipBase64RecordSet() {
 		headers = new LinkedHashMap<String, Integer>();
@@ -37,23 +38,51 @@ public class GZipBase64RecordSet extends RecordSet {
 
 	@Override
 	public void add(String key, String val) {
+		StringBuilder s = new StringBuilder();
 		base64 = null;
 		zipped = null;
+
+//		if (isFirstValue) {
+//			isFirstValue = false;
+//		} else {
+//			s.append(",");
+//		}
+//		if (val.matches("[\\s\\S]*[\"\\n][\\s\\w]*")) {
+//			val = val.replaceAll("\"", "\"\"");
+//			s.append("\"");
+//			s.append(val);
+//			s.append("\"");
+//		} else if (val.contains(",")) {
+//			s.append("\"");
+//			s.append(val);
+//			s.append("\"");
+//		} else {
+//			s.append(val);
+//		}
+//
+//		try {
+//			gzipOS.write(s.toString().getBytes());
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+
+	
 		try {
 			if (isFirstValue) {
 				isFirstValue = false;
 			} else {
-				gzipOS.write(",".getBytes());
+				gzipOS.write(COMMA);
 			}
 			if (val.matches("[\\s\\S]*[\"\\n][\\s\\w]*")) {
 				val = val.replaceAll("\"", "\"\"");
-				gzipOS.write("\"".getBytes());
+				gzipOS.write(QUOTES);
 				gzipOS.write(val.getBytes());
-				gzipOS.write("\"".getBytes());
+				gzipOS.write(QUOTES);
 			} else if (val.contains(",")) {
-				gzipOS.write("\"".getBytes());
+				gzipOS.write(QUOTES);
 				gzipOS.write(val.getBytes());
-				gzipOS.write("\"".getBytes());
+				gzipOS.write(QUOTES);
 			} else {
 				gzipOS.write(val.getBytes());
 			}
@@ -62,6 +91,9 @@ public class GZipBase64RecordSet extends RecordSet {
 			e.printStackTrace();
 		}
 	}
+	
+	static byte[] COMMA = ",".getBytes();
+	static byte[] QUOTES = "\"".getBytes();
 	
 	public byte[] getZipped() {
 		if (zipped == null) {

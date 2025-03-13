@@ -21,6 +21,7 @@ import com.mcic.util.json.JSONArray;
 import com.mcic.util.json.JSONNode;
 import com.mcic.util.json.JSONObject;
 import com.mcic.util.json.JSONString;
+import com.mcic.wavemetadata.ui.ChooseOrIgnoreDialog;
 
 
 public class WaveDashboardTabs{
@@ -135,6 +136,7 @@ public class WaveDashboardTabs{
 			Map<String, JSONNode> tabLinks = new LinkedHashMap<String, JSONNode>();  //  Layout JSON for links referencing tabs
 			Map<String, JSONNode> tabContainers = new TreeMap<String, JSONNode>();	 //  Identified tab containers
 			Map<String, JSONArray> tabWidgetList = new LinkedHashMap<String, JSONArray>();
+			Map<String, String> linkMapping = new TreeMap<String, String>();
 			for (JSONNode layout : layouts) {
 				String widgetName = layout.get("name").asString();
 				JSONNode widget = widgets.get(widgetName); 
@@ -163,13 +165,6 @@ public class WaveDashboardTabs{
 						}
 						tabContainers.put(widgetName, n);
 					}
-				}
-			}
-			
-			//  Identify any tab links that need to be mapped because the container doesn't exist
-			for (String tabName : tabLinks.keySet()) {
-				if (!tabContainers.containsKey(tabName)) {
-					
 				}
 			}
 			
@@ -204,6 +199,23 @@ public class WaveDashboardTabs{
 				}
 			}
 			
+			//  Identify any tab links that need to be mapped because the container doesn't exist
+			for (String tabName : tabLinks.keySet()) {
+				if (!tabContainers.containsKey(tabName)) {
+					String[] options = new String[tabContainers.size()];
+					int i = 0;
+					for (String name : tabContainers.keySet()) {
+						options[i++] = name;
+					}
+					ChooseOrIgnoreDialog d = new ChooseOrIgnoreDialog("Choose the container name below:", options);
+					d.setVisible(true);
+					String out = d.getSelected();
+					if (!out.equals("Ignore")) {
+						linkMapping.put(tabName,  out);
+					}
+				}
+			}
+			
 			//  Report out results
 			System.out.println("Widgets on all pages:");
 			for (JSONNode n : globalLayouts.values()) {
@@ -218,7 +230,7 @@ public class WaveDashboardTabs{
 			
 			//  Build Tabs
 			int firstTabRow = firstContainerRow;
-			for (String tabName : tabLinks.keySet()) {
+			for (String tabName : tabContainers.keySet()) {
 				JSONNode newPage = master.clone();
 				JSONArray layoutWidets = (JSONArray)newPage.get("widgets");
 				JSONNode tabLayout = tabContainers.get(tabName);
@@ -260,6 +272,12 @@ public class WaveDashboardTabs{
 				String nodeName = n.get("name").asString();
 				JSONNode widget = widgets.get(nodeName);
 				String linkLabel = widget.get("parameters").get("text").asString();
+				if (linkLabel.equals("Matrix")) {
+					System.out.println("Matrix");
+				}
+				if (linkMapping.containsKey(linkLabel)) {
+					linkLabel = linkMapping.get(linkLabel);
+				}
 				widget.get("parameters").get("destinationType").setString("page");
 				((JSONObject)widget.get("parameters")).addObject("destinationLink").addString("name", masterPageName + "-" + linkLabel);
 				
@@ -290,7 +308,6 @@ public class WaveDashboardTabs{
 			
 			
 			// Check to see if any links needs to be wired to a tab
-			
 			Map<String, String> pageLinks = new TreeMap<String, String>();
 			for (JSONNode page : newPages.values()) {
 				String pageName = page.get("label").asString();

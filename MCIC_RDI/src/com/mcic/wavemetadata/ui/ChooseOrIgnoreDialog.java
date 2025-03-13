@@ -1,6 +1,7 @@
 package com.mcic.wavemetadata.ui;
 
 import java.awt.BorderLayout;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -33,6 +34,7 @@ public class ChooseOrIgnoreDialog extends JDialog {
 	}
 
 	public ChooseOrIgnoreDialog(String title, String[] options) {
+		super((Frame)null, title, true);
 		ChooseOrIgnoreDialog dialog = this;
 		this.options = options;
 		setBounds(100, 100, 838, 783);
@@ -73,6 +75,9 @@ public class ChooseOrIgnoreDialog extends JDialog {
 	
 	public String getSelected() {
 		int i = list.getSelectedIndex();
+		if (i == -1) {
+			return "Ignore";
+		}
 		return options[i];
 	}
 }

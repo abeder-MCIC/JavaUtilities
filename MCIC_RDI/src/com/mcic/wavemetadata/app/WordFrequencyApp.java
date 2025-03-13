@@ -297,6 +297,7 @@ public class WordFrequencyApp extends ConfiguredApp {
 		for (Keyword key : freq.values()) {
 			total += key.cases.size();
 		}
+		System.out.println("There are " + total + " total case IDs");
 		
 		int i = 0;
 		for (String key : freq.keySet()) {
@@ -306,6 +307,7 @@ public class WordFrequencyApp extends ConfiguredApp {
 				if (!word.equals("")) {
 					if (i++ % 100000 == 0) {
 						double pct = 100 * (double)i / (double)total;
+						System.out.println("Processing case ID # " + i + " which is " + pct + "%");
 						step.setText("Compressing and encoding query data, " + String.format("%.1f", pct) + "% complete");
 					}
 					
@@ -349,12 +351,14 @@ public class WordFrequencyApp extends ConfiguredApp {
 	}
 
 	public void countWord(Map<String, Keyword> freq, String word, String field, String type, String caseId) {
-		String key = field + "|" + word;
-		Keyword k = freq.get(key);
-		if (k == null) {
-			k = new Keyword(word, field, type);
-			freq.put(key, k);
+		if (word != null && !word.equals("")) {
+			String key = field + "|" + word;
+			Keyword k = freq.get(key);
+			if (k == null) {
+				k = new Keyword(word, field, type);
+				freq.put(key, k);
+			}
+			k.cases.add(caseId);
 		}
-		k.cases.add(caseId);
 	}
 }

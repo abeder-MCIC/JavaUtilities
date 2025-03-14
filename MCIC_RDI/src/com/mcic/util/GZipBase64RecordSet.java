@@ -21,12 +21,14 @@ public class GZipBase64RecordSet implements RecordSet {
 	ByteArrayOutputStream byteSteam;
 	byte[] zipped;
 	String encoded = null;
+	StringBuilder sb;
 	
 	public GZipBase64RecordSet() {
 		headers = new LinkedHashMap<String, Integer>();
 		byteSteam = new ByteArrayOutputStream();
 		gzipOS = null;
 		zipped = null;
+		sb = new StringBuilder();
 		try {
 			gzipOS = new GZIPOutputStream(byteSteam);
 		} catch (IOException e) {
@@ -38,57 +40,61 @@ public class GZipBase64RecordSet implements RecordSet {
 
 	@Override
 	public void add(String key, String val) {
-		StringBuilder s = new StringBuilder();
+		StringBuilder s = sb;
+		s.delete(0, s.length());
 		base64 = null;
 		zipped = null;
+		
+		if (true) {
 
-//		if (isFirstValue) {
-//			isFirstValue = false;
-//		} else {
-//			s.append(",");
-//		}
-//		if (val.matches("[\\s\\S]*[\"\\n][\\s\\w]*")) {
-//			val = val.replaceAll("\"", "\"\"");
-//			s.append("\"");
-//			s.append(val);
-//			s.append("\"");
-//		} else if (val.contains(",")) {
-//			s.append("\"");
-//			s.append(val);
-//			s.append("\"");
-//		} else {
-//			s.append(val);
-//		}
-//
-//		try {
-//			gzipOS.write(s.toString().getBytes());
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-
-	
-		try {
 			if (isFirstValue) {
 				isFirstValue = false;
 			} else {
-				gzipOS.write(COMMA);
+				s.append(",");
 			}
 			if (val.matches("[\\s\\S]*[\"\\n][\\s\\w]*")) {
 				val = val.replaceAll("\"", "\"\"");
-				gzipOS.write(QUOTES);
-				gzipOS.write(val.getBytes());
-				gzipOS.write(QUOTES);
+				s.append("\"");
+				s.append(val);
+				s.append("\"");
 			} else if (val.contains(",")) {
-				gzipOS.write(QUOTES);
-				gzipOS.write(val.getBytes());
-				gzipOS.write(QUOTES);
+				s.append("\"");
+				s.append(val);
+				s.append("\"");
 			} else {
-				gzipOS.write(val.getBytes());
+				s.append(val);
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	
+			try {
+				gzipOS.write(s.toString().getBytes());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		} else {
+			try {
+				if (isFirstValue) {
+					isFirstValue = false;
+				} else {
+					gzipOS.write(COMMA);
+				}
+				if (val.matches("[\\s\\S]*[\"\\n][\\s\\w]*")) {
+					val = val.replaceAll("\"", "\"\"");
+					gzipOS.write(QUOTES);
+					gzipOS.write(val.getBytes());
+					gzipOS.write(QUOTES);
+				} else if (val.contains(",")) {
+					gzipOS.write(QUOTES);
+					gzipOS.write(val.getBytes());
+					gzipOS.write(QUOTES);
+				} else {
+					gzipOS.write(val.getBytes());
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	

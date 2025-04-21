@@ -21,6 +21,7 @@ import com.mcic.util.json.JSONArray;
 import com.mcic.util.json.JSONNode;
 import com.mcic.util.json.JSONObject;
 import com.mcic.util.json.JSONString;
+import com.mcic.wavemetadata.ui.ChooseOrIgnoreDialog;
 
 
 public class WaveDashboardTabs{
@@ -132,16 +133,17 @@ public class WaveDashboardTabs{
 			String firstTabWidgetName = null;
 			
 			//  Identify tab names from link widgets
-			Map<String, JSONNode> tabLinks = new LinkedHashMap<String, JSONNode>();
-			Map<String, JSONNode> tabContainers = new TreeMap<String, JSONNode>();
+			Map<String, JSONNode> tabLinks = new LinkedHashMap<String, JSONNode>();  //  Layout JSON for links referencing tabs
+			Map<String, JSONNode> tabContainers = new TreeMap<String, JSONNode>();	 //  Identified tab containers
 			Map<String, JSONArray> tabWidgetList = new LinkedHashMap<String, JSONArray>();
+			Map<String, String> linkMapping = new TreeMap<String, String>();
 			for (JSONNode layout : layouts) {
-				if (layout.get("row").asInt() == 0) {
-					String widgetName = layout.get("name").asString();
-					if (widgets.get(widgetName).get("type").asString().equals("link")) {
-						String name = widgets.get(layout.get("name").asString()).get("parameters").get("text").asString();
-						tabLinks.put(name, layout);
-						
+				String widgetName = layout.get("name").asString();
+				JSONNode widget = widgets.get(widgetName); 
+				if (widget.get("type").asString().equals("link")) {
+					String linkName = widget.get("parameters").get("text").asString();
+					if (!linkName.equals("<") && !linkName.equals(">")) {
+						tabLinks.put(linkName, layout);
 						if (activeStyle == null) {
 							activeStyle = layout.get("widgetStyle");
 							firstTabWidgetName = widgetName;
@@ -153,7 +155,6 @@ public class WaveDashboardTabs{
 			}
 			
 			//  Identify component layouts and remove them from the list
-			JSONNode firstContainer = null;
 			int firstContainerRow = 10000;
 			for (JSONNode n : layouts) {
 				String widgetName = n.get("name").asString();
@@ -161,7 +162,6 @@ public class WaveDashboardTabs{
 					if (tabLinks.containsKey(widgetName)) {
 						if (n.get("row").asInt() < firstContainerRow) {
 							firstContainerRow = n.get("row").asInt();
-							firstContainer = n;
 						}
 						tabContainers.put(widgetName, n);
 					}
@@ -199,6 +199,23 @@ public class WaveDashboardTabs{
 				}
 			}
 			
+			//  Identify any tab links that need to be mapped because the container doesn't exist
+			for (String tabName : tabLinks.keySet()) {
+				if (!tabContainers.containsKey(tabName)) {
+					String[] options = new String[tabContainers.size()];
+					int i = 0;
+					for (String name : tabContainers.keySet()) {
+						options[i++] = name;
+					}
+					ChooseOrIgnoreDialog d = new ChooseOrIgnoreDialog("Choose the container name below:", options);
+					d.setVisible(true);
+					String out = d.getSelected();
+					if (!out.equals("Ignore")) {
+						linkMapping.put(tabName,  out);
+					}
+				}
+			}
+			
 			//  Report out results
 			System.out.println("Widgets on all pages:");
 			for (JSONNode n : globalLayouts.values()) {
@@ -212,8 +229,8 @@ public class WaveDashboardTabs{
 			}
 			
 			//  Build Tabs
-			int firstTabRow = firstContainer.get("row").asInt();
-			for (String tabName : tabLinks.keySet()) {
+			int firstTabRow = firstContainerRow;
+			for (String tabName : tabContainers.keySet()) {
 				JSONNode newPage = master.clone();
 				JSONArray layoutWidets = (JSONArray)newPage.get("widgets");
 				JSONNode tabLayout = tabContainers.get(tabName);
@@ -255,6 +272,12 @@ public class WaveDashboardTabs{
 				String nodeName = n.get("name").asString();
 				JSONNode widget = widgets.get(nodeName);
 				String linkLabel = widget.get("parameters").get("text").asString();
+				if (linkLabel.equals("Matrix")) {
+					System.out.println("Matrix");
+				}
+				if (linkMapping.containsKey(linkLabel)) {
+					linkLabel = linkMapping.get(linkLabel);
+				}
 				widget.get("parameters").get("destinationType").setString("page");
 				((JSONObject)widget.get("parameters")).addObject("destinationLink").addString("name", masterPageName + "-" + linkLabel);
 				
@@ -281,13 +304,40 @@ public class WaveDashboardTabs{
 					}
 				}
 			}
+
+			
+			
+			// Check to see if any links needs to be wired to a tab
+			Map<String, String> pageLinks = new TreeMap<String, String>();
+			for (JSONNode page : newPages.values()) {
+				String pageName = page.get("label").asString();
+				pageLinks.put(pageName, page.get("name").asString());
+				for (JSONNode layout : page.get("widgets").values()) {
+					String widgetName = layout.get("name").asString();
+					JSONNode widget = widgets.get(widgetName);
+					if (widget.get("type").asString().equals("link")) {
+						
+						JSONNode dLink = widget.get("parameters").get("destinationLink");
+						if (dLink != null) {
+							String name = dLink.get("name").asString();
+							if (pageLinks.containsKey(name)) {
+								String pageLink = pageLinks.get(name);
+								if (pageName.endsWith("NF")) {
+									pageLink += "NF";
+								}
+								dLink.get("name").setString(pageLink);
+							}
+						}
+					}
+				}
+			}
 			
 			//  Clone link widget for first tab (active in Master)
 			JSONNode newWidget = widgets.get(firstTabWidgetName).clone();
 			String newFirstTabWidgetName = firstTabWidgetName + "C";
 			widgets.put(newFirstTabWidgetName, newWidget);
 			
-			//  Format link layouts appropriately
+			//  Scan through all pages and format link layouts appropriately
 			for (JSONNode page : newPages.values()) {
 				String pageName = page.get("label").asString();
 				for (JSONNode layout : page.get("widgets").values()) {

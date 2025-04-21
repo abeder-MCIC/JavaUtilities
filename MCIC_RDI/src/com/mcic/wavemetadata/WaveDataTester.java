@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 
-import com.mcic.sfrest.SalesforceAgent;
+import com.mcic.sfrest.SalesforceAgentOld;
 import com.mcic.sfrest.SalesforceModel;
 import com.mcic.util.json.JSONNode;
 import com.mcic.util.json.Pair;
@@ -36,8 +36,8 @@ import com.mcic.wavemetadata.tool.WaveMetadata.Field;
 import com.mcic.wavemetadata.tool.WaveMetadata.Type;
 
 public class WaveDataTester {
-	SalesforceAgent prodAgent;
-	SalesforceAgent devAgent;
+	SalesforceAgentOld prodAgent;
+	SalesforceAgentOld devAgent;
 	WaveMetadata prod;
 	WaveMetadata dev;
 	Map<String, Set<String>> ignores;
@@ -159,8 +159,8 @@ public class WaveDataTester {
 	}
 	
 	public WaveDataTester(File prod, File dev, File ignore, File filterFile) {
-		this.prodAgent = new SalesforceAgent(new SalesforceModel(prod));
-		this.devAgent = new SalesforceAgent(new SalesforceModel(dev));
+		this.prodAgent = new SalesforceAgentOld(new SalesforceModel(prod));
+		this.devAgent = new SalesforceAgentOld(new SalesforceModel(dev));
 		this.prod = new WaveMetadata(prodAgent);
 		this.dev = new WaveMetadata(devAgent);
 		filters = new TreeMap<String, Set<String>>();

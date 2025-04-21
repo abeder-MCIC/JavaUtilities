@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 
-import com.mcic.sfrest.SalesforceAgent;
+import com.mcic.sfrest.SalesforceAgentOld;
 import com.mcic.sfrest.SalesforceModel;
 import com.mcic.util.json.JSONNode;
 import com.mcic.util.json.JSONObject;
@@ -25,7 +25,7 @@ import com.mcic.wavemetadata.tool.WaveMetadata.Field;
 
 public class MetadataRespository {
 	WaveMetadata meta;
-	SalesforceAgent agent;
+	SalesforceAgentOld agent;
 	Map<String, String> elements;
 	
 	public static void main(String[] args) {
@@ -66,7 +66,7 @@ public class MetadataRespository {
 	}
 	
 	public MetadataRespository(SalesforceModel model) {
-		agent = new SalesforceAgent(model);
+		agent = new SalesforceAgentOld(model);
 		meta = new WaveMetadata(agent);
 		elements = new TreeMap<String, String>();
 	}

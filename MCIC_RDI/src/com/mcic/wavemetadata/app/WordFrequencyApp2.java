@@ -17,10 +17,10 @@ import java.util.stream.Collectors;
 import javax.swing.JDialog;
 
 import com.mcic.ConfiguredApp;
-import com.mcic.sfrest.SFRestOld;
-import com.mcic.sfrest.SalesforceAgent;
+import com.mcic.sfrest.SalesforceREST;
+import com.mcic.sfrest.SalesforceAgentOld;
 import com.mcic.sfrest.SalesforceModel;
-import com.mcic.util.GZipByteRecordSet;
+import com.mcic.util.GZipBase64RecordSet;
 import com.mcic.util.RecordsetOld;
 import com.mcic.util.json.JSONNode;
 import com.mcic.util.json.JSONObject;
@@ -29,7 +29,7 @@ import com.mcic.wavemetadata.ui.ProgressPanel;
 import com.mcic.wavemetadata.ui.ProgressPanel.ProgressPanelStep;
 
 public class WordFrequencyApp2 extends ConfiguredApp {
-	SFRestOld agent;
+	SalesforceREST agent;
 	Vector<String> fields;
 	Map<String, Keyword> freq;
 	public static String datasetName;
@@ -81,7 +81,7 @@ public class WordFrequencyApp2 extends ConfiguredApp {
 		File propFile = (File)properties.get("sfConfig"); 
 		//Collection<String> datasets = (Collection<String>)properties.get("datasets");
 		SalesforceModel model = new SalesforceModel(propFile);
-		agent = new SFRestOld(model);
+		agent = new SalesforceREST(model);
 		progress = new ProgressPanel(19);
 		JDialog dialog = new JDialog();
 		dialog.setBounds(100, 100, 450, 300);

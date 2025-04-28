@@ -1,5 +1,6 @@
 package com.mcic.wave;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -47,6 +48,7 @@ public class SalesforceREST extends Progressive {
 	public static final int FAILURE = 1;
 	public static final int SUCCESS = 2;
 	public static final int INDETERMINATE = 0;
+	public static final int BUFFER_SIZE = 1_000_000;
 	
     String accessToken;
     SalesforceModel model;
@@ -99,87 +101,84 @@ public class SalesforceREST extends Progressive {
     	root.put("EdgemartLabel", label);
     	root.put("EdgemartContainer", app);
     	root.put("Action", "None");
-    	if (operation != null) {
-        	root.put("Operation", operation);
-    	} else {
-        	root.put("Operation", "Overwrite");
-    	}
-    	if (metadata != null) {
-        	metadata = Base64.getEncoder().encodeToString(metadata.getBytes());
-        	root.put("MetadataJson", metadata);
-    	}    	
+       	root.put("Operation", "Overwrite");
     	int res = postJSON(url, root);
     	if (res == SalesforceREST.SUCCESS) {
 	    	String id = response.getString("id");
 	    	//System.out.println(id);
 	
+	    	BufferedReader encoded = builder.build();
+	    	int size = builder.getEncodedSize();
+	    	char[] charBuff = new char[BUFFER_SIZE];
+			Vector<JSONObject> packets = new Vector<JSONObject>();
 	    	final String partUrl = "/services/data/v58.0/sobjects/InsightsExternalDataPart";
-			String dataStr = data.toBase64();
-	    	if (dataStr.length() >= 5000000) {
-	            //FileInputStream fis = new FileInputStream(file);
-	            //FileOutputStream fos = new FileOutputStream(gzipFile);
-	    		ByteArrayOutputStream out = new ByteArrayOutputStream();
-	    		
-				int part = 1;
-				Vector<JSONObject> packets = new Vector<JSONObject>();
-				while (dataStr.length() > 0) {
-					//System.out.println("Writing block number " + part);
-					int nextBlockSize = dataStr.length() > 5000000 ? 5000000 : dataStr.length();
-					String nextBlock = dataStr.substring(0, nextBlockSize);
-					dataStr = dataStr.substring(nextBlockSize);
-					JSONObject packet = new JSONObject();
-		         	packet.put("InsightsExternalDataId", id);
-		         	packet.put("PartNumber", part ++);
-		         	packet.put("DataFile", nextBlock);
-		         	packets.add(packet);
+	    	int part = 1;
+	    	
+			while (size > 0) {
+				int readCount = size;
+				if (readCount > BUFFER_SIZE) {
+					readCount = BUFFER_SIZE;
+				} else {
+					charBuff = new char[readCount];
 				}
-				
+				try {
+					encoded.read(charBuff, 0, readCount);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				JSONObject packet = new JSONObject();
+	         	packet.put("InsightsExternalDataId", id);
+	         	packet.put("PartNumber", part ++);
+	         	packet.put("DataFile", charBuff);
+	         	packets.add(packet);
+	         	
+	         	size -= readCount;
+			}
 				/***************************************************************************************************
 				 *   Kick off a set of threads uploading individual packet data
 				 */
 				
-				ExecutorService cluster = Executors.newFixedThreadPool(5);
-				
-				
-		        
-				for (int i = 0;i < packets.size();i++) {
-					final int thisPart = i + 1;
-					final JSONObject thisPacket = packets.elementAt(i);
-					cluster.execute(new Runnable() {
-						
-						
-						public void run() {
-							ProgressPanelStep step = nextStep("Writing block number " + thisPart);
-				        	int res = FAILURE;
-				        	while (res == FAILURE) {
-					        	res = postJSON(partUrl, thisPacket);
-					        	if (res != SUCCESS) {
-					        		step.addNote("Failure sending, re-posting");
-					        	}
+			ExecutorService cluster = Executors.newFixedThreadPool(5);
+			
+			
+	        
+			for (int i = 0;i < packets.size();i++) {
+				final int thisPart = i + 1;
+				final JSONObject thisPacket = packets.elementAt(i);
+				cluster.execute(new Runnable() {
+					
+					
+					public void run() {
+						ProgressPanelStep step = nextStep("Writing block number " + thisPart);
+			        	int res = FAILURE;
+			        	while (res == FAILURE) {
+				        	res = postJSON(partUrl, thisPacket);
+				        	if (res != SUCCESS) {
+				        		step.addNote("Failure sending, re-posting");
 				        	}
-				        	step.complete();
-						}
-						
-						
-					});
-					// End of Runnable
-		        	
-				}
-				cluster.shutdown();
+			        	}
+			        	step.complete();
+					}
+					
+					
+				});
+				// End of Runnable
+	        	
+			}
+			cluster.shutdown();
+			try {
 				cluster.awaitTermination(30, TimeUnit.MINUTES);
-	    	} else {
-	        	root.clear();
-	        	root.put("InsightsExternalDataId", id);
-	        	root.put("PartNumber", 1);
-	        	root.put("DataFile", dataStr);
-	        	res = postJSON(url, root);
-	    		ProgressPanelStep step = nextStep("Processing Upload");
-	        	url = "/services/data/v58.0/sobjects/InsightsExternalData/" + id;
-	        	root.clear();
-	        	root.put("Action", "Process");
-	        	res = patchJSON(url, root);
-	        	step.complete();
-	    	}
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	url = "/services/data/v58.0/sobjects/InsightsExternalData/" + id;
+        	root.clear();
+        	root.put("Action", "Process");
+        	res = patchJSON(url, root);
+
+	    
     	} else {
     		System.out.println("Error creating InsightesExternalData object");
     	}

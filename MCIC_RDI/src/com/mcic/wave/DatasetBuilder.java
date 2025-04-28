@@ -11,7 +11,7 @@ public class DatasetBuilder {
     private final String[] headers;
     private File tempFile;
     private BufferedWriter writer;
-    private long encodedSize;
+    private int encodedSize;
     
 
     // Constructor for headers
@@ -87,7 +87,7 @@ public class DatasetBuilder {
     
     
 
-    public long getEncodedSize() {
+    public int getEncodedSize() {
 		return encodedSize;
 	}
 

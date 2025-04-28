@@ -2,11 +2,13 @@ package com.mcic.util;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -14,7 +16,7 @@ import java.util.Vector;
 import java.util.stream.Collectors;
 import java.util.zip.GZIPOutputStream;
 
-public class RecordsetOld {
+public class RecordsetOld implements RecordSet {
 	private Map<String, String[]> data;
 	private int record;
 	private int next;
@@ -26,7 +28,7 @@ public class RecordsetOld {
 		clear();
 	}
 	
-	public int size() {
+	public long size() {
 		return record;
 	}
 	
@@ -142,6 +144,7 @@ public class RecordsetOld {
 			while ((line = getLine()) != null) {
 				for (int i = 0;i < line.length;i++) {
 					String value = line[i];
+					value = value == null ? "" : value;
 					if (value.matches(".+\".+")) {
 						value = "\"" + value.replaceAll("\"", "\"\"") + "\"";
 					}
@@ -167,5 +170,21 @@ public class RecordsetOld {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public String toBase64() {
+		ByteArrayOutputStream bs = new ByteArrayOutputStream();
+		try {
+			GZIPOutputStream os = new GZIPOutputStream(bs);
+			toGZip(os);
+			os.close();
+			byte[] buffer = bs.toByteArray();
+			return Base64.getEncoder().encodeToString(buffer);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

@@ -1,5 +1,6 @@
 package com.mcic.wavemetadata.app;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -24,11 +25,12 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 
-import com.mcic.sfrest.SalesforceAgentOld;
 import com.mcic.sfrest.SalesforceModel;
+import com.mcic.sfrest.SalesforceREST;
 import com.mcic.util.CSVAuthor;
+import com.mcic.util.RecordSet;
 import com.mcic.util.RecordsetOld;
-import com.mcic.util.Tripple;
+import com.mcic.util.json.Tripple;
 import com.mcic.util.json.JSONArray;
 import com.mcic.util.json.JSONNode;
 import com.mcic.util.json.JSONNumber;
@@ -44,22 +46,22 @@ import com.mcic.wavemetadata.tool.WaveMetadata.Field;
 import com.mcic.wavemetadata.tool.WaveMetadata.Recipe;
 
 public class WaveMetadataReader {
-	public SalesforceAgentOld agent;
+	public SalesforceREST agent;
 	public WaveLineageReader reader;
 	public Map<String, Vector<String>> replicatedDatasetFields;
 	public Map<String, JSONNode> recipeDefinitions;
 	public String rdiInventoryId;
 	
-	public RecordsetOld datasets;
-	public RecordsetOld dashboards;
-	public RecordsetOld dashdatasets;
-	public RecordsetOld dashfields;
-	public RecordsetOld dashlinks;	
-	public RecordsetOld recipes;
-	public RecordsetOld recipeDatasets;
-	public RecordsetOld recipeFields;
-	public RecordsetOld apps;
-	public RecordsetOld pageWidgetStepFields;
+	public RecordSet datasets;
+	public RecordSet dashboards;
+	public RecordSet dashdatasets;
+	public RecordSet dashfields;
+	public RecordSet dashlinks;	
+	public RecordSet recipes;
+	public RecordSet recipeDatasets;
+	public RecordSet recipeFields;
+	public RecordSet apps;
+	public RecordSet pageWidgetStepFields;
 	
 	public WaveMetadata meta;
 
@@ -89,7 +91,7 @@ public class WaveMetadataReader {
 		
 		if (propFile == null) {
 			JFileChooser fc = new JFileChooser();
-			fc.setCurrentDirectory(new File("C:\\Users\\abeder\\eclipse-workspace\\MCIC_RDI"));
+			fc.setCurrentDirectory(new File("C:\\Users\\abeder\\git\\JavaUtilities\\MCIC_RDI"));
 			fc.setFileFilter(new FileFilter() { 
 				public boolean accept(File fileName) {
 					if (fileName.isDirectory())
@@ -124,8 +126,9 @@ public class WaveMetadataReader {
 		rdiInventoryId = null;
 		recipeDefinitions = null;
 		
-		agent = new SalesforceAgentOld(new SalesforceModel(propFile));
+		agent = new SalesforceREST(new SalesforceModel(propFile));
 		meta = new WaveMetadata(agent);
+		
 		//reader = new WaveLineageReader();
 		
 	}
@@ -174,7 +177,8 @@ public class WaveMetadataReader {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				JSONNode node = agent.patchJSON(url, patch);
+				int res = agent.patchJSON(url, patch);
+				JSONNode node = agent.getResponse();
 				System.out.println(node);
 			}
 		}
@@ -187,10 +191,10 @@ public class WaveMetadataReader {
 	
 	
 	public void readDashboards() {
-		dashboards.clear();
-		dashdatasets.clear();
-		dashfields.clear();
-		dashlinks.clear();
+		//dashboards.clear();
+		//dashdatasets.clear();
+		//dashfields.clear();
+		//dashlinks.clear();
 		String[] types = new String[] {"Dashboard", "Lens"};
 		String nextURL;
 
@@ -251,11 +255,21 @@ public class WaveMetadataReader {
 	}
 	
 	public void saveDashboards() {
-		agent.writeDataset("Dashboards", "Dashboards", "RDI_Inventory", dashboards);
-		agent.writeDataset("DashboardDatasetJunction", "DashboardDatasetJunction", "RDI_Inventory", dashdatasets);
-		agent.writeDataset("DashboardFields", "DashboardFields", "RDI_Inventory", dashfields);
-		agent.writeDataset("DashboardLinks", "DashboardLinks", "RDI_Inventory", dashlinks);
-		agent.writeDataset("PageWidgetStepFields", "PageWidgetStepFields", "RDI_Inventory", pageWidgetStepFields);
+		try {
+			BufferedWriter out = new BufferedWriter(new FileWriter("Reports.csv"));
+			out.write(dashboards.toString());
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		agent.writeDataset("Dashboards", "Dashboards", "RDI_Inventory", dashboards, null, null);
+		agent.writeDataset("DashboardDatasetJunction", "DashboardDatasetJunction", "RDI_Inventory", dashdatasets, null, null);
+		agent.writeDataset("DashboardFields", "DashboardFields", "RDI_Inventory", dashfields, null, null);
+		agent.writeDataset("DashboardLinks", "DashboardLinks", "RDI_Inventory", dashlinks, null, null);
+		agent.writeDataset("PageWidgetStepFields", "PageWidgetStepFields", "RDI_Inventory", pageWidgetStepFields, null, null);
 	}
 	
 	
@@ -266,7 +280,7 @@ public class WaveMetadataReader {
 
 	public void readDatasets() {
 		meta.loadDatasets(null);
-		datasets.clear();
+//		datasets.clear();
 		for (String dsName : meta.getBaseDatasets().keySet()) {
 			Dataset ds = meta.getDataset(dsName);
 			datasets.add("DatasetName", dsName);
@@ -277,7 +291,7 @@ public class WaveMetadataReader {
 	}
 	
 	public void saveDatasets() {
-		agent.writeDataset("Datasets", "Datasets", "RDI_Inventory", datasets);
+		agent.writeDataset("Datasets", "Datasets", "RDI_Inventory", datasets, null, null);
 	}
 	
 		
@@ -287,13 +301,13 @@ public class WaveMetadataReader {
 
 	
 	public void readRecipes() {
-		recipes.clear();
-		recipeDatasets.clear();
-		recipeFields.clear();
+//		recipes.clear();
+//		recipeDatasets.clear();
+//		recipeFields.clear();
 		
 		meta.readRecipes();
 		Map<String, Long> recipeLastUpdate = new TreeMap<String, Long>();
-		Map<Field, Tripple<String, String, String>> fields = new TreeMap<Field, Tripple<String, String, String>>(); 
+		Map<Field, Tripple<String>> fields = new TreeMap<Field, Tripple<String>>(); 
 		Map<Field, Integer> nextRun = new TreeMap<Field, Integer>();
 
 		for (Recipe recipe : meta.getRecipes().values().stream()
@@ -335,7 +349,7 @@ public class WaveMetadataReader {
 						//  Add all dataset fields to 'save'
 						for (Field f : ds.fields.values()) {
 							if (fields.containsKey(f)) {
-								String thatRecipe = fields.get(f).pri;
+								String thatRecipe = fields.get(f).first;
 								long thatRun = recipeLastUpdate.get(thatRecipe) == null ? 0 : recipeLastUpdate.get(thatRecipe);
 								if (thisRunFin > thatRun) {
 									fields.put(f, new Tripple(recipeName, datasetName, f.name));
@@ -491,9 +505,9 @@ public class WaveMetadataReader {
 	}
 	
 	public void saveRecipes() {
-		agent.writeDataset("Recipes", "Recipes", "RDI_Inventory", recipes);
-		agent.writeDataset("RecipeDatasets", "RecipeDatasets", "RDI_Inventory", recipeDatasets);
-		agent.writeDataset("RecipeFields", "RecipeFields", "RDI_Inventory", recipeFields);
+		agent.writeDataset("Recipes", "Recipes", "RDI_Inventory", recipes, null, null);
+		agent.writeDataset("RecipeDatasets", "RecipeDatasets", "RDI_Inventory", recipeDatasets, null, null);
+		agent.writeDataset("RecipeFields", "RecipeFields", "RDI_Inventory", recipeFields, null, null);
 	}
 	
 	public void setFields() {
@@ -511,7 +525,8 @@ public class WaveMetadataReader {
 		Map<String, Map<String, String>> localJSON = new TreeMap<String, Map<String, String>>();
 		Map<String, String> prodURLs = new TreeMap<String, String>();
 		String nextURL = "/services/data/v58.0/wave/replicatedDatasets";
-		JSONNode r = agent.get(nextURL, null);
+		int res = agent.get(nextURL, null);
+		JSONNode r = agent.getResponse();
 		for (JSONNode node : r.get("replicatedDatasets").values()) {
 			JSONObject rd = (JSONObject)node;
 			String label = rd.get("connector").get("label").asString();
@@ -562,7 +577,8 @@ public class WaveMetadataReader {
 			//  Get field definitions from SF Org
 			Map<String, String> fieldJSON = new TreeMap<String, String>();
 			nextURL = "/services/data/v58.0/wave/dataConnectors/" + localConnector + "/sourceObjects/" + objectName + "/fields";
-			JSONObject fieldList = agent.get(nextURL, null);
+			res = agent.get(nextURL, null);
+			JSONNode fieldList = agent.getResponse();
 			for (JSONNode field : fieldList.get("fields").values()) {
 				String name = field.get("name").asString();
 				String json = field.toCompressedString();
@@ -612,10 +628,11 @@ public class WaveMetadataReader {
 
 	public void readApplications() {
 		
-		apps.clear();
+//		apps.clear();
 		String nextURL = "/services/data/v58.0/wave/folders" ;
 		while (nextURL != null && !nextURL.equals("null")) {
-			JSONObject root = agent.get(nextURL, null);
+			int res = agent.get(nextURL, null);
+			JSONNode root = agent.getResponse();
 			for (JSONNode o : root.get("folders").values()) {
 				apps.add("AppName", o.get("name").asString());
 				apps.add("AppLabel", o.get("label").asString());
@@ -626,7 +643,7 @@ public class WaveMetadataReader {
 	}
 	
 	public void saveApplications() {
-		agent.writeDataset("Applications", "Applications", "RDI_Inventory", apps);
+		agent.writeDataset("Applications", "Applications", "RDI_Inventory", apps, null, null);
 	}
 
 //		***************************************

@@ -15,4 +15,5 @@ public interface RecordSet {
 	public void add(String key, String value);
 	public void next();
 	public String toBase64();
+	public long size();
 }

@@ -1,4 +1,4 @@
-package com.mcic.sfrest;
+package com.mcic.wave;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
@@ -11,6 +11,9 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.Vector;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.zip.GZIPOutputStream;
 
@@ -31,15 +34,11 @@ import org.apache.hc.core5.http.HttpStatus;
 import org.apache.hc.core5.http.ParseException;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.io.entity.StringEntity;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-import com.mcic.util.CSVAuthor;
 import com.mcic.util.Progressive;
-import com.mcic.util.RecordSet;
-import com.mcic.util.RecordsetOld;
-import com.mcic.util.json.JSONNode;
-import com.mcic.util.json.JSONObject;
 import com.mcic.util.json.JSONString;
-import com.mcic.util.json.ThreadCluster;
 import com.mcic.wavemetadata.ui.ProgressPanel;
 import com.mcic.wavemetadata.ui.ProgressPanel.ProgressPanelStep;
 
@@ -54,7 +53,7 @@ public class SalesforceREST extends Progressive {
     Map<String, Set<String>> sObjectFields;
     //public String restEndpoint;
     private CloseableHttpClient httpClient;
-    JSONNode response;
+    JSONObject response;
     
     /*
     public static void main(String[] args) {
@@ -84,34 +83,34 @@ public class SalesforceREST extends Progressive {
     public void startJob(String id) {
     	String url = "/services/data/v58.0/wave/dataflowjobs";
     	JSONObject root = new JSONObject();
-    	root.put("dataflowId", new JSONString(id));
-    	root.put("command", new JSONString("start"));
+    	root.put("dataflowId", id);
+    	root.put("command", "start");
     	int res = postJSON(url, root);
     	System.out.println(response);
     }
     
     
-    public void writeDataset(String APIName, String label, String app, RecordSet data, String operation, String metadata) {
+    public void writeDataset(String APIName, String label, String app, DatasetBuilder builder) {
     	
     	String url = "/services/data/v58.0/sobjects/InsightsExternalData";
     	JSONObject root = new JSONObject();
-    	root.addString("Format", "Csv");
-    	root.addString("EdgemartAlias", APIName);
-    	root.addString("EdgemartLabel", label);
-    	root.addString("EdgemartContainer", app);
-    	root.addString("Action", "None");
+    	root.put("Format", "Csv");
+    	root.put("EdgemartAlias", APIName);
+    	root.put("EdgemartLabel", label);
+    	root.put("EdgemartContainer", app);
+    	root.put("Action", "None");
     	if (operation != null) {
-        	root.addString("Operation", operation);
+        	root.put("Operation", operation);
     	} else {
-        	root.addString("Operation", "Overwrite");
+        	root.put("Operation", "Overwrite");
     	}
     	if (metadata != null) {
         	metadata = Base64.getEncoder().encodeToString(metadata.getBytes());
-        	root.addString("MetadataJson", metadata);
+        	root.put("MetadataJson", metadata);
     	}    	
     	int res = postJSON(url, root);
     	if (res == SalesforceREST.SUCCESS) {
-	    	String id = response.get("id").asString();
+	    	String id = response.getString("id");
 	    	//System.out.println(id);
 	
 	    	final String partUrl = "/services/data/v58.0/sobjects/InsightsExternalDataPart";
@@ -122,16 +121,16 @@ public class SalesforceREST extends Progressive {
 	    		ByteArrayOutputStream out = new ByteArrayOutputStream();
 	    		
 				int part = 1;
-				Vector<JSONNode> packets = new Vector<JSONNode>();
+				Vector<JSONObject> packets = new Vector<JSONObject>();
 				while (dataStr.length() > 0) {
 					//System.out.println("Writing block number " + part);
 					int nextBlockSize = dataStr.length() > 5000000 ? 5000000 : dataStr.length();
 					String nextBlock = dataStr.substring(0, nextBlockSize);
 					dataStr = dataStr.substring(nextBlockSize);
 					JSONObject packet = new JSONObject();
-		         	packet.addString("InsightsExternalDataId", id);
-		         	packet.addNumber("PartNumber", part ++);
-		         	packet.addString("DataFile", nextBlock);
+		         	packet.put("InsightsExternalDataId", id);
+		         	packet.put("PartNumber", part ++);
+		         	packet.put("DataFile", nextBlock);
 		         	packets.add(packet);
 				}
 				
@@ -139,12 +138,14 @@ public class SalesforceREST extends Progressive {
 				 *   Kick off a set of threads uploading individual packet data
 				 */
 				
-				ThreadCluster cluster = new ThreadCluster(5);
+				ExecutorService cluster = Executors.newFixedThreadPool(5);
+				
+				
 		        
 				for (int i = 0;i < packets.size();i++) {
 					final int thisPart = i + 1;
-					final JSONNode thisPacket = packets.elementAt(i);
-					cluster.dispatch(new Runnable() {
+					final JSONObject thisPacket = packets.elementAt(i);
+					cluster.execute(new Runnable() {
 						
 						
 						public void run() {
@@ -164,17 +165,18 @@ public class SalesforceREST extends Progressive {
 					// End of Runnable
 		        	
 				}
-				cluster.join();
+				cluster.shutdown();
+				cluster.awaitTermination(30, TimeUnit.MINUTES);
 	    	} else {
 	        	root.clear();
-	        	root.addString("InsightsExternalDataId", id);
-	        	root.addNumber("PartNumber", 1);
-	        	root.addString("DataFile", dataStr);
+	        	root.put("InsightsExternalDataId", id);
+	        	root.put("PartNumber", 1);
+	        	root.put("DataFile", dataStr);
 	        	res = postJSON(url, root);
 	    		ProgressPanelStep step = nextStep("Processing Upload");
 	        	url = "/services/data/v58.0/sobjects/InsightsExternalData/" + id;
 	        	root.clear();
-	        	root.addString("Action", "Process");
+	        	root.put("Action", "Process");
 	        	res = patchJSON(url, root);
 	        	step.complete();
 	    	}
@@ -192,8 +194,10 @@ public class SalesforceREST extends Progressive {
     		sObjectFields.put(objectName, fields);
 	    	String url = "/services/data/v58.0/sobjects/" + objectName + "/describe/";
 	    	int res = get(url, null);
-	    	for (JSONNode field : response.get("fields").values()) {
-	    		String fieldName = field.get("name").asString();
+	    	JSONArray fList = response.getJSONArray("fields");
+	    	for (int i = 0;i < fList.length();i++) {
+	    		JSONObject field = fList.getJSONObject(i);
+	    		String fieldName = field.getString("name");
 	    		fields.add(fieldName);
 	    	}
     	}
@@ -213,7 +217,7 @@ public class SalesforceREST extends Progressive {
 			CloseableHttpResponse resp = httpClient.execute(get);
 			String rstr = EntityUtils.toString(resp.getEntity());
 			if (rstr.matches("^[{\\[][\\s\\S]+")) {  //  Is this JSON?
-				response = JSONNode.parse(rstr);
+				response = new JSONObject(rstr);
 				return SUCCESS;
     		}
 		} catch (IOException e) {
@@ -226,15 +230,15 @@ public class SalesforceREST extends Progressive {
     	return FAILURE;
     }
 	
-	public int postJSON(String resource, JSONNode json) {
+	public int postJSON(String resource, JSONObject json) {
 		return postJSON(resource, json, false);
 	}
 	
-	public int patchJSON(String resource, JSONNode json) {
+	public int patchJSON(String resource, JSONObject json) {
 		return postJSON(resource, json, true);
 	}
 	
-	public JSONNode delete(String resource) {
+	public JSONObject delete(String resource) {
 		String url = getRestEndpoint() + resource;
 		HttpUriRequestBase post = new HttpDelete(url);
     	post.setHeader("Content-Type", "application/json");
@@ -245,7 +249,7 @@ public class SalesforceREST extends Progressive {
 			int code = authResponse.getCode();
 			if (code != 204) {
 				String jstr = EntityUtils.toString(authResponse.getEntity());
-				JSONNode node = JSONNode.parse(jstr);
+				JSONObject node = new JSONObject(jstr);
 				return node;
 			}
 		} catch (IOException e) {
@@ -258,7 +262,7 @@ public class SalesforceREST extends Progressive {
         return null;
 	}
 
-	public int postJSON(String resource, JSONNode json, boolean isPatch) {
+	public int postJSON(String resource, JSONObject json, boolean isPatch) {
 		
 		String url = getRestEndpoint() + resource;
 		HttpUriRequestBase post = null;
@@ -288,7 +292,7 @@ public class SalesforceREST extends Progressive {
 	    			int code = authResponse.getCode();
 	    			if (code != 204) {
 	    				String jstr = EntityUtils.toString(authResponse.getEntity());
-	    				response = JSONNode.parse(jstr);
+	    				response = new JSONObject(jstr);
 	    				return SUCCESS;
 	    			}
 				} catch (IOException e) {
@@ -302,7 +306,7 @@ public class SalesforceREST extends Progressive {
         return FAILURE;
 	}
 	
-	public JSONNode getResponse() {
+	public JSONObject getResponse() {
 		return response;
 	}
 
@@ -347,8 +351,8 @@ public class SalesforceREST extends Progressive {
 
                 try {
                     // Parse access token from authentication response
-                	JSONNode authResult = JSONNode.parse(EntityUtils.toString(authResponse.getEntity()));
-                    accessToken = authResult.get("access_token").asString();
+                	JSONObject authResult = new JSONObject(EntityUtils.toString(authResponse.getEntity()));
+                    accessToken = authResult.getString("access_token");
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {

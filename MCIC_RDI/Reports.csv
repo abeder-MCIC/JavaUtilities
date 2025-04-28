@@ -1,0 +1,242 @@
+DashboardName,Application,MasterLabel,Id,Type,CreatedBy,LastModifiedBy
+Open_Case_Analysis,MCIC Data Analytics,Open Case Analysis,0FKTR0000000CkL4AU,null,Robert Maksimuk,Yashaswini Jagannath
+Page_Views_URIs,Shield Event Monitoring,Page Views (URIs),0FK0H0000008OzoWAE,null,SYS - MCIC Admin - MCIC,Anith Viswambharan
+Data_Analytics_Quick_Metrics,MCIC RDI Development,Data Analytics Quick Metrics,0FKTR0000000Zll4AE,null,Paul Johnson,Paul Johnson
+YTD_Checker,Andrew Beder,YTD Checker,0FKTR000000076L4AQ,null,Andrew Beder,Andrew Beder
+New_lens_Case_Count_Over_5M_1,Dashboards Validation,New lens: Case_Count_Over_5M_1,0FKTR00000008vF4AQ,null,Yashaswini Jagannath,Yashaswini Jagannath
+Grace_Period_Activity_Lens,MCIC RDI Datasets,Grace Period Activity Lens,0FKTR0000000acz4AA,null,Paul Johnson,Paul Johnson
+Injury_Outcome_2,Data Science Application,Injury Outcome 2,0FK6S000000TPXcWAO,null,Alan Luo,Alan Luo
+Claim_Policies_Reinsurance_Tower_Policies_Lens,MCIC RDI Development,Reinsurance Tower Policies Lens,0FK6S0000004OBOWA2,null,Paul Johnson,Paul Johnson
+Navigational_Page1,MCIC Corporate,Finance Monthly Close,0FK6S0000011Fk9WAE,null,Alan Luo,Paul Johnson
+Resolution_Method,Data Science Application,Resolution Method,0FK6S000000TPXSWA4,null,Alan Luo,Alan Luo
+Images,Shared App,Images,0FKTR000000079Z4AQ,null,Andrew Beder,Jyothi Rajyam
+Daily_Incurred_Dashlet_JR,Dashboards Validation,Daily Incurred Dashlet - JR,0FKTR0000000F2H4AU,null,Paul Johnson,Paul Johnson
+New_Lens49,MCIC RDI Development,Test PSLP Layers,0FKTR00000007O54AI,null,Yashaswini Jagannath,Yashaswini Jagannath
+Class_Roster_B,MCIC Corporate,Class B Roster,0FK6S0000011FihWAE,null,Paul Johnson,Paul Johnson
+AMC_KPI_Dashboard_Test,Andrew Beder,AMC KPI Dashboard - Test,0FKTR00000000Mb4AI,null,Andrew Beder,Andrew Beder
+S_SAC_Metrics_Historical_Retro_Premium,MCIC Senior Leadership,S) SAC Metrics - Historical Retro Premium,0FK6S0000004O6sWAE,null,Yashaswini Jagannath,Scott Loris
+Build_3_FTE_Dashboard,MCIC RDI Development,Build 3 - FTE Dashboard,0FKTR0000000cDO4AY,null,Paul Johnson,Paul Johnson
+SAQL_of_DIL_Reserve_test,MCIC RDI Development,SAQL of DIL Reserve test,0FKTR0000000LIz4AM,null,Yashaswini Jagannath,Yashaswini Jagannath
+NAICS_Data_Report,User Acceptance,NAICS Data Report,0FKTR0000000EkX4AU,null,Paul Johnson,Yashaswini Jagannath
+CT_DOI_Report,MCIC RDI Development,CT DOI Report,0FKTR0000000lN74AI,null,Yashaswini Jagannath,Yashaswini Jagannath
+RDI_Report_Export,RDI Inventory,RDI Report Export,0FKTR0000000VBt4AM,null,Andrew Beder,Andrew Beder
+X6_Loss_Run_for_Reinsurers,MCIC Corporate,Loss Run for Reinsurers,0FK6S0000011FkdWAE,null,Alan Luo,Yashaswini Jagannath
+Claim_Reports,MCIC Claims,Claim Reports Landing Page,0FK6S00000093MCWAY,null,Jyothi Rajyam,Paul Johnson
+Subscriber_KPI_Dashboard,Dashboards Validation,Subscriber KPI Dashboard (Development),0FKTR0000000DN34AM,null,Paul Johnson,Yashaswini Jagannath
+Monthly_Close_Incurred_Change_Yale,MCIC Corporate,Monthly Close Incurred Change Yale,0FK6S0000011Fj6WAE,null,Paul Johnson,Paul Johnson
+I_SAC_Metrics_Newly_Reported_Cases_Mix_by_Primary_Clincal_Dept_PSLP,MCIC Senior Leadership,I) SAC Metrics - Newly Reported Cases Mix by Primary Clincal Dept (PSLP),0FK6S0000004O4mWAE,null,Yashaswini Jagannath,Scott Loris
+Wave_Adoption,Shield Event Monitoring,Analytics Adoption,0FK0H0000008OzvWAE,null,SYS - MCIC Admin - MCIC,Anith Viswambharan
+Metric_O,MCIC Senior Leadership,O) SAC Metrics - G&amp;A Expense vs Budget by Spend Category,0FK6S0000004O6xWAE,null,Yashaswini Jagannath,Scott Loris
+Prior_Month_Test,Andrew Beder,Prior Month Test,0FKTR00000002eX4AQ,null,Andrew Beder,Andrew Beder
+Files,Shield Event Monitoring,Files,0FK0H0000008OzlWAE,null,SYS - MCIC Admin - MCIC,Integration User
+F2_SAC_Metrics_HSIL_Layer_Capacity,MCIC Senior Leadership,F2) SAC Metrics - HSIL Layer Capacity,0FK6S0000004OBYWA2,null,Yashaswini Jagannath,Scott Loris
+AON_Quarterly_Report,MCIC Corporate,AON Quarterly Report,0FKTR0000000FqH4AU,null,Paul Johnson,Yashaswini Jagannath
+Final_Claim_Outcome,Data Science Application,Final Claim Outcome,0FK6S000000TPXNWA4,null,Alan Luo,Alan Luo
+Test_Snapshot_all,MCIC RDI Development,Test Snapshot all Lens for YJ,0FKTR00000007eD4AQ,null,Yashaswini Jagannath,Esther Choy
+Report_Downloads,Shield Event Monitoring,Report Downloads,0FK0H0000008OzpWAE,null,SYS - MCIC Admin - MCIC,Integration User
+Claims_Daily_Incurred_Increase_Report,MCIC Claims,Claims Daily Incurred Increase Report,0FKTR0000000feH4AQ,null,Paul Johnson,Jyothi Rajyam
+Expense_and_Fees_Report_AL2,MCIC LSS,Expense and Fees Report-AL2,0FK6S000000TPPsWAO,null,Anith Viswambharan,Anith Viswambharan
+PSLP_Dashboard_Validation,MCIC RDI Development,PSLP Dashboard Validation,0FKTR0000000Nnp4AE,null,Yashaswini Jagannath,Esther Choy
+PSLP_Keyword_Search,MCIC Patient Safety,PSLP Keyword Search,0FKTR0000000dZF4AY,null,Paul Johnson,Paul Johnson
+Historical_CY_IncLoss_vs_Estimate,MCIC Senior Leadership,Historical_CY_IncLoss_vs_Estimate,0FK6S0000004OESWA2,null,Scott Loris,Scott Loris
+MIF_Cases,MCIC Claims,MIF Case Notes,0FKTR0000000GO94AM,null,Andrew Beder,Andrew Beder
+Row_Access_User_Role_Claims_by_AMC_Lens,MCIC RDI Datasets,*Row Access - User Role Claims by AMC Lens,0FK6S00000093FBWAY,null,Paul Johnson,Paul Johnson
+YNHHS_Claims_Activity,AMC Reporting,YNHHS Claims Activity,0FK6S0000011FlWWAU,null,Jyothi Rajyam,Paul Johnson
+My_Trust,Shield Event Monitoring,My Trust,0FK0H0000008OznWAE,null,SYS - MCIC Admin - MCIC,Integration User
+Named_Insureds,MCIC RDI Development,Named Insureds,0FK6S00000093RlWAI,null,Paul Johnson,Paul Johnson
+C_SAC_Metrics_Newly_Reported_Cases_Claims_Suits_Quarterly_Trend,MCIC Senior Leadership,C) SAC Metrics - Number and Rate of Resolved Cases (Claims and Suits),0FK6S0000004O4DWAU,null,Yashaswini Jagannath,Yashaswini Jagannath
+SAC_Metrics_MCIC,MCIC Data Analytics,SAC Metrics - MCIC,0FKTR00000005ED4AY,null,Jyothi Rajyam,Paul Johnson
+Reserve_Change1,AMC Reporting,Month to Date Reserve Changes,0FK6S0000011FpYWAU,null,Paul Johnson,Paul Johnson
+User_Logins,Shield Event Monitoring,Logins,0FK0H0000008OztWAE,null,SYS - MCIC Admin - MCIC,Integration User
+ERM_Metrics_Lens,MCIC RDI Development,ERM Metrics Lens,0FK6S0000011FypWAE,null,Paul Johnson,Paul Johnson
+Claim_Development_by_AMC,MCIC Data Analytics,Claim Development by AMC,0FKTR0000000auj4AA,null,Andrew Beder,Andrew Beder
+New_dashboard,MCIC RDI Development,Exposure Metrics trend,0FK6S000000wk6zWAA,null,Yashaswini Jagannath,Yashaswini Jagannath
+Widget_Design_Pallette,Andrew Beder,Widget Design Pallette,0FK6S0000011Fs8WAE,null,Andrew Beder,Andrew Beder
+Indemnity_Reserve_Changes,AMC Reporting,Indemnity Reserve Changes,0FK6S0000011FpiWAE,null,Paul Johnson,Yashaswini Jagannath
+I_SAC_Metrics_Newly_Reported_Cases_Claims_Suits_Mix_by_Primary_Clincal,MCIC Senior Leadership,L) SAC Metrics - Incurred Losses Mix by Primary Clinical Department (PSLP),0FK6S0000004O4hWAE,null,Yashaswini Jagannath,Scott Loris
+AB_KPI_Metrics_Inventory_AMC_View,Andrew Beder,AB KPI/Metrics - Inventory AMC View,0FK6S0000011FswWAE,null,Andrew Beder,Andrew Beder
+Reinsurance_Summary_Tracker,MCIC Claims,Reinsurance Summary Tracker,0FKTR0000000cDW4AY,null,Paul Johnson,Paul Johnson
+New_Lens23,MCIC Senior Leadership,F1) SAC Metrics - Reinsurance Layer Capacity,0FK6S0000004OBTWA2,null,Yashaswini Jagannath,Scott Loris
+New_Lens22,MCIC Senior Leadership,E) SAC Metrics - Case Counts &gt;$5M by Resolution Year,0FK6S0000004O7vWAE,null,Yashaswini Jagannath,Scott Loris
+X1_Tower_Watson_Ground_Up,MCIC Corporate,Towers Watson Ground Up,0FK6S0000011FkEWAU,null,Alan Luo,Yashaswini Jagannath
+Test,Andrew Beder,Test,0FK6S0000011FuOWAU,null,Andrew Beder,Andrew Beder
+Test_Rate_of_Resolved_Cas_1,MCIC RDI Development,Test Rate_of_Resolved_Cas_1,0FKTR00000006v34AA,null,Yashaswini Jagannath,Yashaswini Jagannath
+A1_SAC_Metrics_Incurred_Loss_Development_vs_Actuarial_Estimate,MCIC Senior Leadership,A1) SAC Metrics - Incurred Loss Development vs. Actuarial Estimate,0FK6S0000004O51WAE,null,Yashaswini Jagannath,Yashaswini Jagannath
+X7_Claims_Changed_Activity,MCIC Corporate,Claims Changed Activity,0FK6S0000011FkiWAE,null,Alan Luo,Paul Johnson
+X12_NAICS_Data_Report,MCIC Corporate,NAICS Data Report,0FK6S0000011Fl7WAE,null,Alan Luo,Paul Johnson
+Copy_of_New_Finance_Monthly_Close_Report_AL,MCIC Finance,MCIC Finance Home,0FK6S00000093ONWAY,null,Paul Johnson,Yashaswini Jagannath
+New_lens_Recipe_Lineage_L1_1,RDI Inventory,New lens: Recipe_Lineage_L1_1,0FKTR00000005MH4AY,null,Andrew Beder,Andrew Beder
+FTE_Dashboard_Phase_2,MCIC RDI Development,FTE Dashboard Phase 2,0FKTR0000000cDT4AY,null,Paul Johnson,Paul Johnson
+Claims_Activity_Yale_Allocated,MCIC Claims,Claims Activity Yale Allocated,0FKTR00000001iT4AQ,null,Paul Johnson,Paul Johnson
+Copy_of_Scheduled_Insureds,MCIC Corporate,Scheduled Insureds,0FK6S00000093JwWAI,null,Paul Johnson,Paul Johnson
+Exposure_data,MCIC Insurance Operations,Exposure data,0FK6S000000TOxPWAW,null,Yashaswini Jagannath,Yashaswini Jagannath
+X4_Daily_Incurred_Loss_Report,MCIC Corporate,Monthly Incurred Loss Report,0FK6S0000011FkTWAU,null,Alan Luo,Andrew Beder
+Ranking_and_Record_Type,Data Science Application,Ranking and Record Type,0FK6S000000TPXmWAO,null,Alan Luo,Alan Luo
+Adverse_Outcome,Data Science Application,Adverse Outcome,0FK6S000000TPXIWA4,null,Alan Luo,Alan Luo
+Copy_of_C_SAC_Metrics_Number_and_Rate_of_Resolved_Cases_Claims_and_Suits,MCIC RDI Development,Copy of C) SAC Metrics - Number and Rate of Resolved Cases (Claims and Suits),0FKTR00000005Nt4AI,null,Jeff Garrow,Jeff Garrow
+Data_Quality_Lens,Andrew Beder,Data Quality Lens,0FK6S0000011Fy6WAE,null,Andrew Beder,Andrew Beder
+G_SAC_Metrics_Incurred_Loss_vs_Actuarial_Estimates_and_Prior,MCIC Senior Leadership,G) SAC Metrics - Incurred Loss vs Actuarial Estimates and Prior,0FK6S0000004OCgWAM,null,Yashaswini Jagannath,Yashaswini Jagannath
+Fees_and_Expenses_by_Law_Firm_Lens,MCIC LSS,Fees and Expenses by Law Firm Lens - PJ,0FK6S000000oMMxWAM,null,Paul Johnson,Anith Viswambharan
+Monthly_Incurred_Change_Report_Dev,MCIC RDI Development,Monthly Incurred Change Report (Dev),0FKTR00000007Xl4AI,null,Andrew Beder,Yashaswini Jagannath
+Yale_Incurred_Change_Report1,MCIC RDI Development,Yale Incurred Change Report,0FKTR00000003ab4AA,null,Andrew Beder,Andrew Beder
+Copy_of_Claims_Activity_Report1,MCIC Corporate,Claims Activity Report,0FK6S0000011FqMWAU,null,Paul Johnson,Yashaswini Jagannath
+V_SAC_Metrics_Investment_Performance_vs_Industry_Benchmarks,MCIC Senior Leadership,V) SAC Metrics - Investment Performance vs. Industry Benchmarks,0FK6S0000004O5pWAE,null,Yashaswini Jagannath,Scott Loris
+Yale_Incurred_Change_Report,AMC Reporting,Monthly Incurred Change Report,0FKTR00000003Qv4AI,null,Andrew Beder,Yashaswini Jagannath
+Reinsurance_Test_II,Andrew Beder,Reinsurance Test II,0FKTR00000004V34AI,null,Andrew Beder,Andrew Beder
+New_Lens_for_Chris_H,MCIC Data Analytics,EOY Outstanding Lens,0FK6S0000011FunWAE,null,Paul Johnson,Paul Johnson
+Test_DIL_External,MCIC RDI Development,Test DIL External,0FKTR0000000cDX4AY,null,Paul Johnson,Paul Johnson
+New_lens_TowerPolicy_Year_c_1,MCIC Senior Leadership,New lens: TowerPolicy_Year__c_1,0FK6S000000TPdaWAG,null,John Murphy,John Murphy
+Claims_voided_with_reserves_Lens,MCIC RDI Development,Claims voided with reserves Lens,0FKTR0000000OvB4AU,null,Paul Johnson,Paul Johnson
+MCIC_Insureds,MCIC RDI Development,MCIC Insureds,0FKTR0000000feI4AQ,null,Paul Johnson,Paul Johnson
+Dashboards,Shield Event Monitoring,Dashboards,0FK0H0000008OzkWAE,null,SYS - MCIC Admin - MCIC,Integration User
+Visualforce_Requests,Shield Event Monitoring,Visualforce Requests,0FK0H0000008OzuWAE,null,SYS - MCIC Admin - MCIC,Anith Viswambharan
+Case_Curration,Andrew Beder,Case Curration,0FKTR00000000G94AI,null,Andrew Beder,Andrew Beder
+Incurred_PSLP,MCIC RDI Development,Incurred PSLP,0FKTR000000094v4AA,null,Yashaswini Jagannath,Yashaswini Jagannath
+Test_Data_Analytics_Quick_Metrics,MCIC RDI Development,Test Data Analytics Quick Metrics,0FKTR0000000Zln4AE,null,Paul Johnson,Paul Johnson
+Claims_Development,MCIC Data Analytics,Claims Development,0FKTR0000000awL4AQ,null,Andrew Beder,Andrew Beder
+Predicate_Validation_Report_Claim_Layer_Lens,Security Validation,Predicate Validation - Report - Claim Layer Lens,0FKTR00000005Az4AI,null,Paul Johnson,Paul Johnson
+PSLP_Layers_Report_Lens_for_Testing,MCIC RDI Development,PSLP Layers Report Lens for Testing,0FKTR00000007mH4AQ,null,Esther Choy,Esther Choy
+IPR_Audit_List_2,MCIC Corporate,IPR Audit List,0FK6S0000011FjLWAU,null,Paul Johnson,Paul Johnson
+Exposure_Exploration,MCIC RDI Development,FTE Dashboard Exposure,0FKTR0000000cDS4AY,null,Paul Johnson,Paul Johnson
+Adoption_Timeline,Andrew Beder,Adoption Timeline,0FKTR0000000Ty54AE,null,Andrew Beder,Andrew Beder
+Report_Insured_Coverage_Month_FTE_Lens,MCIC RDI Development,Report - Insured Coverage Month FTE Delta Lens,0FKTR0000000cDN4AY,null,Paul Johnson,Paul Johnson
+New_Claim_Incurred_Detail,MCIC Corporate,New Claim Incurred Detail,0FKTR0000000KOX4A2,null,Andrew Beder,Andrew Beder
+Template_Wireframe,MCIC RDI Development,PSLP Layers Dashboard (Dev),0FK6S0000011Fv2WAE,null,Andrew Beder,Andrew Beder
+Histogram,RDI Inventory,Histogram,0FKTR0000000Ue14AE,null,Andrew Beder,Andrew Beder
+Third_Party_Expense_Aging_Report_Lens,MCIC LSS,Third Party Expense Aging Report Lens - PJ,0FK6S000000oMMsWAM,null,Paul Johnson,Anith Viswambharan
+Open_Claims_Descriptions_Cornell_Lens,MCIC Data Analytics,Open Claims Descriptions - Cornell Lens,0FKTR0000000Cqn4AE,null,Paul Johnson,Paul Johnson
+Metric_w_1,MCIC Senior Leadership,W) SAC Metrics - Capital Ratio Trend,0FK6S0000004O6iWAE,null,Yashaswini Jagannath,Scott Loris
+Injury_Outcome,Data Science Application,Injury Outcome,0FK6S000000TPXXWA4,null,Alan Luo,Alan Luo
+Copy_of_Daily_Incurred_Loss,Dashboards Validation,Copy of Daily Incurred Loss,0FKTR000000077x4AA,null,Andrew Beder,Yashaswini Jagannath
+Test_Lens1,Andrew Beder,Test Lens,0FKTR00000001Ab4AI,null,Andrew Beder,Andrew Beder
+Monthly_Incurred_Report,MCIC RDI Development,Monthly Incurred Report,0FKTR0000000J4J4AU,null,Paul Johnson,Paul Johnson
+Daily_Data_Validation,RDI Inventory,Daily Data Validation,0FKTR00000006DV4AY,null,Andrew Beder,Paul Johnson
+Layering_Test,Andrew Beder,Layering Test,0FKTR00000004TR4AY,null,Andrew Beder,Andrew Beder
+U_SAC_Metrics_Investment_Return_vs_Policy_Benchmark,MCIC Senior Leadership,U) SAC Metrics - Investment Return vs Policy Benchmark,0FK6S0000004O4XWAU,null,Yashaswini Jagannath,Scott Loris
+Claims_Daily_Incurred_Increase_Dashlet,MCIC Claims,Claims Daily Incurred Increase Dashlet,0FKTR0000000hhh4AA,null,Service Mgmt,Service Mgmt
+Apex_Executions,Shield Event Monitoring,Apex Executions,0FK0H0000008OziWAE,null,SYS - MCIC Admin - MCIC,Integration User
+RDI_Report_Data_Export,RDI Inventory,RDI Report Data Export,0FKTR0000000VDV4A2,null,Andrew Beder,Andrew Beder
+Expenses_by_Task_Lens,MCIC LSS,Expenses by Task Lens - PJ,0FK6S000000oMNMWA2,null,Paul Johnson,Anith Viswambharan
+KPI_Metrics_Copy,MCIC Senior Leadership,KPI/Metrics - Inventory,0FK6S000000TPVbWAO,null,Yashaswini Jagannath,Robert Maksimuk
+RestAPI,Shield Event Monitoring,RestAPI,0FK0H0000008OzrWAE,null,SYS - MCIC Admin - MCIC,Integration User
+Adoption_Test,RDI Inventory,Adoption Test,0FK6S0000011FtQWAU,null,Andrew Beder,Andrew Beder
+Setup_Audit_Trail,Shield Event Monitoring,Setup Audit Trail,0FK0H0000008OzsWAE,null,SYS - MCIC Admin - MCIC,Integration User
+URM_Dashboard,AMC Reporting,URM Dashboard,0FKTR0000000HX84AM,null,Paul Johnson,Paul Johnson
+B_SAC_Metrics_Newly_Reported_Cases_Claims_Suits_Quarterly_Trend,MCIC Senior Leadership,B) SAC Metrics - Newly Reported Cases (Claims &amp; Suits) Quarterly Trend,0FK6S0000004O48WAE,null,Yashaswini Jagannath,Scott Loris
+Wireframe_Large_Tabs,MCIC RDI Development,Wireframe - Large Tabs,0FKTR000000093J4AQ,null,Andrew Beder,Andrew Beder
+X10_AON_Quarterly_Report,MCIC Corporate,AON Quarterly Report - Legacy,0FK6S0000011FkxWAE,null,Alan Luo,Yashaswini Jagannath
+Test_DAQM_Bug,MCIC RDI Development,Test DAQM - Bug,0FKTR0000000XQb4AM,null,Yashaswini Jagannath,Yashaswini Jagannath
+Analytics_Inventory_V2,RDI Inventory,Analytics Inventory V2,0FKTR00000005hF4AQ,null,Andrew Beder,Andrew Beder
+DIL_Reserve_test,MCIC RDI Development,DIL Reserve test,0FKTR0000000LHN4A2,null,Yashaswini Jagannath,Yashaswini Jagannath
+Copy_of_ERM_Dashboard_Test_EC,Dashboards Validation,ERM Metrics,0FK6S0000011FyuWAE,null,Paul Johnson,Andrew Beder
+New_lens_Detail_Ground_Up_2,User Acceptance,New lens: Detail_Ground_Up__2,0FKTR0000000HYj4AM,null,Yashaswini Jagannath,Yashaswini Jagannath
+PSLP_Contributing_Factor_Lens_Test,MCIC RDI Development,PSLP Contributing Factor Lens Test,0FKTR00000007W94AI,null,Esther Choy,Esther Choy
+D_SAC_Metrics_Number_of_Open_Claims_Suits_Quarterly_Trend,MCIC Senior Leadership,D) SAC Metrics - Number of Open Claims &amp; Suits - Quarterly Trend,0FK6S0000004O4IWAU,null,Yashaswini Jagannath,Scott Loris
+NYP_Cornell_Loss_Run,MCIC Data Analytics,NYP Cornell Loss Run,0FKTR0000000iVh4AI,null,Paul Johnson,Paul Johnson
+Dashboard_Adoption,RDI Inventory,Dashboard Adoption,0FKTR0000000TjZ4AU,null,Andrew Beder,Andrew Beder
+New_lens_Resolved_Cases_2,Dashboards Validation,New lens: Resolved_Cases__2,0FKTR000000071V4AQ,null,Yashaswini Jagannath,Yashaswini Jagannath
+Daily_Incurred_Loss,MCIC Corporate,Daily Incurred Loss,0FKTR0000000WmH4AU,null,Andrew Beder,Andrew Beder
+K_SAC_Metrics_Strat_of_Resolved_Claims_and_Suits_Incurred_Values_by_Size,MCIC Senior Leadership,K) SAC Metrics - Strat of Resolved Claims and Suits Incurred Values by Size,0FK6S0000004O4SWAU,null,Yashaswini Jagannath,Scott Loris
+X2_Tower_Watson_Extracted_Layer,MCIC Corporate,Towers Watson Extracted Layer,0FK6S0000011FkJWAU,null,Alan Luo,Yashaswini Jagannath
+V2_Monthly_Incurred_Change_Report,MCIC RDI Development,V2 Monthly Incurred Change Report,0FKTR00000003kH4AQ,null,Andrew Beder,Yashaswini Jagannath
+Incurred_Loss_Triangle,Andrew Beder,Loss Pareto,0FKTR00000006rp4AA,null,Andrew Beder,Andrew Beder
+BUSN_1,Andrew Beder,BUSN 1,0FKTR00000005Fp4AI,null,Andrew Beder,Andrew Beder
+Images_Dashboard,Shared App,Images Dashboard,0FKTR0000000Qk54AE,null,Paul Johnson,Andrew Beder
+URM_Images,AMC Reporting,URM Images,0FKTR0000000QCD4A2,null,Jyothi Rajyam,Jyothi Rajyam
+Login_As,Shield Event Monitoring,Login As,0FK0H0000008OzmWAE,null,SYS - MCIC Admin - MCIC,Integration User
+New_Lens1,MCIC Insurance Operations,New Lens,0FK6S000000oMMYWA2,null,Yashaswini Jagannath,Anith Viswambharan
+Adoption_Release_Validation,RDI Inventory,Adoption Release Validation,0FKTR0000000UCb4AM,null,Andrew Beder,Andrew Beder
+Claim_Gallery_Lens,MCIC RDI Datasets,*Claim Gallery Lens,0FK6S0000011FyzWAE,null,Paul Johnson,Paul Johnson
+T_SAC_Metrics_Asset_Allocation,MCIC Senior Leadership,T) SAC Metrics - Asset Allocation,0FK6S0000004O6nWAE,null,Yashaswini Jagannath,Scott Loris
+N2_SAC_Metrics_Historical_Trend_of_Exposures,MCIC Senior Leadership,N2) SAC Metrics - Historical Trend of Exposures,0FK6S0000004O5LWAU,null,Yashaswini Jagannath,Yashaswini Jagannath
+H_SAC_Metrics_Frequency_per_Exposure,MCIC Senior Leadership,H) SAC Metrics - Frequency per Exposure,0FK6S0000004O4NWAU,null,Yashaswini Jagannath,Yashaswini Jagannath
+DIL_Validation,Andrew Beder,DIL Validation,0FKTR00000001fF4AQ,null,Andrew Beder,Andrew Beder
+Copy_of_Claims_Activity_Yale_Allocated,AMC Reporting,Claims Activity Summary Comparison,0FKTR00000002OP4AY,null,Paul Johnson,Paul Johnson
+FTE_Dashboard,MCIC Insurance Operations,FTE Dashboard,0FKTR0000000Z934AE,null,Paul Johnson,Paul Johnson
+Adoption_Panel,RDI Inventory,Dev Adoption Panel,0FKTR0000000UXZ4A2,null,Andrew Beder,Andrew Beder
+Monthly_Close_Incurred_Change_Yale_PHI,MCIC Corporate,(Old) Monthly Close Incurred Change Yale - PHI,0FK6S0000011Fj1WAE,null,Paul Johnson,Andrew Beder
+ToDate_Validation,Andrew Beder,ToDate Validation,0FKTR000000060b4AA,null,Andrew Beder,Andrew Beder
+N1_SAC_Metrics_Historical_Trend_of_Exposures,MCIC Senior Leadership,N1) SAC Metrics - Historical Trend of Exposures,0FK6S0000004O5GWAU,null,Yashaswini Jagannath,Yashaswini Jagannath
+Daily_Incurred_Loss_Dev,MCIC RDI Development,Daily Incurred Loss (Dev),0FKTR00000007az4AA,null,Andrew Beder,Paul Johnson
+Analytics_Adoption1,RDI Inventory,Analytics Adoption,0FK6S0000011FtaWAE,null,Andrew Beder,Andrew Beder
+New_lens_Resolved_Cases_21,Dashboards Validation,New lens: Resolved_Cases__2,0FKTR00000007374AA,null,Yashaswini Jagannath,Yashaswini Jagannath
+New_lens_Resolved_Cases_22,Dashboards Validation,New lens: Resolved_Cases__2,0FKTR000000074j4AA,null,Yashaswini Jagannath,Yashaswini Jagannath
+AMC_Test,Andrew Beder,AMC Test,0FKTR00000004214AA,null,Andrew Beder,Andrew Beder
+Report_Occurrence_Layer_Data_Test,Dashboards Validation,Report - Occurrence Layer Data Test,0FKTR0000000KoL4AU,null,Paul Johnson,Paul Johnson
+New_lens_Resolved_Cases_23,Dashboards Validation,New lens: Resolved_Cases__2,0FKTR00000007Sv4AI,null,Yashaswini Jagannath,Yashaswini Jagannath
+Dev_Adoption_Panel,RDI Inventory,Adoption Panel,0FKTR0000000V734AE,null,Andrew Beder,Andrew Beder
+PSLP_Fields,RDI Inventory,PSLP Fields,0FKTR00000005Kf4AI,null,Andrew Beder,Andrew Beder
+Test_Lens,Andrew Beder,Test Lens,0FK6S0000011FyfWAE,null,Andrew Beder,Andrew Beder
+Cashflow_Monitoring,Dashboards Validation,Cashflow Monitoring,0FKTR0000000J4H4AU,null,Paul Johnson,Paul Johnson
+Open_Claims_Descriptions_YNHHS,MCIC Data Analytics,Open Claims Descriptions - YNHHS,0FKTR0000000hbF4AQ,null,Robert Maksimuk,Robert Maksimuk
+X2025_Calendar_Estimate_Lens,MCIC RDI Development,2025 Calendar Estimate Lens,0FKTR0000000Zdh4AE,null,Yashaswini Jagannath,Yashaswini Jagannath
+Adoption_Analysis,RDI Inventory,Adoption Analysis,0FKTR0000000TbV4AU,null,Andrew Beder,Andrew Beder
+High_Severity_Claim_Type,Data Science Application,High Severity Claim Type,0FK6S000000TPXDWA4,null,Alan Luo,Alan Luo
+Snapshot_Reconciliation_V2,MCIC Corporate,Snapshot Reconciliation,0FK6S00000093IFWAY,null,Paul Johnson,Paul Johnson
+ForDev_Analytics_Design_Toolkit1,Visualization Template Samples,ForDev_Analytics Design Toolkit,0FK6S000000TPVwWAO,null,Alan Luo,Alan Luo
+MIL_Testing_AB,Dashboards Validation,MIL Testing AB,0FKTR0000000JCL4A2,null,Andrew Beder,Jyothi Rajyam
+Data_Analytics_Quick_Metrics_Report_Claims,MCIC Claims,Data Analytics Quick Metrics - Report Claims,0FKTR0000000Zlm4AE,null,Paul Johnson,Paul Johnson
+Report_Claim_Reinsurance_Log_Lens,MCIC Claims,Report - Claim Reinsurance Log Lens,0FKTR0000000byr4AA,null,Paul Johnson,Paul Johnson
+Copy_of_Finance_Monthly_Close_Report_AL1,MCIC RDI Development,New Finance Monthly Close Report - AL,0FK6S0000004O5aWAE,null,Alan Luo,Paul Johnson
+Fees_by_Task_Lens,MCIC LSS,Fees by Task Lens - PJ,0FK6S000000oMNRWA2,null,Paul Johnson,Anith Viswambharan
+Copy_of_11_Quarterly_Paid_Claim_Count,MCIC Corporate,Quarterly Paid Claim Count,0FK6S0000011FmZWAU,null,Alan Luo,Paul Johnson
+Copy_of_Exposure_Metrics_trend,MCIC RDI Development,Copy of Exposure Metrics trend,0FKTR0000000O5Z4AU,null,Yashaswini Jagannath,Yashaswini Jagannath
+Transaction_Test,Andrew Beder,Transaction Test,0FKTR000000040P4AQ,null,Andrew Beder,Andrew Beder
+Exposure_Dashboard,MCIC RDI Development,Exposure Dashboard,0FKTR0000000cDQ4AY,null,Paul Johnson,Paul Johnson
+Predicate_Validation_Report_Claims_Lens,MCIC RDI Development,Predicate Validation - Report - Claims Lens,0FKTR00000005Cb4AI,null,Paul Johnson,Paul Johnson
+SAC_Metric_J,MCIC Senior Leadership,J) SAC Metrics - Average Severity (Resolution Year) Trend,0FK6S0000004O5kWAE,null,Yashaswini Jagannath,Scott Loris
+Subscriber_KPI_Link_Dashlet,AMC Reporting,Subscriber KPI Link Dashlet,0FKTR0000000Evp4AE,null,Andrew Beder,Yashaswini Jagannath
+Snapshot_Difference_Test,Andrew Beder,Snapshot Difference Test,0FK6S0000011FxhWAE,null,Andrew Beder,Andrew Beder
+Lightning_Performance,Shield Event Monitoring,Lightning Performance,0FK0H0000008OzxWAE,null,SYS - MCIC Admin - MCIC,Anith Viswambharan
+Flat_Gage_Examples,MCIC RDI Development,Flat Gage Examples,0FKTR0000000J4I4AU,null,Paul Johnson,Jyothi Rajyam
+YTD_Calendar_estimate,MCIC RDI Development,YTD Calendar estimate,0FKTR00000003174AA,null,Yashaswini Jagannath,Yashaswini Jagannath
+SAC_metric_R,MCIC Senior Leadership,R) SAC Metrics - Premium Equitability - Incurred Loss Ratios,0FK6S0000004O9SWAU,null,Yashaswini Jagannath,Scott Loris
+Page_Offset_Examples,MCIC RDI Development,Page Offset Examples - AL,0FK6S0000011FofWAE,null,Alan Luo,Alan Luo
+Claim_Development,MCIC Data Analytics,Claim Development,0FKTR0000000arV4AQ,null,Andrew Beder,Andrew Beder
+Monthly_Incurred_Change_Report_Yale,AMC Reporting,Monthly Incurred Change Report - Yale,0FKTR00000004bV4AQ,null,Andrew Beder,Paul Johnson
+Average_Severity,Andrew Beder,Average Severity,0FKTR00000003SX4AY,null,Andrew Beder,Andrew Beder
+Predicate_Validation_Report_Claim_Layer_Transaction_Lens,Security Validation,Predicate Validation - Report - Claim Layer Transaction Lens,0FKTR00000005pJ4AQ,null,Paul Johnson,Paul Johnson
+FTE_Counts_Snapshots_Test_dashboard,MCIC RDI Development,FTE Counts - Snapshots test dashboard,0FKTR0000000XdW4AU,null,Paul Johnson,Paul Johnson
+New_dashboard1,AMC Reporting,Credentialing Report,0FK6S0000011FrUWAU,null,Paul Johnson,Paul Johnson
+A3_Incurred_Loss_Development_vs_Actuarial_Estimate,MCIC Senior Leadership,A3)SAC Metrics - Incurred Loss Development vs. Actuarial Estimate,0FK6S0000004O5BWAU,null,Yashaswini Jagannath,Yashaswini Jagannath
+New_dashboard4,MCIC Corporate,Test Claim Incurred Tracker,0FKTR0000000KQ94AM,null,Andrew Beder,Yashaswini Jagannath
+New_dashboard3,MCIC Corporate,Daily Incurred Loss,0FKTR00000001nJ4AQ,null,Andrew Beder,Yashaswini Jagannath
+Claims_Activity_Yale_Allocated_2,MCIC Claims,Claims Activity Yale Allocated 2,0FKTR00000001yb4AA,null,Paul Johnson,Paul Johnson
+Test_Day_incurred_Field_issue,MCIC RDI Development,Test - Day incurred Field issue,0FKTR0000000OYb4AM,null,Yashaswini Jagannath,Yashaswini Jagannath
+Claim_Change_Activity_Updated,User Acceptance,Claim Change Activity Updated,0FKTR0000000FqI4AU,null,Paul Johnson,Yashaswini Jagannath
+Report_PSLP_with_Layers,MCIC RDI Development,Report - PSLP with Layers,0FKTR00000006tR4AQ,null,Yashaswini Jagannath,Yashaswini Jagannath
+Law_Firm_Invoice_Aging_Report_Lens,MCIC LSS,Law Firm Invoice Aging Report Lens - PJ,0FK6S000000oMMnWAM,null,Paul Johnson,Anith Viswambharan
+KPI_Metrics_Inventory,MCIC Corporate,KPI/Metrics - Inventory-,0FK6S0000004ODeWAM,null,Yashaswini Jagannath,Paul Johnson
+AMC_KPI_Dashboard,AMC Reporting,Subscriber KPI Dashboard,0FK6S0000011FvHWAU,null,Andrew Beder,Paul Johnson
+Quarterly_Paid_Claim_Count,MCIC RDI Development,Quarterly Paid Claim Count (New),0FKTR0000000AVd4AM,null,Andrew Beder,Andrew Beder
+X3_Summary_Loss_Run,MCIC Corporate,Summary Loss Run,0FK6S0000011FkOWAU,null,Alan Luo,Paul Johnson
+PSLP_Layers_Dashboard,MCIC Corporate,PSLP Layers Dashboard,0FKTR0000000Ax34AE,null,Andrew Beder,Esther Choy
+New_dashboard5,MCIC RDI Development,Loss development tables,0FKTR0000000VS14AM,null,Andrew Beder,Paul Johnson
+Exposure_Dashboard_Snapshot,MCIC RDI Development,Exposure Dashboard - Snapshot,0FKTR0000000cDR4AY,null,Paul Johnson,Paul Johnson
+Lighthouse_Loss_Run_Extract,MCIC RDI Development,Lighthouse Loss Run Extract,0FK6S000000oMK3WAM,null,Yashaswini Jagannath,Yashaswini Jagannath
+Quarterly_Paid_Claim_Count_New,MCIC Corporate,Quarterly Paid Claim Count (New),0FKTR0000000DGb4AM,null,Paul Johnson,Yashaswini Jagannath
+Daily_Incurred_Dashlette,MCIC Corporate,Daily Incurred Dashlet,0FKTR00000003xB4AQ,null,Andrew Beder,Andrew Beder
+Loss_Run_Reports,MCIC Corporate,Loss Run Reports,0FKTR0000000Eqz4AE,null,Paul Johnson,Yashaswini Jagannath
+DashboardFields_Lens,MCIC RDI Development,DashboardFields Lens,0FKTR0000000NhN4AU,null,Paul Johnson,Paul Johnson
+Actuarial_Loss_Development_Dashboard,MCIC Actuaries,Actuarial Loss Development Dashboard,0FKTR0000000HX74AM,null,Paul Johnson,Paul Johnson
+Fess_and_Expenses_by_Law_Firm_2_Lens,MCIC LSS,Fess and Expenses by Law Firm 2 Lens - PJ,0FK6S000000oMNWWA2,null,Paul Johnson,Anith Viswambharan
+Analytics_adoption,Shield Event Monitoring,Analytics adoption,0FK6S0000004O9DWAU,null,Yashaswini Jagannath,Yashaswini Jagannath
+M_SAC_Metrics_Loss_Adjustment_Expenses1,MCIC Senior Leadership,M) SAC Metrics - Loss Adjustment Expenses,0FK6S0000004O5VWAU,null,Yashaswini Jagannath,Scott Loris
+Analytics_Inventory,RDI Inventory,Analytics Inventory,0FK6S0000011FtuWAE,null,Andrew Beder,Andrew Beder
+Report_Claim_Layer_Transaction_Study_Premium_Group,MCIC RDI Development,Report - Claim Layer Transaction - Study Premium Group,0FKTR0000000NmD4AU,null,Paul Johnson,Paul Johnson
+X5_Loss_Run_Shared_Retained,MCIC Corporate,Loss Run Shared Retained,0FK6S0000011FkYWAU,null,Alan Luo,Yashaswini Jagannath
+A2_SAC_Metrics_Incurred_Loss_Development_vs_Actuarial_Estimate,MCIC Senior Leadership,A2) SAC Metrics - Incurred Loss Development vs. Actuarial Estimate,0FK6S0000004O56WAE,null,Yashaswini Jagannath,Yashaswini Jagannath
+Reports,Shield Event Monitoring,Reports,0FK0H0000008OzqWAE,null,SYS - MCIC Admin - MCIC,Integration User
+Released_Reports,RDI Inventory,Released Reports,0FKTR0000000U694AE,null,Andrew Beder,Andrew Beder
+Adoption_Dashlet,RDI Inventory,Adoption Dashlet,0FKTR0000000TlB4AU,null,Andrew Beder,Andrew Beder
+Copy_of_MCIC_Support_Center_Dashboard,MCIC JIRA Support Center,Copy of MCIC Support Center Dashboard,0FKTR0000000EUP4A2,null,Yashaswini Jagannath,Yashaswini Jagannath
+Specific_Contributing_Factor,Data Science Application,Specific Contributing Factor,0FK6S000000TPXhWAO,null,Alan Luo,Alan Luo
+Exposure_Exploration_Test_dashboard,MCIC Insurance Operations,Exposure Exploration Test dashboard,0FKTR0000000XdV4AU,null,Paul Johnson,Paul Johnson
+Enhancement_Exposure_Exploration_Test_dashboard,MCIC RDI Development,Enhancement -Exposure Exploration Validation,0FKTR0000000cDP4AY,null,Paul Johnson,Paul Johnson
+P_SAC_Metrics_Historical_Premium_and_Rate_Changes,MCIC Senior Leadership,P) SAC Metrics - Historical Premium,0FK6S0000004O93WAE,null,Yashaswini Jagannath,Scott Loris
+Test_Dashboard_Monthly_Incurred,MCIC RDI Development,Test Dashboard - Monthly Incurred,0FKTR0000000J4K4AU,null,Paul Johnson,Paul Johnson
+Reinsurance_Summary_Tracker_Dashlet,MCIC Claims,Reinsurance Summary Tracker Dashlet,0FKTR0000000hhi4AA,null,Service Mgmt,Service Mgmt
+Lightning_Adoption,Shield Event Monitoring,Lightning Adoption,0FK0H0000008OzwWAE,null,SYS - MCIC Admin - MCIC,Andrew Beder
+API,Shield Event Monitoring,API,0FK0H0000008OzjWAE,null,SYS - MCIC Admin - MCIC,Integration User
+Copy_of_ForDev_Analytics_Design_Toolkit1,Visualization Template Samples,ForDev_Analytics Design Toolkit_Mobile,0FK6S000000TPVxWAO,null,Alan Luo,Alan Luo
+New_lens_Incurred_Loss_by_Qua_1,Dashboards Validation,New lens: Incurred_Loss_by_Qua_1,0FKTR00000003Fd4AI,null,Yashaswini Jagannath,Yashaswini Jagannath

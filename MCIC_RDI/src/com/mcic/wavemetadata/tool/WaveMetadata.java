@@ -22,7 +22,6 @@ import javax.swing.JFileChooser;
 
 import org.unbescape.html.HtmlEscape;
 
-import com.mcic.sfrest.SalesforceAgentOld;
 import com.mcic.sfrest.SalesforceREST;
 import com.mcic.util.json.JSONArray;
 import com.mcic.util.json.JSONNode;
@@ -30,7 +29,7 @@ import com.mcic.util.json.JSONObject;
 import com.mcic.util.json.ThreadCluster;
 
 
-import com.mcic.util.Tripple;
+import com.mcic.util.json.Tripple;
 
 public class WaveMetadata {
 	public final static String EXECUTE_QUERY = "/services/data/v58.0/wave/query";
@@ -201,14 +200,14 @@ public class WaveMetadata {
 		public String nextSchedule;
 		public String url;
 		public Map<String, JSONNode> nodes;
-		public Set<Tripple<String, String, String>> saves;  //  <Node Name>, <Dataset Name>, <Field API Name>
-		public Set<Tripple<String, String, String>> loads;  //  <Node Name>, <Dataset Name>, <Field API Name>
+		public Set<Tripple<String>> saves;  //  <Node Name>, <Dataset Name>, <Field API Name>
+		public Set<Tripple<String>> loads;  //  <Node Name>, <Dataset Name>, <Field API Name>
 		
 		public Recipe(String name, String label) {
 			this.name = name;
 			this.label = label;
-			saves = new TreeSet<Tripple<String, String, String>>();
-			loads = new TreeSet<Tripple<String, String, String>>();
+			saves = new TreeSet<Tripple<String>>();
+			loads = new TreeSet<Tripple<String>>();
 		}
 	}
 	
@@ -415,7 +414,8 @@ public class WaveMetadata {
 				}
 			}
 			for (JSONNode dim : xmd.get("dimensions").values()) {
-				Field f = new Field(Type.Dimension, dim.get("field").asString(), dim.get("label").asString(), null, ds, dim.get("isMultiValue").asBoolean());
+				boolean isMultivalue = dim.get("isMultiValue") == null ? false : dim.get("isMultiValue").asBoolean();
+				Field f = new Field(Type.Dimension, dim.get("field").asString(), dim.get("label").asString(), null, ds, isMultivalue);
 //				if (f.name.contains("Begin_21st")) {
 //					System.out.println("Ouch");
 //				}
@@ -681,12 +681,16 @@ public class WaveMetadata {
 								rest = rest.substring(fstream.length() + 1);
 								String fsource = dataSets.get(fstream);
 								//  move over the word "by "
-								rest = rest.substring(3);
+								if (rest.length() > 3) {
+									rest = rest.substring(3);
+								}
 								//System.out.println(rest);
 								String[] phrases = rest.split(" and | or | && | \\|\\| ");
 								for (String phrase : phrases) {
-									phrase = phrase.trim();
-									String field = phrase.substring(0, phrase.indexOf(" "));
+									String field = phrase.trim();
+									if (phrase.indexOf(" ") > 0) {
+										field = phrase.substring(0, phrase.indexOf(" "));
+									}
 									
 									if (field.startsWith("date(")) {
 										field = field.substring(5);
@@ -695,7 +699,9 @@ public class WaveMetadata {
 									field = field.replace("'", "");
 									field = field.replace(",", "");
 									field = field.replaceAll("_Year|_Quarter|_Month|_Day$", "");
-									addField(fsource, field, output);
+									if (fsource != null && !fsource.equals("") && !field.equals("") && !output.equals("")) {
+										addField(fsource, field, output);
+									}
 									
 									//System.out.println("SAQL");
 								}

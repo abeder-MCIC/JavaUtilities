@@ -15,7 +15,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 
-import com.mcic.mdr.mdrApp;
 import com.mcic.sfrest.SalesforceModel;
 import com.mcic.util.Progressive;
 

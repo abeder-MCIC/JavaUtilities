@@ -8,7 +8,7 @@ import java.util.TreeMap;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.mcic.wave.DatasetBuilder;
+import com.mcic.analytics.wavemetadata.DatasetBuilder;
 
 public class DashboardReader extends SalesforceApp {
 	private String apiName;

@@ -34,48 +34,49 @@ public class WaveMetadata extends SalesforceApp{
 	public void execute() {
 		try {
 			DatasetBuilder db;
-			/*
-			//  Load Dashboard records
-			db = new DatasetBuilder("DashbaordName", "Application", "MasterLabel", "Id", "CreatedBy", "LastModifiedBy");
-			for (WaveDashboard d : getDashboards().values()) {
-				db.addRecord(d.name, d.appName, d.label, d.id, d.createdBy, d.lastModifiedBy);
-			}
-			getAgent().writeDataset("Dashboards", "Dashboards", "RDI_Inventory", db);
-
-		
-			//  Load Dataset records
-			db = new DatasetBuilder("DatasetName", "MasterLabel", "Id", "Application");
-			for (WaveDataset d : getDatasets().values()) {
-				db.addRecord(d.name, d.label, d.id, d.appName);
-			}
-			getAgent().writeDataset("Datasets", "Datasets", "RDI_Inventory", db);
 			
+//			//  Load Dashboard records
+//			db = new DatasetBuilder("DashbaordName", "Application", "MasterLabel", "Id", "CreatedBy", "LastModifiedBy");
+//			for (WaveDashboard d : getDashboards().values()) {
+//				db.addRecord(d.name, d.appName, d.label, d.id, d.createdBy, d.lastModifiedBy);
+//			}
+//			getAgent().writeDataset("Dashboards", "Dashboards", "RDI_Inventory", db);
+//
+//		
+//			//  Load Dataset records
+//			db = new DatasetBuilder("DatasetName", "MasterLabel", "Id", "Application");
+//			for (WaveDataset d : getDatasets().values()) {
+//				db.addRecord(d.name, d.label, d.id, d.appName);
+//			}
+//			getAgent().writeDataset("Datasets", "Datasets", "RDI_Inventory", db);
+//			
 			//  Load Dashboard Field records
-			db = new DatasetBuilder("DashboardName", "DatasetName", "FieldName");
+			db = new DatasetBuilder("DashboardName", "StepName", "DatasetName", "FieldName");
 			for (DashboardField f : getAllDashboardFields()) {
-				db.addRecord(f.dashboardName, f.datasetName, f.fieldName);
+				System.out.println(f.toString());
+				db.addRecord(f.dashboardName, f.stepName, f.datasetName, f.fieldName);
 			}			
 			getAgent().writeDataset("DashboardFields", "DashboardFields", "RDI_Inventory", db);
-
-			//  Load Dataset Field records
+//
+//			//  Load Dataset Field records
 //			db = new DatasetBuilder("DashboardName", "DatasetName", "FieldName");
 //			for (DashboardField f : getAllDashboardFields()) {
 //				db.addRecord(f.dashboardName, f.datasetName, f.fieldName);
 //			}			
 //			getAgent().writeDataset("DashboardFields", "DashboardFields", "RDI_Inventory", db);
-			*/
-			
-			db = new DatasetBuilder("DashboardName", "DatasetName");
-			Set<String> dashDatasets = new TreeSet<String>();
-			for (DashboardField f : getAllDashboardFields()) {
-				String val = f.dashboardName + "`" + f.datasetName;
-				dashDatasets.add(val);
-			}
-			for (String val : dashDatasets) {
-				String[] parts = val.split("`");
-				db.addRecord(parts[0], parts[1]);
-			}
-			getAgent().writeDataset("DashboardDatasetJunction", "DashboardDatasetJunction", "RDI_Inventory", db);
+//			
+//			
+//			db = new DatasetBuilder("DashboardName", "DatasetName");
+//			Set<String> dashDatasets = new TreeSet<String>();
+//			for (DashboardField f : getAllDashboardFields()) {
+//				String val = f.dashboardName + "`" + f.datasetName;
+//				dashDatasets.add(val);
+//			}
+//			for (String val : dashDatasets) {
+//				String[] parts = val.split("`");
+//				db.addRecord(parts[0], parts[1]);
+//			}
+//			getAgent().writeDataset("DashboardDatasetJunction", "DashboardDatasetJunction", "RDI_Inventory", db);
 
 			
 		} catch (IOException e) {
@@ -130,7 +131,7 @@ public class WaveMetadata extends SalesforceApp{
 
 	public Set<DashboardField> getAllDashboardFields(){
 		Set<DashboardField> allFields = new HashSet<DashboardField>();
-		ExecutorService cluster = Executors.newFixedThreadPool(5);
+		ExecutorService cluster = Executors.newFixedThreadPool(1);
 		for (WaveDashboard ds : getDashboards().values()) {
 			cluster.execute(new Runnable() {
 				public void run() {

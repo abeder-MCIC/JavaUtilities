@@ -1,4 +1,4 @@
-package com.mcic.wave;
+package com.mcic.analytics.wavemetadata;
 
 import java.io.File;
 import java.io.FileReader;

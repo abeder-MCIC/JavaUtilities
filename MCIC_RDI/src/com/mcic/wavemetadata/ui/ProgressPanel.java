@@ -11,6 +11,7 @@ import javax.swing.JScrollPane;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -37,6 +38,7 @@ public class ProgressPanel extends JPanel {
 			this.noComplete = noComplete;
 			complete = false;
 		}
+		
 		
 		public void complete() {
 			complete = true;
@@ -93,6 +95,14 @@ public class ProgressPanel extends JPanel {
 		add(btnNewButton, "cell 0 3,alignx right");
 	}
 
+	public void show() {
+		JDialog dialog = new JDialog();
+		dialog.setBounds(100, 100, 450, 800);
+		dialog.add(this);
+		dialog.setVisible(true);
+	}
+	
+	
 	public ProgressPanelStep nextStep(String message, boolean noComplete) {
 		ProgressPanelStep out = new ProgressPanelStep(this, message, noComplete);
 		stepNames.add(out);

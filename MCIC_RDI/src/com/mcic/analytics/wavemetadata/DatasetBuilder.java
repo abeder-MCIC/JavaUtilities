@@ -1,4 +1,4 @@
-package com.mcic.wave;
+package com.mcic.analytics.wavemetadata;
 
 import java.io.*;
 import java.util.Arrays;

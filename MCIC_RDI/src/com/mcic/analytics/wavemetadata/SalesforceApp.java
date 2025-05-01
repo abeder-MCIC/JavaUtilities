@@ -1,4 +1,4 @@
-package com.mcic.wave;
+package com.mcic.analytics.wavemetadata;
 
 import java.awt.Component;
 import java.io.BufferedWriter;
@@ -14,14 +14,23 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 
 public abstract class SalesforceApp {
-    private final SalesforceREST agent;
-    private final SalesforceModel model;
-    private final Map<String, String[]> arguments;
+    private SalesforceREST agent;
+    private SalesforceModel model;
+    private Map<String, String[]> arguments;
     private String currentDirectory;
-
-    protected SalesforceApp(String[] switchedArgs) {
+    
+    protected SalesforceApp() {
         arguments = new TreeMap<>();
         currentDirectory = null;
+    }
+    
+    protected SalesforceApp(SalesforceApp parent) {
+    	this();
+    	agent = parent.agent;
+    	model = parent.model;
+    }
+
+    protected void setArgs(String[] switchedArgs) {
         Vector<String> args = new Vector<>();
         String thisArg = null;
         File sfProps = null;

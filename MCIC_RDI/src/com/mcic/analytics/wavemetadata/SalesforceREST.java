@@ -1,4 +1,4 @@
-package com.mcic.wave;
+package com.mcic.analytics.wavemetadata;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -25,9 +25,11 @@ import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.ParseException;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.io.entity.StringEntity;
+import org.apache.lucene.analysis.miscellaneous.StemmerOverrideFilter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.mcic.analytics.wavemetadata.ProgressPanel.ProgressPanelStep;
 import com.mcic.util.Progressive;
 
 public class SalesforceREST extends Progressive {
@@ -38,12 +40,18 @@ public class SalesforceREST extends Progressive {
     private final Map<String, Set<String>> sObjectFields = new TreeMap<>();
     private CloseableHttpClient httpClient;
     private JSONObject response;
+    private ProgressPanel prog;
 
     public SalesforceREST(SalesforceModel m) {
         this.model = m;
     }
+    
+    public void setProg(ProgressPanel prog) {
+		this.prog = prog;
+	}
 
-    public String getAccessToken() {
+
+	public String getAccessToken() {
         if (accessToken == null) authenticate();
         return accessToken;
     }
@@ -52,6 +60,19 @@ public class SalesforceREST extends Progressive {
         return model.getEndpoint();
     }
 
+    public static String[] scrapeJSON(JSONObject node, String... fields) {
+        String[] output = new String[fields.length];
+        for (int i = 0; i < fields.length; i++) {
+            String[] parts = fields[i].split("\\.");
+            JSONObject cursor = node;
+            for (int j = 0; j < parts.length - 1; j++) {
+                cursor = cursor.getJSONObject(parts[j]);
+            }
+            output[i] = cursor.optString(parts[parts.length - 1], null);
+        }
+        return output;
+    }
+    
     private void authenticate() {
         try {
             httpClient = HttpClients.createDefault();
@@ -81,7 +102,12 @@ public class SalesforceREST extends Progressive {
             get.setHeader("Authorization", "Bearer " + getAccessToken());
             CloseableHttpResponse resp = httpClient.execute(get);
             String body = EntityUtils.toString(resp.getEntity());
-            response = new JSONObject(body);
+            if (body.charAt(0) == '{') {
+            	response = new JSONObject(body);
+            } else {
+            	System.out.println("Error in response: " + body);
+            	System.exit(1);
+            }
             return SUCCESS;
         } catch (IOException e) {
 			e.printStackTrace();
@@ -145,7 +171,17 @@ public class SalesforceREST extends Progressive {
         return response;
     }
 
-    public void writeDataset(String APIName, String label, String app, DatasetBuilder builder) {
+    public ProgressPanel getProg() {
+    	if (prog == null) {
+    		prog = new ProgressPanel(10);
+    		prog.show();
+    	}
+		return prog;
+	}
+
+	public void writeDataset(String APIName, String label, String app, DatasetBuilder builder) {
+		ProgressPanelStep step = getProg().nextStep("Writing Dataset: " + APIName, true);
+		
         JSONObject hdr = new JSONObject()
             .put("Format", "Csv")
             .put("EdgemartAlias", APIName)
@@ -178,11 +214,13 @@ public class SalesforceREST extends Progressive {
             ExecutorService pool = Executors.newFixedThreadPool(5);
             for (JSONObject pkt : parts) {
                 pool.execute(() -> {
+                	ProgressPanelStep partStep = getProg().nextStep("Uploading data part: " + pkt.getInt("PartNumber"), false);
                     while (postJSON(
                         "/services/data/v58.0/sobjects/InsightsExternalDataPart", pkt
                     ) == FAILURE) {
                         // retry until success
                     }
+                    partStep.complete();
                 });
             }
             pool.shutdown();
@@ -195,5 +233,6 @@ public class SalesforceREST extends Progressive {
         // Trigger processing
         JSONObject proc = new JSONObject().put("Action", "Process");
         patchJSON("/services/data/v58.0/sobjects/InsightsExternalData/" + headerId, proc);
+        step.complete();
     }
 }

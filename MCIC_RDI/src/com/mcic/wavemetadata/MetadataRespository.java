@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 
-import com.mcic.sfrest.SalesforceAgentOld;
 import com.mcic.sfrest.SalesforceModel;
+import com.mcic.sfrest.SalesforceREST;
 import com.mcic.util.json.JSONNode;
 import com.mcic.util.json.JSONObject;
 import com.mcic.wavemetadata.tool.WaveMetadata;
@@ -25,7 +25,7 @@ import com.mcic.wavemetadata.tool.WaveMetadata.Field;
 
 public class MetadataRespository {
 	WaveMetadata meta;
-	SalesforceAgentOld agent;
+	SalesforceREST agent;
 	Map<String, String> elements;
 	
 	public static void main(String[] args) {
@@ -66,7 +66,7 @@ public class MetadataRespository {
 	}
 	
 	public MetadataRespository(SalesforceModel model) {
-		agent = new SalesforceAgentOld(model);
+		agent = new SalesforceREST(model);
 		meta = new WaveMetadata(agent);
 		elements = new TreeMap<String, String>();
 	}
@@ -85,7 +85,8 @@ public class MetadataRespository {
 				o.addString("Table__c", datasetName);
 				o.addString("Field__c", field.name);
 				o.addString("System__c", "CRMA");
-				JSONNode n = agent.postJSON("/services/data/v58.0/sobjects/MDR_Data_Element_Instance__c/", o);
+				int res = agent.postJSON("/services/data/v58.0/sobjects/MDR_Data_Element_Instance__c/", o);
+				JSONNode n = agent.getResponse();
 			}
 		}
 	}
@@ -95,7 +96,8 @@ public class MetadataRespository {
 		if (id == null) {
 			JSONObject e = new JSONObject();
 			e.addString("Name", label);
-			JSONNode n = agent.postJSON("/services/data/v58.0/sobjects/MDR_Data_Element__c/", e);
+			int res = agent.postJSON("/services/data/v58.0/sobjects/MDR_Data_Element__c/", e);
+			JSONNode n = agent.getResponse();
 			id = n.get("id").asString();
 			elements.put(label, id);
 		}

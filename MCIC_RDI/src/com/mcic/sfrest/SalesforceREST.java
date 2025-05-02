@@ -93,88 +93,95 @@ public class SalesforceREST extends Progressive {
     
     public void writeDataset(String APIName, String label, String app, RecordSet data, String operation, String metadata) {
     	
-    	
     	String url = "/services/data/v58.0/sobjects/InsightsExternalData";
-    	metadata = Base64.getEncoder().encodeToString(metadata.getBytes());
     	JSONObject root = new JSONObject();
     	root.addString("Format", "Csv");
     	root.addString("EdgemartAlias", APIName);
     	root.addString("EdgemartLabel", label);
     	root.addString("EdgemartContainer", app);
-    	root.addString("Operation", operation);
     	root.addString("Action", "None");
-    	root.addString("MetadataJson", metadata);
-    	int res = postJSON(url, root);
-    	String id = response.get("id").asString();
-    	//System.out.println(id);
-
-    	final String partUrl = "/services/data/v58.0/sobjects/InsightsExternalDataPart";
-		String dataStr = data.toBase64();
-    	if (dataStr.length() >= 5000000) {
-            //FileInputStream fis = new FileInputStream(file);
-            //FileOutputStream fos = new FileOutputStream(gzipFile);
-    		ByteArrayOutputStream out = new ByteArrayOutputStream();
-    		
-			int part = 1;
-			Vector<JSONNode> packets = new Vector<JSONNode>();
-			while (dataStr.length() > 0) {
-				//System.out.println("Writing block number " + part);
-				int nextBlockSize = dataStr.length() > 5000000 ? 5000000 : dataStr.length();
-				String nextBlock = dataStr.substring(0, nextBlockSize);
-				dataStr = dataStr.substring(nextBlockSize);
-				JSONObject packet = new JSONObject();
-	         	packet.addString("InsightsExternalDataId", id);
-	         	packet.addNumber("PartNumber", part ++);
-	         	packet.addString("DataFile", nextBlock);
-	         	packets.add(packet);
-			}
-			
-			/***************************************************************************************************
-			 *   Kick off a set of threads uploading individual packet data
-			 */
-			
-			ThreadCluster cluster = new ThreadCluster(5);
-	        
-			for (int i = 0;i < packets.size();i++) {
-				final int thisPart = i + 1;
-				final JSONNode thisPacket = packets.elementAt(i);
-				cluster.dispatch(new Runnable() {
-					
-					
-					public void run() {
-						ProgressPanelStep step = nextStep("Writing block number " + thisPart);
-			        	int res = FAILURE;
-			        	while (res == FAILURE) {
-				        	res = postJSON(partUrl, thisPacket);
-				        	if (res != SUCCESS) {
-				        		step.addNote("Failure sending, re-posting");
-				        	}
-			        	}
-			        	step.complete();
-					}
-					
-					
-				});
-				// End of Runnable
-	        	
-			}
-			cluster.join();
+    	if (operation != null) {
+        	root.addString("Operation", operation);
     	} else {
-        	root.clear();
-        	root.addString("InsightsExternalDataId", id);
-        	root.addNumber("PartNumber", 1);
-        	root.addString("DataFile", dataStr);
-        	res = postJSON(url, root);
-        	
+        	root.addString("Operation", "Overwrite");
     	}
-
+    	if (metadata != null) {
+        	metadata = Base64.getEncoder().encodeToString(metadata.getBytes());
+        	root.addString("MetadataJson", metadata);
+    	}    	
+    	int res = postJSON(url, root);
+    	if (res == SalesforceREST.SUCCESS) {
+	    	String id = response.get("id").asString();
+	    	//System.out.println(id);
+	
+	    	final String partUrl = "/services/data/v58.0/sobjects/InsightsExternalDataPart";
+			String dataStr = data.toBase64();
+	    	if (dataStr.length() >= 5000000) {
+	            //FileInputStream fis = new FileInputStream(file);
+	            //FileOutputStream fos = new FileOutputStream(gzipFile);
+	    		ByteArrayOutputStream out = new ByteArrayOutputStream();
+	    		
+				int part = 1;
+				Vector<JSONNode> packets = new Vector<JSONNode>();
+				while (dataStr.length() > 0) {
+					//System.out.println("Writing block number " + part);
+					int nextBlockSize = dataStr.length() > 5000000 ? 5000000 : dataStr.length();
+					String nextBlock = dataStr.substring(0, nextBlockSize);
+					dataStr = dataStr.substring(nextBlockSize);
+					JSONObject packet = new JSONObject();
+		         	packet.addString("InsightsExternalDataId", id);
+		         	packet.addNumber("PartNumber", part ++);
+		         	packet.addString("DataFile", nextBlock);
+		         	packets.add(packet);
+				}
+				
+				/***************************************************************************************************
+				 *   Kick off a set of threads uploading individual packet data
+				 */
+				
+				ThreadCluster cluster = new ThreadCluster(5);
+		        
+				for (int i = 0;i < packets.size();i++) {
+					final int thisPart = i + 1;
+					final JSONNode thisPacket = packets.elementAt(i);
+					cluster.dispatch(new Runnable() {
+						
+						
+						public void run() {
+							ProgressPanelStep step = nextStep("Writing block number " + thisPart);
+				        	int res = FAILURE;
+				        	while (res == FAILURE) {
+					        	res = postJSON(partUrl, thisPacket);
+					        	if (res != SUCCESS) {
+					        		step.addNote("Failure sending, re-posting");
+					        	}
+				        	}
+				        	step.complete();
+						}
+						
+						
+					});
+					// End of Runnable
+		        	
+				}
+				cluster.join();
+	    	} else {
+	        	root.clear();
+	        	root.addString("InsightsExternalDataId", id);
+	        	root.addNumber("PartNumber", 1);
+	        	root.addString("DataFile", dataStr);
+	        	res = postJSON(url, root);
+	    		ProgressPanelStep step = nextStep("Processing Upload");
+	        	url = "/services/data/v58.0/sobjects/InsightsExternalData/" + id;
+	        	root.clear();
+	        	root.addString("Action", "Process");
+	        	res = patchJSON(url, root);
+	        	step.complete();
+	    	}
+    	} else {
+    		System.out.println("Error creating InsightesExternalData object");
+    	}
     	
-		ProgressPanelStep step = nextStep("Processing Upload");
-    	url = "/services/data/v58.0/sobjects/InsightsExternalData/" + id;
-    	root.clear();
-    	root.addString("Action", "Process");
-    	res = patchJSON(url, root);
-    	step.complete();
     }
     
 

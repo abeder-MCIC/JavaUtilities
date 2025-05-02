@@ -22,7 +22,6 @@ import java.util.zip.GZIPInputStream;
 import com.mcic.ConfiguredApp;
 import com.mcic.sfrest.SalesforceModel;
 import com.mcic.sfrest.SalesforceREST;
-import com.mcic.util.BlockRecordSet;
 import com.mcic.util.GZipBase64RecordSet;
 import com.mcic.util.Progressive;
 import com.mcic.util.RecordSet;
@@ -38,6 +37,7 @@ public class WordFrequencyApp extends ConfiguredApp {
 	public static String sourceDatasetId = null;
 	public String caseId;
 	private boolean writeCSV;
+	private Progressive dialog;
 
 	public static final String TARGET_DATASET_NAME = "Word_Frequency_File";
 	public static final String TARGET_DATASET_LABEL = "Word Frequency (File)";
@@ -92,9 +92,11 @@ public class WordFrequencyApp extends ConfiguredApp {
 		SalesforceModel model = new SalesforceModel(propFile);
 		agent = new SalesforceREST(model);
 		readFields();
+		dialog = new Progressive();
 		nextStep("Upload completed, you may close this window", true);
 		setClose(true);
 	}
+
 
 	private String getDatasetId() {
 		if (sourceDatasetId == null) {

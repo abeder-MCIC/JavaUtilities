@@ -1,5 +1,5 @@
 // src/com/mcic/anbalytics/wavemetadata/util/RetryHandler.java
-package com.mcic.anbalytics.wavemetadata.util;
+package com.mcic.analytics.wavemetadata.util;
 
 import java.util.concurrent.Callable;
 

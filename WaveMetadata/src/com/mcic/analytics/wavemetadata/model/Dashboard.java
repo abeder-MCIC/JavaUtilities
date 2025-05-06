@@ -1,4 +1,4 @@
-package com.mcic.anbalytics.wavemetadata.model;
+package com.mcic.analytics.wavemetadata.model;
 
 /**
  * Represents a Salesforce CRM Analytics dashboard.

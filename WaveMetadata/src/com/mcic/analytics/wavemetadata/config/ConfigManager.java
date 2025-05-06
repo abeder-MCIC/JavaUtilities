@@ -1,4 +1,4 @@
-package com.mcic.anbalytics.wavemetadata.config;
+package com.mcic.analytics.wavemetadata.config;
 
 import java.io.FileInputStream;
 import java.io.IOException;

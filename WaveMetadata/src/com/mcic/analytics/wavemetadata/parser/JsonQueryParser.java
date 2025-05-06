@@ -1,8 +1,9 @@
-package com.mcic.anbalytics.wavemetadata.parser;
+package com.mcic.analytics.wavemetadata.parser;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import com.mcic.anbalytics.wavemetadata.model.DashboardField;
+
+import com.mcic.analytics.wavemetadata.model.DashboardField;
 
 import java.util.ArrayList;
 import java.util.List;

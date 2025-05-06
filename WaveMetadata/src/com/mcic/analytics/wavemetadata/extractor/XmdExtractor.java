@@ -1,8 +1,9 @@
-package com.mcic.anbalytics.wavemetadata.extractor;
+package com.mcic.analytics.wavemetadata.extractor;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import com.mcic.anbalytics.wavemetadata.model.DatasetField;
+
+import com.mcic.analytics.wavemetadata.model.DatasetField;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
-package com.mcic.anbalytics.wavemetadata.auth;
+package com.mcic.analytics.wavemetadata.auth;
 
-import com.mcic.anbalytics.wavemetadata.config.ConfigManager;
-import com.mcic.anbalytics.wavemetadata.util.RetryHandler;
+import com.mcic.analytics.wavemetadata.config.ConfigManager;
+import com.mcic.analytics.wavemetadata.util.RetryHandler;
 
 import org.apache.hc.client5.http.classic.methods.HttpPost;
 import org.apache.hc.client5.http.entity.UrlEncodedFormEntity;

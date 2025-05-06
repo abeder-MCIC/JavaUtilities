@@ -1,4 +1,4 @@
-package com.mcic.anbalytics.wavemetadata.model;
+package com.mcic.analytics.wavemetadata.model;
 
 /**
  * Represents a field in a dataset, as defined in XMD metadata.

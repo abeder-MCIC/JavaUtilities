@@ -1,5 +1,5 @@
 // src/com/mcic/anbalytics/wavemetadata/util/ProgressLogger.java
-package com.mcic.anbalytics.wavemetadata.util;
+package com.mcic.analytics.wavemetadata.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

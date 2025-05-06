@@ -1,13 +1,13 @@
 // src/com/mcic/anbalytics/wavemetadata/AppLauncher.java
-package com.mcic.anbalytics.wavemetadata;
+package com.mcic.analytics.wavemetadata;
 
-import com.mcic.anbalytics.wavemetadata.config.ConfigManager;
-import com.mcic.anbalytics.wavemetadata.auth.OAuthService;
-import com.mcic.anbalytics.wavemetadata.client.SalesforceApiClient;
-import com.mcic.anbalytics.wavemetadata.extractor.FieldExtractor;
-import com.mcic.anbalytics.wavemetadata.extractor.XmdExtractor;
-import com.mcic.anbalytics.wavemetadata.model.*;
-import com.mcic.anbalytics.wavemetadata.output.CsvWriter;
+import com.mcic.analytics.wavemetadata.auth.OAuthService;
+import com.mcic.analytics.wavemetadata.client.SalesforceApiClient;
+import com.mcic.analytics.wavemetadata.config.ConfigManager;
+import com.mcic.analytics.wavemetadata.extractor.FieldExtractor;
+import com.mcic.analytics.wavemetadata.extractor.XmdExtractor;
+import com.mcic.analytics.wavemetadata.model.*;
+import com.mcic.analytics.wavemetadata.output.CsvWriter;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

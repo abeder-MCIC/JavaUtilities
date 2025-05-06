@@ -1,12 +1,13 @@
 // src/com/mcic/anbalytics/wavemetadata/client/SalesforceApiClient.java
-package com.mcic.anbalytics.wavemetadata.client;
+package com.mcic.analytics.wavemetadata.client;
 
-import com.mcic.anbalytics.wavemetadata.config.ConfigManager;
-import com.mcic.anbalytics.wavemetadata.auth.OAuthService;
-import com.mcic.anbalytics.wavemetadata.model.Dashboard;
-import com.mcic.anbalytics.wavemetadata.model.Dataset;
-import com.mcic.anbalytics.wavemetadata.util.ProgressLogger;
-import com.mcic.anbalytics.wavemetadata.util.RetryHandler;
+import com.mcic.analytics.wavemetadata.auth.OAuthService;
+import com.mcic.analytics.wavemetadata.config.ConfigManager;
+import com.mcic.analytics.wavemetadata.model.Dashboard;
+import com.mcic.analytics.wavemetadata.model.Dataset;
+import com.mcic.analytics.wavemetadata.util.ProgressLogger;
+import com.mcic.analytics.wavemetadata.util.RetryHandler;
+
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;

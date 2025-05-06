@@ -1,10 +1,11 @@
 // src/com/mcic/anbalytics/wavemetadata/extractor/FieldExtractor.java
-package com.mcic.anbalytics.wavemetadata.extractor;
+package com.mcic.analytics.wavemetadata.extractor;
 
-import com.mcic.anbalytics.wavemetadata.model.DashboardField;
-import com.mcic.anbalytics.wavemetadata.parser.JsonQueryParser;
-import com.mcic.anbalytics.wavemetadata.parser.SaqlQueryParser;
-import com.mcic.anbalytics.wavemetadata.util.ProgressLogger;
+import com.mcic.analytics.wavemetadata.model.DashboardField;
+import com.mcic.analytics.wavemetadata.parser.JsonQueryParser;
+import com.mcic.analytics.wavemetadata.parser.SaqlQueryParser;
+import com.mcic.analytics.wavemetadata.util.ProgressLogger;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 

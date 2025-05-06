@@ -1,11 +1,11 @@
-package com.mcic.anbalytics.wavemetadata.parser;
-
-import com.mcic.anbalytics.wavemetadata.model.DashboardField;
+package com.mcic.analytics.wavemetadata.parser;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.mcic.analytics.wavemetadata.model.DashboardField;
 
 /**
  * Scans SAQL scripts for load statements and quoted fields.

@@ -1,11 +1,11 @@
-package com.mcic.anbalytics.wavemetadata.output;
+package com.mcic.analytics.wavemetadata.output;
 
-import com.mcic.anbalytics.wavemetadata.model.Dashboard;
-import com.mcic.anbalytics.wavemetadata.model.Dataset;
-import com.mcic.anbalytics.wavemetadata.model.DashboardField;
-import com.mcic.anbalytics.wavemetadata.model.DatasetField;
-import com.mcic.anbalytics.wavemetadata.model.JunctionEntry;
-import com.mcic.anbalytics.wavemetadata.util.RetryHandler;
+import com.mcic.analytics.wavemetadata.model.Dashboard;
+import com.mcic.analytics.wavemetadata.model.DashboardField;
+import com.mcic.analytics.wavemetadata.model.Dataset;
+import com.mcic.analytics.wavemetadata.model.DatasetField;
+import com.mcic.analytics.wavemetadata.model.JunctionEntry;
+import com.mcic.analytics.wavemetadata.util.RetryHandler;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

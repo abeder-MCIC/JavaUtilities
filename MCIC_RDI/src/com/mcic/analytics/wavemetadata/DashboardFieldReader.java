@@ -2,93 +2,30 @@ package com.mcic.analytics.wavemetadata;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import com.mcic.analytics.wavemetadata.DashboardReader.WaveDashboard;
 
+import org.json.JSONException;
+
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Parses a Salesforce CRM Analytics dashboard JSON and collects
- * all dataset + field combinations used in its steps (queries),
- * including filters at both step and dashboard levels.
- */
 public class DashboardFieldReader {
 
-    public static void main(String[] args) {
-    	try {
-			BufferedReader in = new BufferedReader(new FileReader("C:\\Users\\abeder\\Documents\\Dashboard.json"));
-			String line;
-			String json = "";
-			while ((line = in.readLine()) != null) {
-				json += line + "\n";
-			}
-			in.close();
-			JSONObject node = new JSONObject(json);
-			Set<DashboardField> fields = parseDashboard("Test", node);
-			System.out.println("Stop!");
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    }
+    public static void main(String[] args) throws Exception {
+        try (BufferedReader reader = new BufferedReader(new FileReader("Dashboard.json"))) {
+            JSONTokener tokener = new JSONTokener(reader);
+            JSONObject root = new JSONObject(tokener);
 
-    /** Immutable triple of stepName, datasetName, and fieldName. */
-    public static class DashboardField {
-        public final String stepName;
-        public final String datasetName;
-        public final String fieldName;
-        public final String dashboardName;
-
-        public DashboardField(String stepName, String datasetName, String fieldName, String dashboardName) {
-            this.stepName    = stepName;
-            this.datasetName = datasetName;
-            this.fieldName   = fieldName;
-            this.dashboardName = dashboardName;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (!(o instanceof DashboardField)) return false;
-            DashboardField that = (DashboardField) o;
-            return Objects.equals(stepName,    that.stepName)    &&
-                   Objects.equals(datasetName, that.datasetName) &&
-                   Objects.equals(fieldName,   that.fieldName)   &&
-                   Objects.equals(dashboardName,   that.dashboardName);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(dashboardName, stepName, datasetName, fieldName);
-        }
-
-        @Override
-        public String toString() {
-            return dashboardName + " → " + stepName + " → " + datasetName + " → " + fieldName;
+            Set<DashboardField> fields = parseDashboard("MyDash", root);
+            System.out.println("Total fields found: " + fields.size());
+            fields.forEach(f -> System.out.println(f));
         }
     }
-
-    // Regex to find SAQL loads: load "0Fb…"
-    private static final Pattern LOAD_PATTERN  =
-        Pattern.compile("load\\s+\"(.*?)\"", Pattern.CASE_INSENSITIVE);
-    // Regex to find anything in single-quotes: 'FieldName'
-    private static final Pattern FIELD_PATTERN =
-        Pattern.compile("'([^']+)'");
-
-    /**
-     * Fetch the dashboard via REST, then scan global filters,
-     * dataSourceLinksInfo.links, and each step for fields.
-     */
     
     public static Set<DashboardField> getFields(WaveDashboard dashboard, SalesforceREST agent){
         String nextURL = "/services/data/v58.0/wave/dashboards/" + dashboard.id;
@@ -100,183 +37,228 @@ public class DashboardFieldReader {
         return parseDashboard(dashboard.name, agent.getResponse());
     }
     
+
+    public static class DashboardField {
+        public final String step, dataset, field, dashboard;
+        public DashboardField(String step, String ds, String fld, String dash) {
+            this.step = step; this.dataset = ds; this.field = fld; this.dashboard = dash;
+        }
+        @Override public int hashCode() {
+            return Objects.hash(dashboard, step, dataset, field);
+        }
+        @Override public boolean equals(Object o) {
+            if (!(o instanceof DashboardField)) return false;
+            DashboardField that = (DashboardField)o;
+            return dashboard.equals(that.dashboard)
+                && step.equals(that.step)
+                && dataset.equals(that.dataset)
+                && field.equals(that.field);
+        }
+        @Override public String toString() {
+            return dashboard + " → " + step + " → " + dataset + " → " + field;
+        }
+    }
+
+    // Patterns for SAQL load & fields
+    private static final Pattern LOAD  = Pattern.compile("load\\s+\"(.*?)\"", Pattern.CASE_INSENSITIVE);
+    private static final Pattern FIELD = Pattern.compile("'([^']+)'",         Pattern.CASE_INSENSITIVE);
+
     public static Set<DashboardField> parseDashboard(String dashName, JSONObject resp) {
         Set<DashboardField> fields = new LinkedHashSet<>();
         JSONObject state = resp.getJSONObject("state");
 
-        // 1) Global dashboard filters
-        JSONArray globalFilters = state.optJSONArray("filters");
-        if (globalFilters != null) {
-            for (int i = 0; i < globalFilters.length(); i++) {
-                JSONObject gf = globalFilters.getJSONObject(i);
-                JSONObject dsObj = gf.optJSONObject("dataset");
-                if (dsObj != null) {
-                    String dsName = dsObj.optString("name", dsObj.optString("id"));
-                    scanFieldArray(dashName, "Global",
-                                   gf.optJSONArray("fields"),
-                                   Collections.singletonList(dsName),
-                                   fields);
-                }
+        // --- Global filters ---
+        JSONArray gfs = state.optJSONArray("filters");
+        if (gfs != null) {
+            for (int i = 0; i < gfs.length(); i++) {
+                JSONObject gf = gfs.getJSONObject(i);
+                String ds = gf.getJSONObject("dataset").getString("name");
+                scanArray(dashName, "Global", Collections.singletonList(ds), gf.optJSONArray("fields"), fields);
             }
         }
 
-        // 2) dataSourceLinksInfo → links
-        JSONObject linksInfo = state.optJSONObject("dataSourceLinksInfo");
-        if (linksInfo != null) {
-            JSONArray links = linksInfo.optJSONArray("links");
+        // --- dataSourceLinksInfo.links ---
+        JSONObject dsl = state.optJSONObject("dataSourceLinksInfo");
+        if (dsl != null) {
+            JSONArray links = dsl.optJSONArray("links");
             if (links != null) {
                 for (int i = 0; i < links.length(); i++) {
                     JSONObject link = links.getJSONObject(i);
-                    JSONObject dsObj = link.optJSONObject("dataset");
-                    if (dsObj != null) {
-                        String dsName = dsObj.optString("name", dsObj.optString("id"));
-                        scanFieldArray(dashName, "Global",
-                                       link.optJSONArray("fields"),
-                                       Collections.singletonList(dsName),
-                                       fields);
+                    JSONArray flds = link.optJSONArray("fields");
+                    if (flds != null) {
+                        for (int j = 0; j < flds.length(); j++) {
+                            JSONObject fld = flds.getJSONObject(j);
+                            addField(dashName, "Global",
+                                     fld.getString("dataSourceName"),
+                                     fld.getString("fieldName"),
+                                     fields);
+                        }
                     }
                 }
             }
         }
 
-        // 3) Steps
-        JSONObject steps = state.getJSONObject("steps");
-        for (String stepKey : steps.keySet()) {
-            JSONObject step = steps.getJSONObject(stepKey);
-            recurseExtract(dashName, stepKey, step, fields);
+        // --- Steps ---
+        JSONObject steps = state.optJSONObject("steps");
+        if (steps != null) {
+            for (String stepKey : steps.keySet()) {
+                recurse(dashName, stepKey, steps.getJSONObject(stepKey), fields);
+            }
         }
 
         return Collections.unmodifiableSet(fields);
     }
 
-    /**
-     * Walk any JSON structure looking for "query" blocks or SAQL strings.
-     */
-    private static void recurseExtract(String dashName, String stepName,
-                                       JSONObject obj,
-                                       Set<DashboardField> fields) {
+    private static void recurse(String dash, String step,
+                                JSONObject obj,
+                                Set<DashboardField> fields) {
         for (String key : obj.keySet()) {
-            Object value = obj.get(key);
+            Object val = obj.get(key);
 
-            // Simple/compact query block
-            if ("query".equalsIgnoreCase(key) && value instanceof JSONObject) {
-                JSONObject query = (JSONObject) value;
-                extractFromSimpleQuery(dashName, stepName, obj, query, fields);
+            // 1) Compact/simple query object
+            if ("query".equalsIgnoreCase(key) && val instanceof JSONObject) {
+                JSONObject q = (JSONObject)val;
+                List<String> parents = grabDatasets(obj);
+                JSONArray inject = new JSONArray();
+                parents.forEach(ds -> inject.put(new JSONObject().put("name", ds)));
+
+                // A) If stringified JSON inside "query"
+                if (q.has("query") && q.optJSONArray("measures") == null) {
+                    String raw = q.getString("query");
+                    String unesc = unescapeHtml(raw);
+                    try {
+                        JSONObject inner = new JSONObject(new JSONTokener(unesc));
+                        inner.put("datasets", inject);
+                        extractSimple(dash, step, obj, inner, fields);
+                    } catch (JSONException ex) {
+                        System.err.println("🔥 Failed parsing inner JSON at step “" + step +
+                            "”, field “query”.\nSnippet around char 56:\n" +
+                            snippet(unesc, 56, 30) + "\nFull raw (truncated 500 chars):\n" +
+                            (unesc.length()>500 ? unesc.substring(0,500)+"…" : unesc));
+                        // skip this step’s query
+                    }
+                }
+                // B) Already proper JSON
+                else {
+                    q.put("datasets", inject);
+                    extractSimple(dash, step, obj, q, fields);
+                }
             }
-            // SAQL embedded directly as a string
-            else if (("query".equalsIgnoreCase(key) || "saql".equalsIgnoreCase(key))
-                     && value instanceof String) {
-                extractFromSAQL(dashName, stepName, (String) value, fields);
+            // 2) SAQL or string-query
+            else if (("saql".equalsIgnoreCase(key)
+                   || ("query".equalsIgnoreCase(key) && val instanceof String))) {
+                extractSaql(dash, step, (String)val, fields);
             }
-            // Recurse into child objects
-            else if (value instanceof JSONObject) {
-                recurseExtract(dashName, stepName, (JSONObject) value, fields);
+            // 3) Recurse deeper
+            else if (val instanceof JSONObject) {
+                recurse(dash, step, (JSONObject)val, fields);
             }
-            // Arrays may contain more queries or SAQL/scripts
-            else if (value instanceof JSONArray) {
-                JSONArray arr = (JSONArray) value;
+            else if (val instanceof JSONArray) {
+                JSONArray arr = (JSONArray)val;
                 for (int i = 0; i < arr.length(); i++) {
-                    Object el = arr.get(i);
-                    if (el instanceof JSONObject) {
-                        recurseExtract(dashName, stepName, (JSONObject) el, fields);
-                    } else if (el instanceof String
-                               && ("query".equalsIgnoreCase(key)
-                                   || "saql".equalsIgnoreCase(key))) {
-                        extractFromSAQL(dashName, stepName, (String) el, fields);
+                    Object e = arr.get(i);
+                    if (e instanceof JSONObject) {
+                        recurse(dash, step, (JSONObject)e, fields);
+                    } else if (e instanceof String
+                               && ("saql".equalsIgnoreCase(key)
+                                || "query".equalsIgnoreCase(key))) {
+                        extractSaql(dash, step, (String)e, fields);
                     }
                 }
             }
         }
     }
 
-    /**
-     * Handle the simple/compact JSON query format:
-     *   – Pull dataset names (use "name", fallback to "id")
-     *   – Descend into any "pigql" script
-     *   – Scan measures, groups, values, AND filters
-     */
-    private static void extractFromSimpleQuery(String dashName, String stepName,
-                                               JSONObject step,
-                                               JSONObject query,
-                                               Set<DashboardField> fields) {
-        // Gather datasets
-        List<String> datasets = new ArrayList<>();
-        JSONArray dsArr = step.optJSONArray("datasets");
-        if (dsArr != null) {
-            for (int i = 0; i < dsArr.length(); i++) {
-                JSONObject dsObj = dsArr.getJSONObject(i);
-                String dsName = dsObj.optString("name", dsObj.optString("id"));
-                datasets.add(dsName);
+    private static List<String> grabDatasets(JSONObject step) {
+        List<String> ds = new ArrayList<>();
+        JSONArray arr = step.optJSONArray("datasets");
+        if (arr != null) {
+            for (int i = 0; i < arr.length(); i++) {
+                JSONObject d = arr.getJSONObject(i);
+                ds.add(d.optString("name", d.optString("id")));
             }
         }
-
-        // If there's embedded PigQL, extract from it too
-        if (query.has("pigql")) {
-            extractFromSAQL(dashName, stepName, query.getString("pigql"), fields);
-        }
-
-        // Scan the standard field arrays
-        scanFieldArray(dashName, stepName, query.optJSONArray("measures"), datasets, fields);
-        scanFieldArray(dashName, stepName, query.optJSONArray("groups"),   datasets, fields);
-        scanFieldArray(dashName, stepName, query.optJSONArray("values"),   datasets, fields);
-
-        // ALSO scan any filters on this query or step
-        scanFieldArray(dashName, stepName, query.optJSONArray("filters"), datasets, fields);
-        scanFieldArray(dashName, stepName, step.optJSONArray("filters"),  datasets, fields);
+        return ds;
     }
 
-    /**
-     * Recursively scan ANY JSONArray of fields (or nested arrays),
-     * adding each String element against every dataset in the list.
-     */
-    private static void scanFieldArray(String dashName, String stepName,
-                                       JSONArray fieldArray,
-                                       List<String> datasets,
-                                       Set<DashboardField> fields) {
-        if (fieldArray == null) return;
-        for (int i = 0; i < fieldArray.length(); i++) {
-            Object elem = fieldArray.get(i);
-            if (elem instanceof JSONArray) {
-                // Nested array → dive in
-                scanFieldArray(dashName, stepName, (JSONArray) elem, datasets, fields);
-            }
-            else if (elem instanceof String) {
-                String fld = (String) elem;
-                for (String ds : datasets) {
-                    addField(dashName, stepName, ds, fld, fields);
-                }
-            }
-            // other types (e.g. JSONObject) are ignored here
+    private static void extractSimple(String dash, String step,
+                                      JSONObject stepObj,
+                                      JSONObject q,
+                                      Set<DashboardField> flds) {
+        List<String> dsList = grabDatasets(q);
+        // fallback to step-level
+        if (dsList.isEmpty()) dsList = grabDatasets(stepObj);
+
+        // pigql inside simple → SAQL
+        if (q.has("pigql")) {
+            extractSaql(dash, step, q.getString("pigql"), flds);
         }
+
+        scanArray(dash, step, dsList, q.optJSONArray("measures"), flds);
+        scanArray(dash, step, dsList, q.optJSONArray("groups"),   flds);
+        scanArray(dash, step, dsList, q.optJSONArray("values"),   flds);
+        scanArray(dash, step, dsList, q.optJSONArray("filters"),  flds);
+        scanArray(dash, step, dsList, stepObj.optJSONArray("filters"), flds);
     }
 
-    /** Parse a SAQL script: pull out loaded datasets and quoted field names. */
-    private static void extractFromSAQL(String dashName, String stepName,
-                                        String saql,
-                                        Set<DashboardField> fields) {
-        List<String> datasets = new ArrayList<>();
-        Matcher m = LOAD_PATTERN.matcher(saql);
-        while (m.find()) {
-            datasets.add(m.group(1));
-        }
-        if (datasets.isEmpty()) {
-            return;
-        }
-        Matcher fm = FIELD_PATTERN.matcher(saql);
-        while (fm.find()) {
-            String fld = fm.group(1);
-            for (String ds : datasets) {
-                addField(dashName, stepName, ds, fld, fields);
+    private static void extractSaql(String dash, String step,
+                                    String saql,
+                                    Set<DashboardField> flds) {
+        Matcher lm = LOAD.matcher(saql);
+        List<String> ds = new ArrayList<>();
+        while (lm.find()) ds.add(lm.group(1));
+
+        if (!ds.isEmpty()) {
+            Matcher fm = FIELD.matcher(saql);
+            while (fm.find()) {
+                String field = fm.group(1);
+                ds.forEach(dsrc -> addField(dash, step, dsrc, field, flds));
             }
         }
     }
 
-    private static void addField(String dashName, String stepName,
-                                 String datasetName,
-                                 String fieldName,
-                                 Set<DashboardField> fields) {
-    	DashboardField f = new DashboardField(stepName, datasetName, fieldName, dashName);
-        fields.add(f);
-        System.out.println("Adding field: " + f.toString());
+    private static void scanArray(String dash, String step,
+                                  List<String> ds,
+                                  JSONArray arr,
+                                  Set<DashboardField> flds) {
+        if (arr == null) return;
+        for (int i = 0; i < arr.length(); i++) {
+            Object o = arr.get(i);
+            if (o instanceof JSONArray) {
+                scanArray(dash, step, ds, (JSONArray)o, flds);
+            } else if (o instanceof String) {
+                ds.forEach(dsrc -> addField(dash, step, dsrc, (String)o, flds));
+            }
+        }
+    }
+
+    private static void addField(String dash,
+                                 String step,
+                                 String ds,
+                                 String fld,
+                                 Set<DashboardField> flds) {
+        DashboardField df = new DashboardField(step, ds, fld, dash);
+        if (flds.add(df)) {
+            //System.out.println(" + " + df);
+        }
+    }
+
+    // enhanced HTML unescape, including numeric entities
+    private static String unescapeHtml(String s) {
+        return s.replace("&quot;", "\"")
+                .replace("&#34;", "\"")
+                .replace("&apos;", "'")
+                .replace("&#39;", "'")
+                .replace("&lt;", "<")
+                .replace("&gt;", ">")
+                .replace("&amp;", "&")
+                .replace("&#92;", "\\");
+    }
+
+    // grab around the error index
+    private static String snippet(String s, int idx, int radius) {
+        int start = Math.max(0, idx - radius);
+        int end   = Math.min(s.length(), idx + radius);
+        return s.substring(start, end).replaceAll("\\s+", " ");
     }
 }

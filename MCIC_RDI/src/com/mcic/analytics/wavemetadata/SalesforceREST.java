@@ -40,17 +40,17 @@ public class SalesforceREST extends Progressive {
     private final Map<String, Set<String>> sObjectFields = new TreeMap<>();
     private CloseableHttpClient httpClient;
     private JSONObject response;
-    private ProgressPanel prog;
+    private ProgressPanel panel;
 
     public SalesforceREST(SalesforceModel m) {
         this.model = m;
+        this.panel = new ProgressPanel(1);
     }
-    
-    public void setProg(ProgressPanel prog) {
-		this.prog = prog;
+
+    public void setProgressPanel(ProgressPanel panel) {
+		this.panel = panel;
 	}
-
-
+    
 	public String getAccessToken() {
         if (accessToken == null) authenticate();
         return accessToken;
@@ -85,6 +85,7 @@ public class SalesforceREST extends Progressive {
             HttpEntity multipart = builder.build();
             HttpPost authReq = new HttpPost(model.getEndpoint() + "/services/oauth2/token");
             authReq.setEntity(multipart);
+            
             String respStr = new String(httpClient.execute(authReq).getEntity().getContent().readAllBytes());
             response = new JSONObject(respStr);
             accessToken = response.getString("access_token");
@@ -171,16 +172,8 @@ public class SalesforceREST extends Progressive {
         return response;
     }
 
-    public ProgressPanel getProg() {
-    	if (prog == null) {
-    		prog = new ProgressPanel(10);
-    		prog.show();
-    	}
-		return prog;
-	}
-
 	public void writeDataset(String APIName, String label, String app, DatasetBuilder builder) {
-		ProgressPanelStep step = getProg().nextStep("Writing Dataset: " + APIName, true);
+		ProgressPanelStep step = panel.newUncompleted("Writing Dataset: " + APIName);
 		
         JSONObject hdr = new JSONObject()
             .put("Format", "Csv")
@@ -214,7 +207,7 @@ public class SalesforceREST extends Progressive {
             ExecutorService pool = Executors.newFixedThreadPool(5);
             for (JSONObject pkt : parts) {
                 pool.execute(() -> {
-                	ProgressPanelStep partStep = getProg().nextStep("Uploading data part: " + pkt.getInt("PartNumber"), false);
+                	ProgressPanelStep partStep = prog.nextStep("Uploading data part: " + pkt.getInt("PartNumber"), false);
                     while (postJSON(
                         "/services/data/v58.0/sobjects/InsightsExternalDataPart", pkt
                     ) == FAILURE) {

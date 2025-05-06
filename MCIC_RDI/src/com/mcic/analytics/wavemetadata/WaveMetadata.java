@@ -16,6 +16,7 @@ import com.mcic.analytics.wavemetadata.DashboardFieldReader.DashboardField;
 import com.mcic.analytics.wavemetadata.DashboardReader.WaveDashboard;
 import com.mcic.analytics.wavemetadata.DatasetReader.WaveDataset;
 import com.mcic.analytics.wavemetadata.DatasetReader.WaveDatasetField;
+import com.mcic.analytics.wavemetadata.ProgressPanel.ProgressPanelStep;
 
 public class WaveMetadata extends SalesforceApp{
 	private Map<String, WaveDataset> datasets = null;
@@ -34,49 +35,59 @@ public class WaveMetadata extends SalesforceApp{
 	public void execute() {
 		try {
 			DatasetBuilder db;
+			ProgressPanel panel = new ProgressPanel(5);
+			agent.setProgressPanel(panel);
 			
-//			//  Load Dashboard records
-//			db = new DatasetBuilder("DashbaordName", "Application", "MasterLabel", "Id", "CreatedBy", "LastModifiedBy");
-//			for (WaveDashboard d : getDashboards().values()) {
-//				db.addRecord(d.name, d.appName, d.label, d.id, d.createdBy, d.lastModifiedBy);
-//			}
-//			getAgent().writeDataset("Dashboards", "Dashboards", "RDI_Inventory", db);
-//
-//		
-//			//  Load Dataset records
-//			db = new DatasetBuilder("DatasetName", "MasterLabel", "Id", "Application");
-//			for (WaveDataset d : getDatasets().values()) {
-//				db.addRecord(d.name, d.label, d.id, d.appName);
-//			}
-//			getAgent().writeDataset("Datasets", "Datasets", "RDI_Inventory", db);
-//			
+			
+			//  Load Dashboard records
+			panel.newTicker("Loading Dashboards");
+			ProgressPanelStep step = panel.newUncompleted("Loading Dashboards");
+			db = new DatasetBuilder("DashbaordName", "Application", "MasterLabel", "Id", "CreatedBy", "LastModifiedBy");
+			for (WaveDashboard d : getDashboards().values()) {
+				db.addRecord(d.name, d.appName, d.label, d.id, d.createdBy, d.lastModifiedBy);
+			}
+			step.complete();
+			getAgent().writeDataset("Dashboards", "Dashboards", "RDI_Inventory", db);
+
+		
+			//  Load Dataset records
+			panel.newTicker("Loading Datasets");
+			db = new DatasetBuilder("DatasetName", "MasterLabel", "Id", "Application");
+			for (WaveDataset d : getDatasets().values()) {
+				db.addRecord(d.name, d.label, d.id, d.appName);
+			}
+			getAgent().writeDataset("Datasets", "Datasets", "RDI_Inventory", db);
+			
 			//  Load Dashboard Field records
+			panel.newTicker("Loading Dashboard Fields");
 			db = new DatasetBuilder("DashboardName", "StepName", "DatasetName", "FieldName");
 			for (DashboardField f : getAllDashboardFields()) {
 				System.out.println(f.toString());
-				db.addRecord(f.dashboardName, f.stepName, f.datasetName, f.fieldName);
+				db.addRecord(f.dashboard, f.step, f.dataset, f.field);
 			}			
 			getAgent().writeDataset("DashboardFields", "DashboardFields", "RDI_Inventory", db);
-//
-//			//  Load Dataset Field records
-//			db = new DatasetBuilder("DashboardName", "DatasetName", "FieldName");
-//			for (DashboardField f : getAllDashboardFields()) {
-//				db.addRecord(f.dashboardName, f.datasetName, f.fieldName);
-//			}			
-//			getAgent().writeDataset("DashboardFields", "DashboardFields", "RDI_Inventory", db);
-//			
-//			
-//			db = new DatasetBuilder("DashboardName", "DatasetName");
-//			Set<String> dashDatasets = new TreeSet<String>();
-//			for (DashboardField f : getAllDashboardFields()) {
-//				String val = f.dashboardName + "`" + f.datasetName;
-//				dashDatasets.add(val);
-//			}
-//			for (String val : dashDatasets) {
-//				String[] parts = val.split("`");
-//				db.addRecord(parts[0], parts[1]);
-//			}
-//			getAgent().writeDataset("DashboardDatasetJunction", "DashboardDatasetJunction", "RDI_Inventory", db);
+
+			//  Load Dataset Field records
+			panel.newTicker("Loading Dataset Fields");
+			db = new DatasetBuilder("DashboardName", "DatasetName", "FieldName");
+			for (DashboardField f : getAllDashboardFields()) {
+				db.addRecord(f.dashboard, f.dataset, f.field);
+			}			
+			getAgent().writeDataset("DashboardFields", "DashboardFields", "RDI_Inventory", db);
+			
+			
+			panel.newTicker("Loading dashboard-dataset junction");
+			db = new DatasetBuilder("DashboardName", "DatasetName");
+			Set<String> dashDatasets = new TreeSet<String>();
+			for (DashboardField f : getAllDashboardFields()) {
+				String val = f.dashboard + "`" + f.dataset;
+				dashDatasets.add(val);
+			}
+			for (String val : dashDatasets) {
+				String[] parts = val.split("`");
+				db.addRecord(parts[0], parts[1]);
+			}
+			getAgent().writeDataset("DashboardDatasetJunction", "DashboardDatasetJunction", "RDI_Inventory", db);
 
 			
 		} catch (IOException e) {
